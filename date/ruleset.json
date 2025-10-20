@@ -1,0 +1,93 @@
+{
+  "version": "v1.0",
+  "time_window_sec": {
+    "precursor_before": 3,
+    "precursor_after": 1,
+    "anchor_merge": 2
+  },
+  "categories": {
+    "마스터로그": "^\\[master\\]_.*\\.log$",
+    "트레이스_C": "AMC_AXIS\\[\\d\\]_C_TRACE_.*\\.log(\\.zip)?$",
+    "트레이스_M": "AMC_AXIS\\[\\d\\]_M_TRACE_.*\\.log(\\.zip)?$",
+    "AMC_Recv": "AMC_Recv.*\\.log(\\.zip)?$",
+    "MCC": "MCC.*\\.log(\\.zip)?$",
+    "User": "User.*\\.log(\\.zip)?$",
+    "AMC_Send_Periodic": "AMC_Send_Periodic.*\\.log(\\.zip)?$",
+    "AMC_Send": "AMC_Send(?!_Periodic).*\\.log(\\.zip)?$",
+    "Assistant": "Assistant.*\\.log(\\.zip)?$",
+    "AutoRecovery": "AutoRecovery.*\\.log(\\.zip)?$",
+    "BCR": "(?<!RawData)BCR.*\\.log(\\.zip)?$",
+    "BCR_RawData": "BCR.*RawData.*\\.log(\\.zip)?$",
+    "CarrierID": "CarrierID.*\\.log(\\.zip)?$",
+    "CID-LOG": "CID-?LOG.*\\.log(\\.zip)?$",
+    "CmdManager": "CmdManager.*\\.log(\\.zip)?$",
+    "CPUandMemInfo": "CPUandMemInfo.*\\.log(\\.zip)?$",
+    "DETECT": "(?<!OHTDETECTWarnning)DETECT.*\\.log(\\.zip)?$",
+    "DiagManager": "DiagManager.*\\.log(\\.zip)?$",
+    "DrivingCtrl": "DrivingCtrl.*\\.log(\\.zip)?$",
+    "EQPIOError": "EQPIOError.*\\.log(\\.zip)?$",
+    "Execute": "(?<!ExecuteJobThread)Execute.*\\.log(\\.zip)?$",
+    "ExecuteJobThread": "ExecuteJobThread.*\\.log(\\.zip)?$",
+    "FM": "FM.*\\.log(\\.zip)?$",
+    "HIDRawData": "HIDRawData.*\\.log(\\.zip)?$",
+    "IOTComm": "IOTComm.*\\.log(\\.zip)?$",
+    "IOTHUB": "IOTHUB.*\\.log(\\.zip)?$",
+    "ManualControl": "ManualControl.*\\.log(\\.zip)?$",
+    "Monitor": "Monitor.*\\.log(\\.zip)?$",
+    "MonitoringDetail": "MonitoringDetail.*\\.log(\\.zip)?$",
+    "OHTDETECTWarnning": "OHTDETECTWarnning.*\\.log(\\.zip)?$",
+    "Passpermit": "Passpermit.*\\.log(\\.zip)?$",
+    "PathSearch": "PathSearch.*\\.log(\\.zip)?$",
+    "QRTest": "QRTest.*\\.log(\\.zip)?$",
+    "Shutter": "Shutter.*\\.log(\\.zip)?$",
+    "SOS_Rcv_RawData": "SOS[_-]?Rcv[_-]?RawData.*\\.log(\\.zip)?$",
+    "ThreadCycle": "ThreadCycle.*\\.log(\\.zip)?$",
+    "TaskControl": "TaskControl.*\\.log(\\.zip)?$",
+    "UBGPatternCom": "UBGPatternCom.*\\.log(\\.zip)?$|UBGPatternComp.*\\.log(\\.zip)?$",
+    "UDPCommunication": "UDPCommunication.*\\.log(\\.zip)?$",
+    "WirelessNet": "WirelessNet.*\\.log(\\.zip)?$"
+  },
+  "error_patterns": {
+    "anchor": [
+      "\\[E\\s*(\\d{3})\\]",
+      "Error\\s*[:=]\\s*(\\d{3})"
+    ],
+    "confirm_map": {
+      "960": "ERR_AXIS2_SERVO_OFFED",
+      "464": "ERR_BUMPER_PRESS"
+    }
+  },
+  "precursor_patterns": [
+    "previously sent frames are received/processed\\s*\\(frame loss\\)!",
+    "Ethernet cable not connected",
+    "\\blink\\s+(?:is\\s+)?down\\b",
+    "carrier\\s+lost",
+    "PHY\\s+reset",
+    "\\bCRC\\s+error\\b",
+    "(?:rx|tx)\\s+(?:drop|error|lost)",
+    "\\bdisconnect(?:ed)?\\b",
+    "\\breconnect\\b",
+    "\\btimeout\\b"
+  ],
+  "confusion_whitelist": [
+    "\\bNe\\d{3,}\\b",
+    "\\bCha\\d{3,}\\b",
+    "\\bNode\\d+\\b",
+    "\\bChannel\\d+\\b"
+  ],
+  "drive_keywords": [
+    "\\bDRIVE\\b",
+    "\\bRUN\\b",
+    "\\bVEL\\b",
+    "\\bSPEED\\b",
+    "\\bMOVE\\b",
+    "\\bACC\\b",
+    "\\bDCC\\b"
+  ],
+  "axis_map": {
+    "0": "Driving-Rear",
+    "1": "Driving-Front",
+    "2": "Hoist",
+    "3": "Slide"
+  }
+}
