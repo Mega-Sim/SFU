@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# Streamlit
+.streamlit/
+
+# Local work dirs
+_work/
+_code/
+
+# Models/Artifacts (keep JSON rules/feedback tracked)
+data/*.joblib
+
+# System
+.DS_Store
+Thumbs.db
