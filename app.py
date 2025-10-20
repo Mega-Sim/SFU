@@ -13,6 +13,18 @@ st.set_page_config(page_title="OHT 로그 분석기 (로그 + 코드 참조)", l
 st.markdown("## ✅ OHT 로그 분석기 — 증거-우선 / 보수적 결론 / 피드백 학습 / **코드 ZIP 자동참조**")
 st.caption("축: 0=Driving-Rear, 1=Driving-Front, 2=Hoist, 3=Slide | 1ms 통신 | amulation/crc15_ccitt 제외")
 
+current_idx = load_source_index()
+current_idx_count = len(current_idx.get("map_num_to_name", {}))
+idx_source = current_idx.get("meta", {}).get("source")
+if idx_source == "default_system" and current_idx_count:
+    st.caption(
+        f"현재 기본 시스템(motion_control + vehicle_control) 코드 매핑 {current_idx_count}건을 사용 중입니다."
+    )
+elif current_idx_count:
+    st.caption(f"현재 저장된 코드 매핑 {current_idx_count}건이 적용됩니다.")
+else:
+    st.caption("현재 코드 매핑이 비어 있습니다.")
+
 with st.sidebar:
     st.markdown("### 설정 / 룰셋")
     rules_obj = load_rules()
@@ -46,7 +58,8 @@ with col_idx1:
 with col_idx2:
     if st.button("현재 코드 매핑 요약 보기"):
         idx = load_source_index()
-        st.json(dict(list(idx.get('map_num_to_name',{}).items())[:20]))
+        preview = dict(list(idx.get('map_num_to_name',{}).items())[:20])
+        st.json({"meta": idx.get("meta", {}), "map_num_to_name": preview})
 
 st.markdown("### 1) 로그데이터 업로드")
 uploads = st.file_uploader("ZIP 또는 LOG 파일 여러 개 선택", type=["zip","log","txt"], accept_multiple_files=True)

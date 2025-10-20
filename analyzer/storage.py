@@ -1,16 +1,19 @@
 from __future__ import annotations
 import json
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, List, Optional
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
+DEFAULT_SYSTEM_DIR = ROOT / "default_system"
 DATA.mkdir(parents=True, exist_ok=True)
 
 RULE_FILE = DATA / "ruleset.json"
 FEEDBACK_FILE = DATA / "feedback.json"
 MODEL_FILE = DATA / "model.joblib"
 SOURCE_INDEX_FILE = DATA / "source_index.json"
+
+_DEFAULT_INDEX_CACHE: Optional[Dict[str, Any]] = None
 
 def load_json(path: Path, default: Any) -> Any:
     if path.exists():
@@ -101,8 +104,52 @@ def load_feedback() -> Dict[str, Any]:
 def save_feedback(fb: Dict[str, Any]) -> None:
     save_json(FEEDBACK_FILE, fb)
 
+def _default_system_code_paths() -> List[Path]:
+    paths: List[Path] = []
+    if DEFAULT_SYSTEM_DIR.exists():
+        # Prefer the packaged ZIPs for faster indexing. Fallback to directories.
+        for name in ("vehicle_control.zip", "motion_control.zip"):
+            p = DEFAULT_SYSTEM_DIR / name
+            if p.exists():
+                paths.append(p)
+        for name in ("vehicle_control", "motion_control"):
+            p = DEFAULT_SYSTEM_DIR / name
+            if p.exists():
+                paths.append(p)
+    return paths
+
+
+def _load_default_system_index() -> Dict[str, Any]:
+    global _DEFAULT_INDEX_CACHE
+    if _DEFAULT_INDEX_CACHE is not None:
+        return _DEFAULT_INDEX_CACHE
+
+    code_paths = _default_system_code_paths()
+    if not code_paths:
+        _DEFAULT_INDEX_CACHE = {"map_num_to_name": {}, "map_name_to_num": {}, "provenance": {}}
+        return _DEFAULT_INDEX_CACHE
+
+    from analyzer.code_indexer import index_code  # Local import to avoid circular dependency.
+
+    idx = index_code(code_paths)
+    idx.setdefault("meta", {})["source"] = "default_system"
+    idx.setdefault("meta", {})["paths"] = [str(p) for p in code_paths]
+    _DEFAULT_INDEX_CACHE = idx
+    return _DEFAULT_INDEX_CACHE
+
+
 def load_source_index() -> Dict[str, Any]:
-    return load_json(SOURCE_INDEX_FILE, default={"map_num_to_name": {}, "map_name_to_num": {}, "provenance": {}})
+    data = load_json(
+        SOURCE_INDEX_FILE,
+        default={"map_num_to_name": {}, "map_name_to_num": {}, "provenance": {}},
+    )
+    if data.get("map_num_to_name"):
+        return data
+
+    default_idx = _load_default_system_index()
+    if default_idx.get("map_num_to_name"):
+        return default_idx
+    return data
 
 def save_source_index(obj: Dict[str, Any]) -> None:
     save_json(SOURCE_INDEX_FILE, obj)
