@@ -1,0 +1,12 @@
+*.zip
+*.ilk
+*.ipch
+*.pdb
+*.db
+*.pch
+*.obj
+.vs
+bin
+Release
+Debug
+Document

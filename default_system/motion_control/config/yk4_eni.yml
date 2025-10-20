@@ -1,0 +1,1993 @@
+EtherCATConfig:
+  '@Version': '1.3'
+  '@xmlns:xsi': http://www.w3.org/2001/XMLSchema-instance
+  '@xsi:noNamespaceSchemaLocation': EtherCATConfig.xsd
+  Config:
+    Cyclic:
+      CycleTime: '1000'
+      Frame:
+        Cmd:
+        - Ado: '304'
+          Adp: '0'
+          Cmd: '7'
+          Cnt: '4'
+          Comment: MISC; BRD; AL Status Register
+          DataLength: '2'
+          InputOffs: '96'
+          OutputOffs: '96'
+          State: [PREOP, SAFEOP, OP]
+        - Addr: '150994944'
+          Cmd: '10'
+          Comment: MISC; LRD; Poll Mailbox State
+          DataLength: '2'
+          InputOffs: '98'
+          OutputOffs: '98'
+          State: [PREOP, SAFEOP, OP]
+        - Addr: '268435456'
+          Cmd: '11'
+          Cnt: '4'
+          Comment: PD; LWR;
+          DataLength: '96'
+          InputOffs: '0'
+          OutputOffs: '0'
+          State: [SAFEOP, OP]
+        - Addr: '268437504'
+          Cmd: '10'
+          Cnt: '4'
+          Comment: PD; LRD;
+          DataLength: '80'
+          InputOffs: '0'
+          OutputOffs: '0'
+          State: [SAFEOP, OP]
+    Master:
+      EoE: {MaxFrames: '180', MaxMACs: '100', MaxPorts: '5'}
+      Info: {Destination: ffffffffffff, EtherType: a488, Name: Class-A Master, Source: 24f5aac21c65}
+      InitCmds:
+        InitCmd:
+        - {Ado: '304', Adp: '0', BeforeSlave: '1', Cmd: '7', Comment: read slave count,
+          Data: '0000', Requires: cycle, Retries: '0', Transition: IP}
+        - {Ado: '304', Adp: '0', BeforeSlave: '1', Cmd: '7', Comment: read slave count,
+          Data: '0000', Requires: cycle, Retries: '0', Transition: IP}
+        - {Ado: '512', Adp: '0', BeforeSlave: '1', Cmd: '8', Comment: enable ECAT
+            IRQ, Data: '0400', Requires: cycle, Retries: '3', Transition: IP}
+        - {Ado: '16', Adp: '0', BeforeSlave: '1', Cmd: '8', Comment: clear configured
+            addresses, Data: '0000', Requires: cycle, Retries: '3', Transition: IP}
+        - {Ado: '768', Adp: '0', BeforeSlave: '1', Cmd: '8', Comment: clear crc register,
+          Data: '0000000000000000', Requires: cycle, Retries: '3', Transition: IP}
+        - Ado: '1536'
+          Adp: '0'
+          BeforeSlave: '1'
+          Cmd: '8'
+          Comment: clear fmmu
+          DataLength: '256'
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, PI, BI, SI, OI]
+        - {Ado: '2048', Adp: '0', BeforeSlave: '1', Cmd: '8', Comment: clear sm, DataLength: '256',
+          Requires: cycle, Retries: '3', Transition: IP}
+        - {Ado: '2320', Adp: '0', BeforeSlave: '1', Cmd: '8', Comment: clear dc system
+            time, DataLength: '32', Requires: cycle, Retries: '3', Transition: IP}
+        - {Ado: '2433', Adp: '0', BeforeSlave: '1', Cmd: '8', Comment: clear dc cycle
+            cfg, Data: '00', Requires: cycle, Retries: '3', Transition: IP}
+        - {Ado: '2352', Adp: '0', BeforeSlave: '1', Cmd: '8', Comment: reset dc speed,
+          Data: '0010', Requires: cycle, Retries: '3', Transition: IP}
+        - {Ado: '2356', Adp: '0', BeforeSlave: '1', Cmd: '8', Comment: configure dc
+            filter, Data: 000c, Requires: cycle, Retries: '3', Transition: IP}
+        - {Ado: '259', Adp: '0', BeforeSlave: '1', Cmd: '8', Comment: en/disable second
+            physical address, Data: '00', Requires: cycle, Retries: '3', Transition: IP}
+      MailboxStates: {Count: '4', StartAddr: '150994944'}
+    ProcessImage:
+      Inputs:
+        ByteSize: '100'
+        Variable:
+        - {BitOffs: '0', BitSize: '16', DataType: UINT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Status word'}
+        - {BitOffs: '16', BitSize: '16', DataType: INT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Torque actual value'}
+        - {BitOffs: '32', BitSize: '32', DataType: DINT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Velocity actual value'}
+        - {BitOffs: '64', BitSize: '32', DataType: DINT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Position actual value'}
+        - {BitOffs: '96', BitSize: '32', DataType: DINT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Following error actual value'}
+        - {BitOffs: '128', BitSize: '16', DataType: UINT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Error code'}
+        - {BitOffs: '144', BitSize: '8', DataType: SINT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Modes of operation display'}
+        - {BitOffs: '160', BitSize: '16', DataType: UINT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Status word'}
+        - {BitOffs: '176', BitSize: '16', DataType: INT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Torque actual value'}
+        - {BitOffs: '192', BitSize: '32', DataType: DINT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Velocity actual value'}
+        - {BitOffs: '224', BitSize: '32', DataType: DINT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Position actual value'}
+        - {BitOffs: '256', BitSize: '32', DataType: DINT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Following error actual value'}
+        - {BitOffs: '288', BitSize: '16', DataType: UINT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Error code'}
+        - {BitOffs: '304', BitSize: '8', DataType: SINT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Modes of operation display'}
+        - {BitOffs: '320', BitSize: '16', DataType: UINT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Status word'}
+        - {BitOffs: '336', BitSize: '16', DataType: INT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Torque actual value'}
+        - {BitOffs: '352', BitSize: '32', DataType: DINT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Velocity actual value'}
+        - {BitOffs: '384', BitSize: '32', DataType: DINT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Position actual value'}
+        - {BitOffs: '416', BitSize: '32', DataType: DINT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Following error actual value'}
+        - {BitOffs: '448', BitSize: '16', DataType: UINT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Error code'}
+        - {BitOffs: '464', BitSize: '8', DataType: SINT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Modes of operation display'}
+        - {BitOffs: '480', BitSize: '16', DataType: UINT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Status word'}
+        - {BitOffs: '496', BitSize: '16', DataType: INT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Torque actual value'}
+        - {BitOffs: '512', BitSize: '32', DataType: DINT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Velocity actual value'}
+        - {BitOffs: '544', BitSize: '32', DataType: DINT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Position actual value'}
+        - {BitOffs: '576', BitSize: '32', DataType: DINT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Following error actual value'}
+        - {BitOffs: '608', BitSize: '16', DataType: UINT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Error code'}
+        - {BitOffs: '624', BitSize: '8', DataType: SINT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Transmit PDO mapping.Modes of operation display'}
+      Outputs:
+        ByteSize: '100'
+        Variable:
+        - {BitOffs: '0', BitSize: '16', DataType: UINT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Control word'}
+        - {BitOffs: '16', BitSize: '16', DataType: INT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Target torque'}
+        - {BitOffs: '32', BitSize: '32', DataType: DINT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Target velocity'}
+        - {BitOffs: '64', BitSize: '32', DataType: DINT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Target position'}
+        - {BitOffs: '96', BitSize: '32', DataType: UDINT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Profile velocity'}
+        - {BitOffs: '128', BitSize: '32', DataType: DINT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Velocity Offset'}
+        - {BitOffs: '160', BitSize: '16', DataType: INT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Torque Offset'}
+        - {BitOffs: '176', BitSize: '16', DataType: UINT, Name: 'Slave_1001 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.---'}
+        - {BitOffs: '192', BitSize: '16', DataType: UINT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Control word'}
+        - {BitOffs: '208', BitSize: '16', DataType: INT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Target torque'}
+        - {BitOffs: '224', BitSize: '32', DataType: DINT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Target velocity'}
+        - {BitOffs: '256', BitSize: '32', DataType: DINT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Target position'}
+        - {BitOffs: '288', BitSize: '32', DataType: UDINT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Profile velocity'}
+        - {BitOffs: '320', BitSize: '32', DataType: DINT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Velocity Offset'}
+        - {BitOffs: '352', BitSize: '16', DataType: INT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Torque Offset'}
+        - {BitOffs: '368', BitSize: '16', DataType: UINT, Name: 'Slave_1002 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.---'}
+        - {BitOffs: '384', BitSize: '16', DataType: UINT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Control word'}
+        - {BitOffs: '400', BitSize: '16', DataType: INT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Target torque'}
+        - {BitOffs: '416', BitSize: '32', DataType: DINT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Target velocity'}
+        - {BitOffs: '448', BitSize: '32', DataType: DINT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Target position'}
+        - {BitOffs: '480', BitSize: '32', DataType: UDINT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Profile velocity'}
+        - {BitOffs: '512', BitSize: '32', DataType: DINT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Velocity Offset'}
+        - {BitOffs: '544', BitSize: '16', DataType: INT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Torque Offset'}
+        - {BitOffs: '560', BitSize: '16', DataType: UINT, Name: 'Slave_1003 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.---'}
+        - {BitOffs: '576', BitSize: '16', DataType: UINT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Control word'}
+        - {BitOffs: '592', BitSize: '16', DataType: INT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Target torque'}
+        - {BitOffs: '608', BitSize: '32', DataType: DINT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Target velocity'}
+        - {BitOffs: '640', BitSize: '32', DataType: DINT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Target position'}
+        - {BitOffs: '672', BitSize: '32', DataType: UDINT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Profile velocity'}
+        - {BitOffs: '704', BitSize: '32', DataType: DINT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Velocity Offset'}
+        - {BitOffs: '736', BitSize: '16', DataType: INT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.Torque Offset'}
+        - {BitOffs: '752', BitSize: '16', DataType: UINT, Name: 'Slave_1004 [SGD7S-xxxxA0x
+            CoE Drive].1st Receive PDO mapping.---'}
+    Slave:
+    - DC: {PotentialReferenceClock: '0'}
+      Info: {AutoIncAddr: '0', Name: 'Slave_1001 [SGD7S-xxxxA0x CoE Drive]', PhysAddr: '1001',
+        Physics: YY, ProductCode: '35652353', RevisionNo: '524291', SerialNo: '0',
+        VendorId: '1337'}
+      InitCmds:
+        InitCmd:
+        - Ado: '288'
+          Adp: '0'
+          Cmd: '2'
+          Comment: set device state to INIT
+          Data: '1100'
+          Requires: cycle
+          Retries: '3'
+          Timeout: '5000'
+          Transition: [PI, BI, SI, OI]
+        - Ado: '304'
+          Adp: '0'
+          Cmd: '1'
+          Comment: check device state for INIT
+          Data: '0000'
+          Requires: cycle
+          Retries: '3'
+          Transition: [PI, SI, OI]
+          Validate: {Data: '0100', DataMask: 0f00, Timeout: '5000'}
+        - Ado: '304'
+          Adp: '0'
+          Cmd: '1'
+          Comment: check device state for INIT
+          Data: '0000'
+          Requires: cycle
+          Retries: '3'
+          Transition: BI
+          Validate: {Data: '0100', DataMask: 0f00, Timeout: '10000'}
+        - Ado: '288'
+          Adp: '0'
+          Cmd: '2'
+          Cnt: '1'
+          Comment: set device state to INIT
+          Data: '1100'
+          Requires: cycle
+          Retries: '3'
+          Timeout: '3000'
+          Transition: [IP, IB]
+        - Ado: '304'
+          Adp: '0'
+          Cmd: '1'
+          Cnt: '1'
+          Comment: check device state for INIT
+          Data: '0000'
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, IB]
+          Validate: {Data: '0100', DataMask: 0f00, Timeout: '3000'}
+        - {Ado: '1280', Adp: '0', Cmd: '2', Cnt: '1', Comment: assign EEPROM to ECAT,
+          Data: '00', Requires: cycle, Retries: '3', Transition: IP}
+        - {Ado: '1282', Adp: '0', Cmd: '2', Cnt: '1', Comment: check vendor id, Data: 000108000000,
+          Retries: '3', Transition: IP}
+        - Ado: '1288'
+          Adp: '0'
+          Cmd: '1'
+          Cnt: '1'
+          Comment: check vendor id
+          Data: '00000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IP
+          Validate: {Data: '39050000', Timeout: '100'}
+        - {Ado: '1282', Adp: '0', Cmd: '2', Cnt: '1', Comment: check product code,
+          Data: 00010a000000, Retries: '3', Transition: IP}
+        - Ado: '1288'
+          Adp: '0'
+          Cmd: '1'
+          Cnt: '1'
+          Comment: check product code
+          Data: '00000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IP
+          Validate: {Data: '01032002', Timeout: '100'}
+        - Ado: '16'
+          Adp: '0'
+          Cmd: '2'
+          Cnt: '1'
+          Comment: set physical address
+          Data: e903
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, IB]
+        - Ado: '2048'
+          Adp: '1001'
+          Cmd: '5'
+          Comment: clear sm 0/1 (mailbox out/in)
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [IP, IB, PI, SI, OI]
+        - {Ado: '2048', Adp: '0', Cmd: '2', Comment: clear sm 0/1 (mailbox out/in),
+          Data: '00000000000000000000000000000000', Retries: '3', Transition: BI}
+        - {Ado: '2048', Adp: '1001', Cmd: '5', Cnt: '1', Comment: set sm 0 (mailbox
+            out), Data: 0010800036000100, Retries: '3', Transition: IP}
+        - {Ado: '2056', Adp: '1001', Cmd: '5', Cnt: '1', Comment: set sm 1 (mailbox
+            in), Data: '8010800032000100', Retries: '3', Transition: IP}
+        - {Ado: '2048', Adp: '1001', Cmd: '5', Cnt: '1', Comment: set sm 0 (bootstrap
+            out), Data: 0010800036000100, Retries: '3', Transition: IB}
+        - {Ado: '2056', Adp: '1001', Cmd: '5', Cnt: '1', Comment: set sm 1 (bootstrap
+            in), Data: '8010800032000100', Retries: '3', Transition: IB}
+        - Ado: '288'
+          Adp: '1001'
+          Cmd: '5'
+          Comment: set device state to PREOP
+          Data: '1200'
+          Requires: cycle
+          Retries: '300'
+          Timeout: '5000'
+          Transition: [SP, OP]
+        - Ado: '2064'
+          Adp: '1001'
+          Cmd: '5'
+          Comment: clear sms
+          DataLength: '16'
+          Retries: '3'
+          Transition: [IP, SP, SI, OP, OI]
+        - {Ado: '2064', Adp: '1001', Cmd: '5', Cnt: '1', Comment: set sm 2 (outputs),
+          Data: 0011180074000100, Retries: '3', Transition: PS}
+        - {Ado: '2072', Adp: '1001', Cmd: '5', Cnt: '1', Comment: set sm 3 (inputs),
+          Data: '0014140030000100', Retries: '3', Transition: PS}
+        - {Ado: '1536', Adp: '1001', Cmd: '5', Cnt: '1', Comment: set fmmu 0 (outputs),
+          Data: 00000010180000070011000201000000, Retries: '3', Transition: PS}
+        - {Ado: '1552', Adp: '1001', Cmd: '5', Cnt: '1', Comment: set fmmu 1 (inputs),
+          Data: 00080010140000070014000101000000, Retries: '3', Transition: PS}
+        - Ado: '1568'
+          Adp: '1001'
+          Cmd: '5'
+          Cnt: '1'
+          Comment: set fmmu 2 (mailbox state)
+          Data: 00000009010000000d08000101000000
+          Retries: '3'
+          Transition: [IP, IB]
+        - {Ado: '288', Adp: '1001', Cmd: '5', Comment: set device state to SAFEOP,
+          Data: '0400', Requires: cycle, Retries: '3', Timeout: '200', Transition: OS}
+        - Ado: '1536'
+          Adp: '1001'
+          Cmd: '5'
+          Comment: clear fmmu 0
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [SP, SI, OP, OI]
+        - Ado: '1552'
+          Adp: '1001'
+          Cmd: '5'
+          Comment: clear fmmu 1
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [SP, SI, OP, OI]
+        - Ado: '1568'
+          Adp: '1001'
+          Cmd: '5'
+          Comment: clear fmmu 2
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [PI, BI, SI, OI]
+        - Ado: '304'
+          Adp: '1001'
+          Cmd: '4'
+          Comment: check device state for PREOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: [SP, OP]
+          Validate: {Data: '020000000000', DataMask: 0f0000000000, Timeout: '5000'}
+        - Ado: '1280'
+          Adp: '1001'
+          Cmd: '5'
+          Cnt: '1'
+          Comment: assign EEPROM to PDI
+          Data: '01'
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, IB]
+        - {Ado: '1280', Adp: '0', Cmd: '2', Comment: assign EEPROM back to ECAT, Data: '00',
+          Requires: cycle, Retries: '3', Transition: II}
+        - {Ado: '288', Adp: '1001', Cmd: '5', Cnt: '1', Comment: set device state
+            to PREOP, Data: '1200', Requires: cycle, Retries: '300', Timeout: '3000',
+          Transition: IP}
+        - Ado: '304'
+          Adp: '1001'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for PREOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IP
+          Validate: {Data: '020000000000', DataMask: 1f0000000000, Timeout: '3000'}
+        - Ado: '1280'
+          Adp: '0'
+          Cmd: '2'
+          Comment: assign EEPROM back to ECAT
+          Data: '00'
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, BI]
+        - {Ado: '288', Adp: '1001', Cmd: '5', Cnt: '1', Comment: set device state
+            to BOOT, Data: '1300', Requires: cycle, Retries: '3', Timeout: '3000',
+          Transition: IB}
+        - Ado: '304'
+          Adp: '1001'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for BOOT
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IB
+          Validate: {Data: '030000000000', DataMask: 1f0000000000, Timeout: '3000'}
+        - {Ado: '288', Adp: '1001', Cmd: '5', Cnt: '1', Comment: set device state
+            to SAFEOP, Data: '0400', Requires: cycle, Retries: '3', Timeout: '10000',
+          Transition: PS}
+        - Ado: '304'
+          Adp: '1001'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for SAFEOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: PS
+          Validate: {Data: '040000000000', DataMask: 1f0000000000, Timeout: '10000'}
+        - Ado: '304'
+          Adp: '1001'
+          Cmd: '4'
+          Comment: check device state for SAFEOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: OS
+          Validate: {Data: '040000000000', DataMask: 0f0000000000, Timeout: '200'}
+        - {Ado: '288', Adp: '1001', Cmd: '5', Cnt: '1', Comment: set device state
+            to OP, Data: 0800, Requires: cycle, Retries: '3', Timeout: '10000', Transition: SO}
+        - Ado: '304'
+          Adp: '1001'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for OP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: SO
+          Validate: {Data: 080000000000, DataMask: 1f0000000000, Timeout: '10000'}
+      Mailbox:
+        '@DataLinkLayer': 'true'
+        BootStrap:
+          Recv: {Length: '128', Start: '4224'}
+          Send: {Length: '128', Start: '4096'}
+        CoE:
+          InitCmds:
+            InitCmd:
+            - {'@Fixed': '1', Ccs: '1', Comment: clear sm pdos (0x1C12), Data: '00',
+              Index: '7186', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear sm pdos (0x1C13), Data: '00',
+              Index: '7187', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A00 entries, Data: '00',
+              Index: '6656', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: '10004160',
+              Index: '6656', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: '10007760',
+              Index: '6656', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 20006c60,
+              Index: '6656', SubIndex: '3', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: '20006460',
+              Index: '6656', SubIndex: '4', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 2000f460,
+              Index: '6656', SubIndex: '5', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 10003f60,
+              Index: '6656', SubIndex: '6', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 08006160,
+              Index: '6656', SubIndex: '7', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 08000000,
+              Index: '6656', SubIndex: '8', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry count,
+              Data: 08, Index: '6656', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A01 entries, Data: '00',
+              Index: '6657', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A01 entry, Data: '10004160',
+              Index: '6657', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A01 entry, Data: '20006460',
+              Index: '6657', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A01 entry count,
+              Data: '02', Index: '6657', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A02 entries, Data: '00',
+              Index: '6658', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A02 entry, Data: '10004160',
+              Index: '6658', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A02 entry, Data: '20006460',
+              Index: '6658', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A02 entry count,
+              Data: '02', Index: '6658', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A03 entries, Data: '00',
+              Index: '6659', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry, Data: '10004160',
+              Index: '6659', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry, Data: '20006460',
+              Index: '6659', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry, Data: '10007760',
+              Index: '6659', SubIndex: '3', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry count,
+              Data: '03', Index: '6659', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1600 entries, Data: '00',
+              Index: '5632', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '10004060',
+              Index: '5632', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '10007160',
+              Index: '5632', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 2000ff60,
+              Index: '5632', SubIndex: '3', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 20007a60,
+              Index: '5632', SubIndex: '4', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '20008160',
+              Index: '5632', SubIndex: '5', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 2000b160,
+              Index: '5632', SubIndex: '6', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 1000b260,
+              Index: '5632', SubIndex: '7', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '10007260',
+              Index: '5632', SubIndex: '8', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry count,
+              Data: 08, Index: '5632', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1601 entries, Data: '00',
+              Index: '5633', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1601 entry, Data: '10004060',
+              Index: '5633', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1601 entry, Data: 20007a60,
+              Index: '5633', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1601 entry count,
+              Data: '02', Index: '5633', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1602 entries, Data: '00',
+              Index: '5634', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1602 entry, Data: '10004060',
+              Index: '5634', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1602 entry, Data: 2000ff60,
+              Index: '5634', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1602 entry count,
+              Data: '02', Index: '5634', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1603 entries, Data: '00',
+              Index: '5635', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1603 entry, Data: '10004060',
+              Index: '5635', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1603 entry, Data: '10007160',
+              Index: '5635', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1603 entry count,
+              Data: '02', Index: '5635', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: 'download pdo 0x1C12:01 index', Data: '0016',
+              Index: '7186', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1C12 count, Data: '01',
+              Index: '7186', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: 'download pdo 0x1C13:01 index', Data: 001a,
+              Index: '7187', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1C13 count, Data: '01',
+              Index: '7187', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {Ccs: '1', Comment: Op mode, Data: 08, Index: '24672', SubIndex: '0',
+              Timeout: '0', Transition: PS}
+            - {Ccs: '1', Comment: Interpolation time period, Data: '01', Index: '24770',
+              SubIndex: '1', Timeout: '0', Transition: PS}
+            - {Ccs: '1', Comment: Interpolation time index, Data: fd, Index: '24770',
+              SubIndex: '2', Timeout: '0', Transition: PS}
+        Protocol: [EoE, CoE, FoE]
+        Recv: {Length: '128', Start: '4224', StatusBitAddr: '0'}
+        Send: {Length: '128', Start: '4096'}
+      ProcessData:
+        Recv: {BitLength: '160', BitStart: '0'}
+        RxPdo:
+        - '@Sm': '2'
+          Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6071', Name: Target torque, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60ff', Name: Target velocity,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x607a', Name: Target position,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: UDINT, Index: '#x6081', Name: Profile velocity,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60b1', Name: Velocity Offset,
+            SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x60b2', Name: Torque Offset, SubIndex: '0'}
+          - {BitLen: '16', DataType: UINT, Index: '#x6072', Name: '---', SubIndex: '0'}
+          Index: '#x1600'
+          Name: 1st Receive PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x607a', Name: Target position,
+            SubIndex: '0'}
+          Index: '#x1601'
+          Name: 2nd Receive PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60ff', Name: Target velocity,
+            SubIndex: '0'}
+          Index: '#x1602'
+          Name: 3rd Receive PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6071', Name: Target torque, SubIndex: '0'}
+          Index: '#x1603'
+          Name: 4th Receive PDO mapping
+        Send: {BitLength: '192', BitStart: '0'}
+        Sm2: {ControlByte: '116', DefaultSize: '6', Enable: '1', MaxSize: '256', MinSize: '1',
+          Pdo: '5632', StartAddress: '4352', Type: Outputs}
+        Sm3: {ControlByte: '48', DefaultSize: '6', Enable: '1', MaxSize: '256', MinSize: '1',
+          Pdo: '6656', StartAddress: '5120', Type: Inputs}
+        TxPdo:
+        - '@Sm': '3'
+          Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6077', Name: Torque actual value,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x606c', Name: Velocity actual
+              value, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60f4', Name: Following error
+              actual value, SubIndex: '0'}
+          - {BitLen: '16', DataType: UINT, Index: '#x603f', Name: Error code, SubIndex: '0'}
+          - {BitLen: '8', DataType: SINT, Index: '#x6061', Name: Modes of operation
+              display, SubIndex: '0'}
+          - {BitLen: '8', Index: '#x0'}
+          Index: '#x1a00'
+          Name: 1st Transmit PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          Index: '#x1a01'
+          Name: 2nd Transmit PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          Index: '#x1a02'
+          Name: 3rd Transmit PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6077', Name: Torque actual value,
+            SubIndex: '0'}
+          Index: '#x1a03'
+          Name: 4th Transmit PDO mapping
+    - DC: {PotentialReferenceClock: '0'}
+      Info: {AutoIncAddr: '65535', Name: 'Slave_1002 [SGD7S-xxxxA0x CoE Drive]', PhysAddr: '1002',
+        Physics: YY, ProductCode: '35652353', RevisionNo: '524291', SerialNo: '0',
+        VendorId: '1337'}
+      InitCmds:
+        InitCmd:
+        - Ado: '288'
+          Adp: '65535'
+          Cmd: '2'
+          Comment: set device state to INIT
+          Data: '1100'
+          Requires: cycle
+          Retries: '3'
+          Timeout: '5000'
+          Transition: [PI, BI, SI, OI]
+        - Ado: '304'
+          Adp: '65535'
+          Cmd: '1'
+          Comment: check device state for INIT
+          Data: '0000'
+          Requires: cycle
+          Retries: '3'
+          Transition: [PI, SI, OI]
+          Validate: {Data: '0100', DataMask: 0f00, Timeout: '5000'}
+        - Ado: '304'
+          Adp: '65535'
+          Cmd: '1'
+          Comment: check device state for INIT
+          Data: '0000'
+          Requires: cycle
+          Retries: '3'
+          Transition: BI
+          Validate: {Data: '0100', DataMask: 0f00, Timeout: '10000'}
+        - Ado: '288'
+          Adp: '65535'
+          Cmd: '2'
+          Cnt: '1'
+          Comment: set device state to INIT
+          Data: '1100'
+          Requires: cycle
+          Retries: '3'
+          Timeout: '3000'
+          Transition: [IP, IB]
+        - Ado: '304'
+          Adp: '65535'
+          Cmd: '1'
+          Cnt: '1'
+          Comment: check device state for INIT
+          Data: '0000'
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, IB]
+          Validate: {Data: '0100', DataMask: 0f00, Timeout: '3000'}
+        - {Ado: '1280', Adp: '65535', Cmd: '2', Cnt: '1', Comment: assign EEPROM to
+            ECAT, Data: '00', Requires: cycle, Retries: '3', Transition: IP}
+        - {Ado: '1282', Adp: '65535', Cmd: '2', Cnt: '1', Comment: check vendor id,
+          Data: 000108000000, Retries: '3', Transition: IP}
+        - Ado: '1288'
+          Adp: '65535'
+          Cmd: '1'
+          Cnt: '1'
+          Comment: check vendor id
+          Data: '00000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IP
+          Validate: {Data: '39050000', Timeout: '100'}
+        - {Ado: '1282', Adp: '65535', Cmd: '2', Cnt: '1', Comment: check product code,
+          Data: 00010a000000, Retries: '3', Transition: IP}
+        - Ado: '1288'
+          Adp: '65535'
+          Cmd: '1'
+          Cnt: '1'
+          Comment: check product code
+          Data: '00000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IP
+          Validate: {Data: '01032002', Timeout: '100'}
+        - Ado: '16'
+          Adp: '65535'
+          Cmd: '2'
+          Cnt: '1'
+          Comment: set physical address
+          Data: ea03
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, IB]
+        - Ado: '2048'
+          Adp: '1002'
+          Cmd: '5'
+          Comment: clear sm 0/1 (mailbox out/in)
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [IP, IB, PI, SI, OI]
+        - {Ado: '2048', Adp: '65535', Cmd: '2', Comment: clear sm 0/1 (mailbox out/in),
+          Data: '00000000000000000000000000000000', Retries: '3', Transition: BI}
+        - {Ado: '2048', Adp: '1002', Cmd: '5', Cnt: '1', Comment: set sm 0 (mailbox
+            out), Data: 0010800036000100, Retries: '3', Transition: IP}
+        - {Ado: '2056', Adp: '1002', Cmd: '5', Cnt: '1', Comment: set sm 1 (mailbox
+            in), Data: '8010800032000100', Retries: '3', Transition: IP}
+        - {Ado: '2048', Adp: '1002', Cmd: '5', Cnt: '1', Comment: set sm 0 (bootstrap
+            out), Data: 0010800036000100, Retries: '3', Transition: IB}
+        - {Ado: '2056', Adp: '1002', Cmd: '5', Cnt: '1', Comment: set sm 1 (bootstrap
+            in), Data: '8010800032000100', Retries: '3', Transition: IB}
+        - Ado: '288'
+          Adp: '1002'
+          Cmd: '5'
+          Comment: set device state to PREOP
+          Data: '1200'
+          Requires: cycle
+          Retries: '300'
+          Timeout: '5000'
+          Transition: [SP, OP]
+        - Ado: '2064'
+          Adp: '1002'
+          Cmd: '5'
+          Comment: clear sms
+          DataLength: '16'
+          Retries: '3'
+          Transition: [IP, SP, SI, OP, OI]
+        - {Ado: '2064', Adp: '1002', Cmd: '5', Cnt: '1', Comment: set sm 2 (outputs),
+          Data: 0011180074000100, Retries: '3', Transition: PS}
+        - {Ado: '2072', Adp: '1002', Cmd: '5', Cnt: '1', Comment: set sm 3 (inputs),
+          Data: '0014140030000100', Retries: '3', Transition: PS}
+        - {Ado: '1536', Adp: '1002', Cmd: '5', Cnt: '1', Comment: set fmmu 0 (outputs),
+          Data: '18000010180000070011000201000000', Retries: '3', Transition: PS}
+        - {Ado: '1552', Adp: '1002', Cmd: '5', Cnt: '1', Comment: set fmmu 1 (inputs),
+          Data: '14080010140000070014000101000000', Retries: '3', Transition: PS}
+        - Ado: '1568'
+          Adp: '1002'
+          Cmd: '5'
+          Cnt: '1'
+          Comment: set fmmu 2 (mailbox state)
+          Data: 00000009010001010d08000101000000
+          Retries: '3'
+          Transition: [IP, IB]
+        - {Ado: '288', Adp: '1002', Cmd: '5', Comment: set device state to SAFEOP,
+          Data: '0400', Requires: cycle, Retries: '3', Timeout: '200', Transition: OS}
+        - Ado: '1536'
+          Adp: '1002'
+          Cmd: '5'
+          Comment: clear fmmu 0
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [SP, SI, OP, OI]
+        - Ado: '1552'
+          Adp: '1002'
+          Cmd: '5'
+          Comment: clear fmmu 1
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [SP, SI, OP, OI]
+        - Ado: '1568'
+          Adp: '1002'
+          Cmd: '5'
+          Comment: clear fmmu 2
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [PI, BI, SI, OI]
+        - Ado: '304'
+          Adp: '1002'
+          Cmd: '4'
+          Comment: check device state for PREOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: [SP, OP]
+          Validate: {Data: '020000000000', DataMask: 0f0000000000, Timeout: '5000'}
+        - Ado: '1280'
+          Adp: '1002'
+          Cmd: '5'
+          Cnt: '1'
+          Comment: assign EEPROM to PDI
+          Data: '01'
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, IB]
+        - {Ado: '1280', Adp: '65535', Cmd: '2', Comment: assign EEPROM back to ECAT,
+          Data: '00', Requires: cycle, Retries: '3', Transition: II}
+        - {Ado: '288', Adp: '1002', Cmd: '5', Cnt: '1', Comment: set device state
+            to PREOP, Data: '1200', Requires: cycle, Retries: '300', Timeout: '3000',
+          Transition: IP}
+        - Ado: '304'
+          Adp: '1002'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for PREOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IP
+          Validate: {Data: '020000000000', DataMask: 1f0000000000, Timeout: '3000'}
+        - Ado: '1280'
+          Adp: '65535'
+          Cmd: '2'
+          Comment: assign EEPROM back to ECAT
+          Data: '00'
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, BI]
+        - {Ado: '288', Adp: '1002', Cmd: '5', Cnt: '1', Comment: set device state
+            to BOOT, Data: '1300', Requires: cycle, Retries: '3', Timeout: '3000',
+          Transition: IB}
+        - Ado: '304'
+          Adp: '1002'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for BOOT
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IB
+          Validate: {Data: '030000000000', DataMask: 1f0000000000, Timeout: '3000'}
+        - {Ado: '288', Adp: '1002', Cmd: '5', Cnt: '1', Comment: set device state
+            to SAFEOP, Data: '0400', Requires: cycle, Retries: '3', Timeout: '10000',
+          Transition: PS}
+        - Ado: '304'
+          Adp: '1002'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for SAFEOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: PS
+          Validate: {Data: '040000000000', DataMask: 1f0000000000, Timeout: '10000'}
+        - Ado: '304'
+          Adp: '1002'
+          Cmd: '4'
+          Comment: check device state for SAFEOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: OS
+          Validate: {Data: '040000000000', DataMask: 0f0000000000, Timeout: '200'}
+        - {Ado: '288', Adp: '1002', Cmd: '5', Cnt: '1', Comment: set device state
+            to OP, Data: 0800, Requires: cycle, Retries: '3', Timeout: '10000', Transition: SO}
+        - Ado: '304'
+          Adp: '1002'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for OP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: SO
+          Validate: {Data: 080000000000, DataMask: 1f0000000000, Timeout: '10000'}
+      Mailbox:
+        '@DataLinkLayer': 'true'
+        BootStrap:
+          Recv: {Length: '128', Start: '4224'}
+          Send: {Length: '128', Start: '4096'}
+        CoE:
+          InitCmds:
+            InitCmd:
+            - {'@Fixed': '1', Ccs: '1', Comment: clear sm pdos (0x1C12), Data: '00',
+              Index: '7186', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear sm pdos (0x1C13), Data: '00',
+              Index: '7187', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A00 entries, Data: '00',
+              Index: '6656', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: '10004160',
+              Index: '6656', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: '10007760',
+              Index: '6656', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 20006c60,
+              Index: '6656', SubIndex: '3', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: '20006460',
+              Index: '6656', SubIndex: '4', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 2000f460,
+              Index: '6656', SubIndex: '5', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 10003f60,
+              Index: '6656', SubIndex: '6', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 08006160,
+              Index: '6656', SubIndex: '7', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 08000000,
+              Index: '6656', SubIndex: '8', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry count,
+              Data: 08, Index: '6656', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A01 entries, Data: '00',
+              Index: '6657', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A01 entry, Data: '10004160',
+              Index: '6657', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A01 entry, Data: '20006460',
+              Index: '6657', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A01 entry count,
+              Data: '02', Index: '6657', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A02 entries, Data: '00',
+              Index: '6658', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A02 entry, Data: '10004160',
+              Index: '6658', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A02 entry, Data: '20006460',
+              Index: '6658', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A02 entry count,
+              Data: '02', Index: '6658', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A03 entries, Data: '00',
+              Index: '6659', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry, Data: '10004160',
+              Index: '6659', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry, Data: '20006460',
+              Index: '6659', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry, Data: '10007760',
+              Index: '6659', SubIndex: '3', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry count,
+              Data: '03', Index: '6659', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1600 entries, Data: '00',
+              Index: '5632', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '10004060',
+              Index: '5632', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '10007160',
+              Index: '5632', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 2000ff60,
+              Index: '5632', SubIndex: '3', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 20007a60,
+              Index: '5632', SubIndex: '4', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '20008160',
+              Index: '5632', SubIndex: '5', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 2000b160,
+              Index: '5632', SubIndex: '6', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 1000b260,
+              Index: '5632', SubIndex: '7', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '10007260',
+              Index: '5632', SubIndex: '8', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry count,
+              Data: 08, Index: '5632', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1601 entries, Data: '00',
+              Index: '5633', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1601 entry, Data: '10004060',
+              Index: '5633', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1601 entry, Data: 20007a60,
+              Index: '5633', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1601 entry count,
+              Data: '02', Index: '5633', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1602 entries, Data: '00',
+              Index: '5634', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1602 entry, Data: '10004060',
+              Index: '5634', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1602 entry, Data: 2000ff60,
+              Index: '5634', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1602 entry count,
+              Data: '02', Index: '5634', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1603 entries, Data: '00',
+              Index: '5635', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1603 entry, Data: '10004060',
+              Index: '5635', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1603 entry, Data: '10007160',
+              Index: '5635', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1603 entry count,
+              Data: '02', Index: '5635', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: 'download pdo 0x1C12:01 index', Data: '0016',
+              Index: '7186', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1C12 count, Data: '01',
+              Index: '7186', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: 'download pdo 0x1C13:01 index', Data: 001a,
+              Index: '7187', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1C13 count, Data: '01',
+              Index: '7187', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {Ccs: '1', Comment: Op mode, Data: 08, Index: '24672', SubIndex: '0',
+              Timeout: '0', Transition: PS}
+            - {Ccs: '1', Comment: Interpolation time period, Data: '01', Index: '24770',
+              SubIndex: '1', Timeout: '0', Transition: PS}
+            - {Ccs: '1', Comment: Interpolation time index, Data: fd, Index: '24770',
+              SubIndex: '2', Timeout: '0', Transition: PS}
+        Protocol: [EoE, CoE, FoE]
+        Recv: {Length: '128', Start: '4224', StatusBitAddr: '1'}
+        Send: {Length: '128', Start: '4096'}
+      PreviousPort: {'@Selected': '1', PhysAddr: '1001', Port: B}
+      ProcessData:
+        Recv: {BitLength: '160', BitStart: '160'}
+        RxPdo:
+        - '@Sm': '2'
+          Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6071', Name: Target torque, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60ff', Name: Target velocity,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x607a', Name: Target position,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: UDINT, Index: '#x6081', Name: Profile velocity,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60b1', Name: Velocity Offset,
+            SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x60b2', Name: Torque Offset, SubIndex: '0'}
+          - {BitLen: '16', DataType: UINT, Index: '#x6072', Name: '---', SubIndex: '0'}
+          Index: '#x1600'
+          Name: 1st Receive PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x607a', Name: Target position,
+            SubIndex: '0'}
+          Index: '#x1601'
+          Name: 2nd Receive PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60ff', Name: Target velocity,
+            SubIndex: '0'}
+          Index: '#x1602'
+          Name: 3rd Receive PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6071', Name: Target torque, SubIndex: '0'}
+          Index: '#x1603'
+          Name: 4th Receive PDO mapping
+        Send: {BitLength: '192', BitStart: '192'}
+        Sm2: {ControlByte: '116', DefaultSize: '6', Enable: '1', MaxSize: '256', MinSize: '1',
+          Pdo: '5632', StartAddress: '4352', Type: Outputs}
+        Sm3: {ControlByte: '48', DefaultSize: '6', Enable: '1', MaxSize: '256', MinSize: '1',
+          Pdo: '6656', StartAddress: '5120', Type: Inputs}
+        TxPdo:
+        - '@Sm': '3'
+          Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6077', Name: Torque actual value,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x606c', Name: Velocity actual
+              value, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60f4', Name: Following error
+              actual value, SubIndex: '0'}
+          - {BitLen: '16', DataType: UINT, Index: '#x603f', Name: Error code, SubIndex: '0'}
+          - {BitLen: '8', DataType: SINT, Index: '#x6061', Name: Modes of operation
+              display, SubIndex: '0'}
+          - {BitLen: '8', Index: '#x0'}
+          Index: '#x1a00'
+          Name: 1st Transmit PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          Index: '#x1a01'
+          Name: 2nd Transmit PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          Index: '#x1a02'
+          Name: 3rd Transmit PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6077', Name: Torque actual value,
+            SubIndex: '0'}
+          Index: '#x1a03'
+          Name: 4th Transmit PDO mapping
+    - DC: {PotentialReferenceClock: '0'}
+      Info: {AutoIncAddr: '65534', Name: 'Slave_1003 [SGD7S-xxxxA0x CoE Drive]', PhysAddr: '1003',
+        Physics: YY, ProductCode: '35652353', RevisionNo: '524291', SerialNo: '0',
+        VendorId: '1337'}
+      InitCmds:
+        InitCmd:
+        - Ado: '288'
+          Adp: '65534'
+          Cmd: '2'
+          Comment: set device state to INIT
+          Data: '1100'
+          Requires: cycle
+          Retries: '3'
+          Timeout: '5000'
+          Transition: [PI, BI, SI, OI]
+        - Ado: '304'
+          Adp: '65534'
+          Cmd: '1'
+          Comment: check device state for INIT
+          Data: '0000'
+          Requires: cycle
+          Retries: '3'
+          Transition: [PI, SI, OI]
+          Validate: {Data: '0100', DataMask: 0f00, Timeout: '5000'}
+        - Ado: '304'
+          Adp: '65534'
+          Cmd: '1'
+          Comment: check device state for INIT
+          Data: '0000'
+          Requires: cycle
+          Retries: '3'
+          Transition: BI
+          Validate: {Data: '0100', DataMask: 0f00, Timeout: '10000'}
+        - Ado: '288'
+          Adp: '65534'
+          Cmd: '2'
+          Cnt: '1'
+          Comment: set device state to INIT
+          Data: '1100'
+          Requires: cycle
+          Retries: '3'
+          Timeout: '3000'
+          Transition: [IP, IB]
+        - Ado: '304'
+          Adp: '65534'
+          Cmd: '1'
+          Cnt: '1'
+          Comment: check device state for INIT
+          Data: '0000'
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, IB]
+          Validate: {Data: '0100', DataMask: 0f00, Timeout: '3000'}
+        - {Ado: '1280', Adp: '65534', Cmd: '2', Cnt: '1', Comment: assign EEPROM to
+            ECAT, Data: '00', Requires: cycle, Retries: '3', Transition: IP}
+        - {Ado: '1282', Adp: '65534', Cmd: '2', Cnt: '1', Comment: check vendor id,
+          Data: 000108000000, Retries: '3', Transition: IP}
+        - Ado: '1288'
+          Adp: '65534'
+          Cmd: '1'
+          Cnt: '1'
+          Comment: check vendor id
+          Data: '00000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IP
+          Validate: {Data: '39050000', Timeout: '100'}
+        - {Ado: '1282', Adp: '65534', Cmd: '2', Cnt: '1', Comment: check product code,
+          Data: 00010a000000, Retries: '3', Transition: IP}
+        - Ado: '1288'
+          Adp: '65534'
+          Cmd: '1'
+          Cnt: '1'
+          Comment: check product code
+          Data: '00000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IP
+          Validate: {Data: '01032002', Timeout: '100'}
+        - Ado: '16'
+          Adp: '65534'
+          Cmd: '2'
+          Cnt: '1'
+          Comment: set physical address
+          Data: eb03
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, IB]
+        - Ado: '2048'
+          Adp: '1003'
+          Cmd: '5'
+          Comment: clear sm 0/1 (mailbox out/in)
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [IP, IB, PI, SI, OI]
+        - {Ado: '2048', Adp: '65534', Cmd: '2', Comment: clear sm 0/1 (mailbox out/in),
+          Data: '00000000000000000000000000000000', Retries: '3', Transition: BI}
+        - {Ado: '2048', Adp: '1003', Cmd: '5', Cnt: '1', Comment: set sm 0 (mailbox
+            out), Data: 0010800036000100, Retries: '3', Transition: IP}
+        - {Ado: '2056', Adp: '1003', Cmd: '5', Cnt: '1', Comment: set sm 1 (mailbox
+            in), Data: '8010800032000100', Retries: '3', Transition: IP}
+        - {Ado: '2048', Adp: '1003', Cmd: '5', Cnt: '1', Comment: set sm 0 (bootstrap
+            out), Data: 0010800036000100, Retries: '3', Transition: IB}
+        - {Ado: '2056', Adp: '1003', Cmd: '5', Cnt: '1', Comment: set sm 1 (bootstrap
+            in), Data: '8010800032000100', Retries: '3', Transition: IB}
+        - Ado: '288'
+          Adp: '1003'
+          Cmd: '5'
+          Comment: set device state to PREOP
+          Data: '1200'
+          Requires: cycle
+          Retries: '300'
+          Timeout: '5000'
+          Transition: [SP, OP]
+        - Ado: '2064'
+          Adp: '1003'
+          Cmd: '5'
+          Comment: clear sms
+          DataLength: '16'
+          Retries: '3'
+          Transition: [IP, SP, SI, OP, OI]
+        - {Ado: '2064', Adp: '1003', Cmd: '5', Cnt: '1', Comment: set sm 2 (outputs),
+          Data: 0011180074000100, Retries: '3', Transition: PS}
+        - {Ado: '2072', Adp: '1003', Cmd: '5', Cnt: '1', Comment: set sm 3 (inputs),
+          Data: '0014140030000100', Retries: '3', Transition: PS}
+        - {Ado: '1536', Adp: '1003', Cmd: '5', Cnt: '1', Comment: set fmmu 0 (outputs),
+          Data: '30000010180000070011000201000000', Retries: '3', Transition: PS}
+        - {Ado: '1552', Adp: '1003', Cmd: '5', Cnt: '1', Comment: set fmmu 1 (inputs),
+          Data: '28080010140000070014000101000000', Retries: '3', Transition: PS}
+        - Ado: '1568'
+          Adp: '1003'
+          Cmd: '5'
+          Cnt: '1'
+          Comment: set fmmu 2 (mailbox state)
+          Data: 00000009010002020d08000101000000
+          Retries: '3'
+          Transition: [IP, IB]
+        - {Ado: '288', Adp: '1003', Cmd: '5', Comment: set device state to SAFEOP,
+          Data: '0400', Requires: cycle, Retries: '3', Timeout: '200', Transition: OS}
+        - Ado: '1536'
+          Adp: '1003'
+          Cmd: '5'
+          Comment: clear fmmu 0
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [SP, SI, OP, OI]
+        - Ado: '1552'
+          Adp: '1003'
+          Cmd: '5'
+          Comment: clear fmmu 1
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [SP, SI, OP, OI]
+        - Ado: '1568'
+          Adp: '1003'
+          Cmd: '5'
+          Comment: clear fmmu 2
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [PI, BI, SI, OI]
+        - Ado: '304'
+          Adp: '1003'
+          Cmd: '4'
+          Comment: check device state for PREOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: [SP, OP]
+          Validate: {Data: '020000000000', DataMask: 0f0000000000, Timeout: '5000'}
+        - Ado: '1280'
+          Adp: '1003'
+          Cmd: '5'
+          Cnt: '1'
+          Comment: assign EEPROM to PDI
+          Data: '01'
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, IB]
+        - {Ado: '1280', Adp: '65534', Cmd: '2', Comment: assign EEPROM back to ECAT,
+          Data: '00', Requires: cycle, Retries: '3', Transition: II}
+        - {Ado: '288', Adp: '1003', Cmd: '5', Cnt: '1', Comment: set device state
+            to PREOP, Data: '1200', Requires: cycle, Retries: '300', Timeout: '3000',
+          Transition: IP}
+        - Ado: '304'
+          Adp: '1003'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for PREOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IP
+          Validate: {Data: '020000000000', DataMask: 1f0000000000, Timeout: '3000'}
+        - Ado: '1280'
+          Adp: '65534'
+          Cmd: '2'
+          Comment: assign EEPROM back to ECAT
+          Data: '00'
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, BI]
+        - {Ado: '288', Adp: '1003', Cmd: '5', Cnt: '1', Comment: set device state
+            to BOOT, Data: '1300', Requires: cycle, Retries: '3', Timeout: '3000',
+          Transition: IB}
+        - Ado: '304'
+          Adp: '1003'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for BOOT
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IB
+          Validate: {Data: '030000000000', DataMask: 1f0000000000, Timeout: '3000'}
+        - {Ado: '288', Adp: '1003', Cmd: '5', Cnt: '1', Comment: set device state
+            to SAFEOP, Data: '0400', Requires: cycle, Retries: '3', Timeout: '10000',
+          Transition: PS}
+        - Ado: '304'
+          Adp: '1003'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for SAFEOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: PS
+          Validate: {Data: '040000000000', DataMask: 1f0000000000, Timeout: '10000'}
+        - Ado: '304'
+          Adp: '1003'
+          Cmd: '4'
+          Comment: check device state for SAFEOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: OS
+          Validate: {Data: '040000000000', DataMask: 0f0000000000, Timeout: '200'}
+        - {Ado: '288', Adp: '1003', Cmd: '5', Cnt: '1', Comment: set device state
+            to OP, Data: 0800, Requires: cycle, Retries: '3', Timeout: '10000', Transition: SO}
+        - Ado: '304'
+          Adp: '1003'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for OP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: SO
+          Validate: {Data: 080000000000, DataMask: 1f0000000000, Timeout: '10000'}
+      Mailbox:
+        '@DataLinkLayer': 'true'
+        BootStrap:
+          Recv: {Length: '128', Start: '4224'}
+          Send: {Length: '128', Start: '4096'}
+        CoE:
+          InitCmds:
+            InitCmd:
+            - {'@Fixed': '1', Ccs: '1', Comment: clear sm pdos (0x1C12), Data: '00',
+              Index: '7186', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear sm pdos (0x1C13), Data: '00',
+              Index: '7187', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A00 entries, Data: '00',
+              Index: '6656', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: '10004160',
+              Index: '6656', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: '10007760',
+              Index: '6656', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 20006c60,
+              Index: '6656', SubIndex: '3', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: '20006460',
+              Index: '6656', SubIndex: '4', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 2000f460,
+              Index: '6656', SubIndex: '5', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 10003f60,
+              Index: '6656', SubIndex: '6', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 08006160,
+              Index: '6656', SubIndex: '7', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 08000000,
+              Index: '6656', SubIndex: '8', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry count,
+              Data: 08, Index: '6656', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A01 entries, Data: '00',
+              Index: '6657', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A01 entry, Data: '10004160',
+              Index: '6657', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A01 entry, Data: '20006460',
+              Index: '6657', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A01 entry count,
+              Data: '02', Index: '6657', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A02 entries, Data: '00',
+              Index: '6658', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A02 entry, Data: '10004160',
+              Index: '6658', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A02 entry, Data: '20006460',
+              Index: '6658', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A02 entry count,
+              Data: '02', Index: '6658', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A03 entries, Data: '00',
+              Index: '6659', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry, Data: '10004160',
+              Index: '6659', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry, Data: '20006460',
+              Index: '6659', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry, Data: '10007760',
+              Index: '6659', SubIndex: '3', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry count,
+              Data: '03', Index: '6659', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1600 entries, Data: '00',
+              Index: '5632', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '10004060',
+              Index: '5632', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '10007160',
+              Index: '5632', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 2000ff60,
+              Index: '5632', SubIndex: '3', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 20007a60,
+              Index: '5632', SubIndex: '4', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '20008160',
+              Index: '5632', SubIndex: '5', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 2000b160,
+              Index: '5632', SubIndex: '6', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 1000b260,
+              Index: '5632', SubIndex: '7', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '10007260',
+              Index: '5632', SubIndex: '8', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry count,
+              Data: 08, Index: '5632', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1601 entries, Data: '00',
+              Index: '5633', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1601 entry, Data: '10004060',
+              Index: '5633', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1601 entry, Data: 20007a60,
+              Index: '5633', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1601 entry count,
+              Data: '02', Index: '5633', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1602 entries, Data: '00',
+              Index: '5634', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1602 entry, Data: '10004060',
+              Index: '5634', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1602 entry, Data: 2000ff60,
+              Index: '5634', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1602 entry count,
+              Data: '02', Index: '5634', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1603 entries, Data: '00',
+              Index: '5635', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1603 entry, Data: '10004060',
+              Index: '5635', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1603 entry, Data: '10007160',
+              Index: '5635', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1603 entry count,
+              Data: '02', Index: '5635', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: 'download pdo 0x1C12:01 index', Data: '0016',
+              Index: '7186', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1C12 count, Data: '01',
+              Index: '7186', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: 'download pdo 0x1C13:01 index', Data: 001a,
+              Index: '7187', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1C13 count, Data: '01',
+              Index: '7187', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {Ccs: '1', Comment: Op mode, Data: 08, Index: '24672', SubIndex: '0',
+              Timeout: '0', Transition: PS}
+            - {Ccs: '1', Comment: Interpolation time period, Data: '01', Index: '24770',
+              SubIndex: '1', Timeout: '0', Transition: PS}
+            - {Ccs: '1', Comment: Interpolation time index, Data: fd, Index: '24770',
+              SubIndex: '2', Timeout: '0', Transition: PS}
+        Protocol: [EoE, CoE, FoE]
+        Recv: {Length: '128', Start: '4224', StatusBitAddr: '2'}
+        Send: {Length: '128', Start: '4096'}
+      PreviousPort: {'@Selected': '1', PhysAddr: '1002', Port: B}
+      ProcessData:
+        Recv: {BitLength: '160', BitStart: '320'}
+        RxPdo:
+        - '@Sm': '2'
+          Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6071', Name: Target torque, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60ff', Name: Target velocity,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x607a', Name: Target position,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: UDINT, Index: '#x6081', Name: Profile velocity,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60b1', Name: Velocity Offset,
+            SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x60b2', Name: Torque Offset, SubIndex: '0'}
+          - {BitLen: '16', DataType: UINT, Index: '#x6072', Name: '---', SubIndex: '0'}
+          Index: '#x1600'
+          Name: 1st Receive PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x607a', Name: Target position,
+            SubIndex: '0'}
+          Index: '#x1601'
+          Name: 2nd Receive PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60ff', Name: Target velocity,
+            SubIndex: '0'}
+          Index: '#x1602'
+          Name: 3rd Receive PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6071', Name: Target torque, SubIndex: '0'}
+          Index: '#x1603'
+          Name: 4th Receive PDO mapping
+        Send: {BitLength: '192', BitStart: '384'}
+        Sm2: {ControlByte: '116', DefaultSize: '6', Enable: '1', MaxSize: '256', MinSize: '1',
+          Pdo: '5632', StartAddress: '4352', Type: Outputs}
+        Sm3: {ControlByte: '48', DefaultSize: '6', Enable: '1', MaxSize: '256', MinSize: '1',
+          Pdo: '6656', StartAddress: '5120', Type: Inputs}
+        TxPdo:
+        - '@Sm': '3'
+          Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6077', Name: Torque actual value,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x606c', Name: Velocity actual
+              value, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60f4', Name: Following error
+              actual value, SubIndex: '0'}
+          - {BitLen: '16', DataType: UINT, Index: '#x603f', Name: Error code, SubIndex: '0'}
+          - {BitLen: '8', DataType: SINT, Index: '#x6061', Name: Modes of operation
+              display, SubIndex: '0'}
+          - {BitLen: '8', Index: '#x0'}
+          Index: '#x1a00'
+          Name: 1st Transmit PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          Index: '#x1a01'
+          Name: 2nd Transmit PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          Index: '#x1a02'
+          Name: 3rd Transmit PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6077', Name: Torque actual value,
+            SubIndex: '0'}
+          Index: '#x1a03'
+          Name: 4th Transmit PDO mapping
+    - DC: {PotentialReferenceClock: '0'}
+      Info: {AutoIncAddr: '65533', Name: 'Slave_1004 [SGD7S-xxxxA0x CoE Drive]', PhysAddr: '1004',
+        Physics: YY, ProductCode: '35652353', RevisionNo: '524291', SerialNo: '0',
+        VendorId: '1337'}
+      InitCmds:
+        InitCmd:
+        - Ado: '288'
+          Adp: '65533'
+          Cmd: '2'
+          Comment: set device state to INIT
+          Data: '1100'
+          Requires: cycle
+          Retries: '3'
+          Timeout: '5000'
+          Transition: [PI, BI, SI, OI]
+        - Ado: '304'
+          Adp: '65533'
+          Cmd: '1'
+          Comment: check device state for INIT
+          Data: '0000'
+          Requires: cycle
+          Retries: '3'
+          Transition: [PI, SI, OI]
+          Validate: {Data: '0100', DataMask: 0f00, Timeout: '5000'}
+        - Ado: '304'
+          Adp: '65533'
+          Cmd: '1'
+          Comment: check device state for INIT
+          Data: '0000'
+          Requires: cycle
+          Retries: '3'
+          Transition: BI
+          Validate: {Data: '0100', DataMask: 0f00, Timeout: '10000'}
+        - Ado: '288'
+          Adp: '65533'
+          Cmd: '2'
+          Cnt: '1'
+          Comment: set device state to INIT
+          Data: '1100'
+          Requires: cycle
+          Retries: '3'
+          Timeout: '3000'
+          Transition: [IP, IB]
+        - Ado: '304'
+          Adp: '65533'
+          Cmd: '1'
+          Cnt: '1'
+          Comment: check device state for INIT
+          Data: '0000'
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, IB]
+          Validate: {Data: '0100', DataMask: 0f00, Timeout: '3000'}
+        - {Ado: '1280', Adp: '65533', Cmd: '2', Cnt: '1', Comment: assign EEPROM to
+            ECAT, Data: '00', Requires: cycle, Retries: '3', Transition: IP}
+        - {Ado: '1282', Adp: '65533', Cmd: '2', Cnt: '1', Comment: check vendor id,
+          Data: 000108000000, Retries: '3', Transition: IP}
+        - Ado: '1288'
+          Adp: '65533'
+          Cmd: '1'
+          Cnt: '1'
+          Comment: check vendor id
+          Data: '00000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IP
+          Validate: {Data: '39050000', Timeout: '100'}
+        - {Ado: '1282', Adp: '65533', Cmd: '2', Cnt: '1', Comment: check product code,
+          Data: 00010a000000, Retries: '3', Transition: IP}
+        - Ado: '1288'
+          Adp: '65533'
+          Cmd: '1'
+          Cnt: '1'
+          Comment: check product code
+          Data: '00000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IP
+          Validate: {Data: '01032002', Timeout: '100'}
+        - Ado: '16'
+          Adp: '65533'
+          Cmd: '2'
+          Cnt: '1'
+          Comment: set physical address
+          Data: ec03
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, IB]
+        - Ado: '2048'
+          Adp: '1004'
+          Cmd: '5'
+          Comment: clear sm 0/1 (mailbox out/in)
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [IP, IB, PI, SI, OI]
+        - {Ado: '2048', Adp: '65533', Cmd: '2', Comment: clear sm 0/1 (mailbox out/in),
+          Data: '00000000000000000000000000000000', Retries: '3', Transition: BI}
+        - {Ado: '2048', Adp: '1004', Cmd: '5', Cnt: '1', Comment: set sm 0 (mailbox
+            out), Data: 0010800036000100, Retries: '3', Transition: IP}
+        - {Ado: '2056', Adp: '1004', Cmd: '5', Cnt: '1', Comment: set sm 1 (mailbox
+            in), Data: '8010800032000100', Retries: '3', Transition: IP}
+        - {Ado: '2048', Adp: '1004', Cmd: '5', Cnt: '1', Comment: set sm 0 (bootstrap
+            out), Data: 0010800036000100, Retries: '3', Transition: IB}
+        - {Ado: '2056', Adp: '1004', Cmd: '5', Cnt: '1', Comment: set sm 1 (bootstrap
+            in), Data: '8010800032000100', Retries: '3', Transition: IB}
+        - Ado: '288'
+          Adp: '1004'
+          Cmd: '5'
+          Comment: set device state to PREOP
+          Data: '1200'
+          Requires: cycle
+          Retries: '300'
+          Timeout: '5000'
+          Transition: [SP, OP]
+        - Ado: '2064'
+          Adp: '1004'
+          Cmd: '5'
+          Comment: clear sms
+          DataLength: '16'
+          Retries: '3'
+          Transition: [IP, SP, SI, OP, OI]
+        - {Ado: '2064', Adp: '1004', Cmd: '5', Cnt: '1', Comment: set sm 2 (outputs),
+          Data: 0011180074000100, Retries: '3', Transition: PS}
+        - {Ado: '2072', Adp: '1004', Cmd: '5', Cnt: '1', Comment: set sm 3 (inputs),
+          Data: '0014140030000100', Retries: '3', Transition: PS}
+        - {Ado: '1536', Adp: '1004', Cmd: '5', Cnt: '1', Comment: set fmmu 0 (outputs),
+          Data: '48000010180000070011000201000000', Retries: '3', Transition: PS}
+        - {Ado: '1552', Adp: '1004', Cmd: '5', Cnt: '1', Comment: set fmmu 1 (inputs),
+          Data: 3c080010140000070014000101000000, Retries: '3', Transition: PS}
+        - Ado: '1568'
+          Adp: '1004'
+          Cmd: '5'
+          Cnt: '1'
+          Comment: set fmmu 2 (mailbox state)
+          Data: 00000009010003030d08000101000000
+          Retries: '3'
+          Transition: [IP, IB]
+        - {Ado: '288', Adp: '1004', Cmd: '5', Comment: set device state to SAFEOP,
+          Data: '0400', Requires: cycle, Retries: '3', Timeout: '200', Transition: OS}
+        - Ado: '1536'
+          Adp: '1004'
+          Cmd: '5'
+          Comment: clear fmmu 0
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [SP, SI, OP, OI]
+        - Ado: '1552'
+          Adp: '1004'
+          Cmd: '5'
+          Comment: clear fmmu 1
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [SP, SI, OP, OI]
+        - Ado: '1568'
+          Adp: '1004'
+          Cmd: '5'
+          Comment: clear fmmu 2
+          Data: '00000000000000000000000000000000'
+          Retries: '3'
+          Transition: [PI, BI, SI, OI]
+        - Ado: '304'
+          Adp: '1004'
+          Cmd: '4'
+          Comment: check device state for PREOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: [SP, OP]
+          Validate: {Data: '020000000000', DataMask: 0f0000000000, Timeout: '5000'}
+        - Ado: '1280'
+          Adp: '1004'
+          Cmd: '5'
+          Cnt: '1'
+          Comment: assign EEPROM to PDI
+          Data: '01'
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, IB]
+        - {Ado: '1280', Adp: '65533', Cmd: '2', Comment: assign EEPROM back to ECAT,
+          Data: '00', Requires: cycle, Retries: '3', Transition: II}
+        - {Ado: '288', Adp: '1004', Cmd: '5', Cnt: '1', Comment: set device state
+            to PREOP, Data: '1200', Requires: cycle, Retries: '300', Timeout: '3000',
+          Transition: IP}
+        - Ado: '304'
+          Adp: '1004'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for PREOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IP
+          Validate: {Data: '020000000000', DataMask: 1f0000000000, Timeout: '3000'}
+        - Ado: '1280'
+          Adp: '65533'
+          Cmd: '2'
+          Comment: assign EEPROM back to ECAT
+          Data: '00'
+          Requires: cycle
+          Retries: '3'
+          Transition: [IP, BI]
+        - {Ado: '288', Adp: '1004', Cmd: '5', Cnt: '1', Comment: set device state
+            to BOOT, Data: '1300', Requires: cycle, Retries: '3', Timeout: '3000',
+          Transition: IB}
+        - Ado: '304'
+          Adp: '1004'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for BOOT
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: IB
+          Validate: {Data: '030000000000', DataMask: 1f0000000000, Timeout: '3000'}
+        - {Ado: '288', Adp: '1004', Cmd: '5', Cnt: '1', Comment: set device state
+            to SAFEOP, Data: '0400', Requires: cycle, Retries: '3', Timeout: '10000',
+          Transition: PS}
+        - Ado: '304'
+          Adp: '1004'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for SAFEOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: PS
+          Validate: {Data: '040000000000', DataMask: 1f0000000000, Timeout: '10000'}
+        - Ado: '304'
+          Adp: '1004'
+          Cmd: '4'
+          Comment: check device state for SAFEOP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: OS
+          Validate: {Data: '040000000000', DataMask: 0f0000000000, Timeout: '200'}
+        - {Ado: '288', Adp: '1004', Cmd: '5', Cnt: '1', Comment: set device state
+            to OP, Data: 0800, Requires: cycle, Retries: '3', Timeout: '10000', Transition: SO}
+        - Ado: '304'
+          Adp: '1004'
+          Cmd: '4'
+          Cnt: '1'
+          Comment: check device state for OP
+          Data: '000000000000'
+          Requires: cycle
+          Retries: '3'
+          Transition: SO
+          Validate: {Data: 080000000000, DataMask: 1f0000000000, Timeout: '10000'}
+      Mailbox:
+        '@DataLinkLayer': 'true'
+        BootStrap:
+          Recv: {Length: '128', Start: '4224'}
+          Send: {Length: '128', Start: '4096'}
+        CoE:
+          InitCmds:
+            InitCmd:
+            - {'@Fixed': '1', Ccs: '1', Comment: clear sm pdos (0x1C12), Data: '00',
+              Index: '7186', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear sm pdos (0x1C13), Data: '00',
+              Index: '7187', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A00 entries, Data: '00',
+              Index: '6656', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: '10004160',
+              Index: '6656', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: '10007760',
+              Index: '6656', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 20006c60,
+              Index: '6656', SubIndex: '3', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: '20006460',
+              Index: '6656', SubIndex: '4', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 2000f460,
+              Index: '6656', SubIndex: '5', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 10003f60,
+              Index: '6656', SubIndex: '6', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 08006160,
+              Index: '6656', SubIndex: '7', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry, Data: 08000000,
+              Index: '6656', SubIndex: '8', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A00 entry count,
+              Data: 08, Index: '6656', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A01 entries, Data: '00',
+              Index: '6657', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A01 entry, Data: '10004160',
+              Index: '6657', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A01 entry, Data: '20006460',
+              Index: '6657', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A01 entry count,
+              Data: '02', Index: '6657', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A02 entries, Data: '00',
+              Index: '6658', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A02 entry, Data: '10004160',
+              Index: '6658', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A02 entry, Data: '20006460',
+              Index: '6658', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A02 entry count,
+              Data: '02', Index: '6658', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1A03 entries, Data: '00',
+              Index: '6659', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry, Data: '10004160',
+              Index: '6659', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry, Data: '20006460',
+              Index: '6659', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry, Data: '10007760',
+              Index: '6659', SubIndex: '3', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1A03 entry count,
+              Data: '03', Index: '6659', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1600 entries, Data: '00',
+              Index: '5632', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '10004060',
+              Index: '5632', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '10007160',
+              Index: '5632', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 2000ff60,
+              Index: '5632', SubIndex: '3', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 20007a60,
+              Index: '5632', SubIndex: '4', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '20008160',
+              Index: '5632', SubIndex: '5', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 2000b160,
+              Index: '5632', SubIndex: '6', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: 1000b260,
+              Index: '5632', SubIndex: '7', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry, Data: '10007260',
+              Index: '5632', SubIndex: '8', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1600 entry count,
+              Data: 08, Index: '5632', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1601 entries, Data: '00',
+              Index: '5633', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1601 entry, Data: '10004060',
+              Index: '5633', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1601 entry, Data: 20007a60,
+              Index: '5633', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1601 entry count,
+              Data: '02', Index: '5633', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1602 entries, Data: '00',
+              Index: '5634', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1602 entry, Data: '10004060',
+              Index: '5634', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1602 entry, Data: 2000ff60,
+              Index: '5634', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1602 entry count,
+              Data: '02', Index: '5634', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: clear pdo 0x1603 entries, Data: '00',
+              Index: '5635', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1603 entry, Data: '10004060',
+              Index: '5635', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1603 entry, Data: '10007160',
+              Index: '5635', SubIndex: '2', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1603 entry count,
+              Data: '02', Index: '5635', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: 'download pdo 0x1C12:01 index', Data: '0016',
+              Index: '7186', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1C12 count, Data: '01',
+              Index: '7186', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: 'download pdo 0x1C13:01 index', Data: 001a,
+              Index: '7187', SubIndex: '1', Timeout: '0', Transition: PS}
+            - {'@Fixed': '1', Ccs: '1', Comment: download pdo 0x1C13 count, Data: '01',
+              Index: '7187', SubIndex: '0', Timeout: '0', Transition: PS}
+            - {Ccs: '1', Comment: Op mode, Data: 08, Index: '24672', SubIndex: '0',
+              Timeout: '0', Transition: PS}
+            - {Ccs: '1', Comment: Interpolation time period, Data: '01', Index: '24770',
+              SubIndex: '1', Timeout: '0', Transition: PS}
+            - {Ccs: '1', Comment: Interpolation time index, Data: fd, Index: '24770',
+              SubIndex: '2', Timeout: '0', Transition: PS}
+        Protocol: [EoE, CoE, FoE]
+        Recv: {Length: '128', Start: '4224', StatusBitAddr: '3'}
+        Send: {Length: '128', Start: '4096'}
+      PreviousPort: {'@Selected': '1', PhysAddr: '1003', Port: B}
+      ProcessData:
+        Recv: {BitLength: '160', BitStart: '480'}
+        RxPdo:
+        - '@Sm': '2'
+          Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6071', Name: Target torque, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60ff', Name: Target velocity,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x607a', Name: Target position,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: UDINT, Index: '#x6081', Name: Profile velocity,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60b1', Name: Velocity Offset,
+            SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x60b2', Name: Torque Offset, SubIndex: '0'}
+          - {BitLen: '16', DataType: UINT, Index: '#x6072', Name: '---', SubIndex: '0'}
+          Index: '#x1600'
+          Name: 1st Receive PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x607a', Name: Target position,
+            SubIndex: '0'}
+          Index: '#x1601'
+          Name: 2nd Receive PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60ff', Name: Target velocity,
+            SubIndex: '0'}
+          Index: '#x1602'
+          Name: 3rd Receive PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6040', Name: Control word, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6071', Name: Target torque, SubIndex: '0'}
+          Index: '#x1603'
+          Name: 4th Receive PDO mapping
+        Send: {BitLength: '192', BitStart: '576'}
+        Sm2: {ControlByte: '116', DefaultSize: '6', Enable: '1', MaxSize: '256', MinSize: '1',
+          Pdo: '5632', StartAddress: '4352', Type: Outputs}
+        Sm3: {ControlByte: '48', DefaultSize: '6', Enable: '1', MaxSize: '256', MinSize: '1',
+          Pdo: '6656', StartAddress: '5120', Type: Inputs}
+        TxPdo:
+        - '@Sm': '3'
+          Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6077', Name: Torque actual value,
+            SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x606c', Name: Velocity actual
+              value, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x60f4', Name: Following error
+              actual value, SubIndex: '0'}
+          - {BitLen: '16', DataType: UINT, Index: '#x603f', Name: Error code, SubIndex: '0'}
+          - {BitLen: '8', DataType: SINT, Index: '#x6061', Name: Modes of operation
+              display, SubIndex: '0'}
+          - {BitLen: '8', Index: '#x0'}
+          Index: '#x1a00'
+          Name: 1st Transmit PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          Index: '#x1a01'
+          Name: 2nd Transmit PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          Index: '#x1a02'
+          Name: 3rd Transmit PDO mapping
+        - Entry:
+          - {BitLen: '16', DataType: UINT, Index: '#x6041', Name: Status word, SubIndex: '0'}
+          - {BitLen: '32', DataType: DINT, Index: '#x6064', Name: Position actual
+              value, SubIndex: '0'}
+          - {BitLen: '16', DataType: INT, Index: '#x6077', Name: Torque actual value,
+            SubIndex: '0'}
+          Index: '#x1a03'
+          Name: 4th Transmit PDO mapping

@@ -1,0 +1,39 @@
+object SocketForm: TSocketForm
+  Left = 0
+  Top = 0
+  Caption = 'SocketForm'
+  ClientHeight = 300
+  ClientWidth = 635
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  TextHeight = 13
+  object m_ServerSocketDM: TServerSocket
+    Active = False
+    Port = 0
+    ServerType = stNonBlocking
+    OnClientConnect = DMSocketClientConnect
+    OnClientDisconnect = DMSocketClientDisconnect
+    OnClientRead = DMSocketClientRead
+    OnClientError = DMSocketClientError
+    Left = 128
+    Top = 16
+  end
+  object m_ServerSocketTP: TServerSocket
+    Active = False
+    Port = 0
+    ServerType = stNonBlocking
+    OnClientConnect = TPSocketClientConnect
+    OnClientDisconnect = TPSocketClientDisconnect
+    OnClientRead = TPSocketClientRead
+    OnClientError = TPSocketClientError
+    Left = 256
+    Top = 24
+  end
+end

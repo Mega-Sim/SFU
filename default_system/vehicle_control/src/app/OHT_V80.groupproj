@@ -1,0 +1,96 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{2548B677-276D-4E0B-BAAE-89308F7DDD46}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="OHT_Main\OHT.cbproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="OHT_Assistant\OHTAssistant.cbproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="OHT_FileManager\FileManager.cbproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="OHT_TP\OHT_TP.cbproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="OHT_Emulator\OCS\McpEmulator.cbproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="OHT_Emulator\OHT\OhtEmulator.cbproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="OHT">
+			<MSBuild Projects="OHT_Main\OHT.cbproj"/>
+		</Target>
+		<Target Name="OHT:Clean">
+			<MSBuild Projects="OHT_Main\OHT.cbproj" Targets="Clean"/>
+		</Target>
+		<Target Name="OHT:Make">
+			<MSBuild Projects="OHT_Main\OHT.cbproj" Targets="Make"/>
+		</Target>
+		<Target Name="OHTAssistant">
+			<MSBuild Projects="OHT_Assistant\OHTAssistant.cbproj"/>
+		</Target>
+		<Target Name="OHTAssistant:Clean">
+			<MSBuild Projects="OHT_Assistant\OHTAssistant.cbproj" Targets="Clean"/>
+		</Target>
+		<Target Name="OHTAssistant:Make">
+			<MSBuild Projects="OHT_Assistant\OHTAssistant.cbproj" Targets="Make"/>
+		</Target>
+		<Target Name="FileManager">
+			<MSBuild Projects="OHT_FileManager\FileManager.cbproj"/>
+		</Target>
+		<Target Name="FileManager:Clean">
+			<MSBuild Projects="OHT_FileManager\FileManager.cbproj" Targets="Clean"/>
+		</Target>
+		<Target Name="FileManager:Make">
+			<MSBuild Projects="OHT_FileManager\FileManager.cbproj" Targets="Make"/>
+		</Target>
+		<Target Name="OHT_TP">
+			<MSBuild Projects="OHT_TP\OHT_TP.cbproj"/>
+		</Target>
+		<Target Name="OHT_TP:Clean">
+			<MSBuild Projects="OHT_TP\OHT_TP.cbproj" Targets="Clean"/>
+		</Target>
+		<Target Name="OHT_TP:Make">
+			<MSBuild Projects="OHT_TP\OHT_TP.cbproj" Targets="Make"/>
+		</Target>
+		<Target Name="McpEmulator">
+			<MSBuild Projects="OHT_Emulator\OCS\McpEmulator.cbproj"/>
+		</Target>
+		<Target Name="McpEmulator:Clean">
+			<MSBuild Projects="OHT_Emulator\OCS\McpEmulator.cbproj" Targets="Clean"/>
+		</Target>
+		<Target Name="McpEmulator:Make">
+			<MSBuild Projects="OHT_Emulator\OCS\McpEmulator.cbproj" Targets="Make"/>
+		</Target>
+		<Target Name="OhtEmulator">
+			<MSBuild Projects="OHT_Emulator\OHT\OhtEmulator.cbproj"/>
+		</Target>
+		<Target Name="OhtEmulator:Clean">
+			<MSBuild Projects="OHT_Emulator\OHT\OhtEmulator.cbproj" Targets="Clean"/>
+		</Target>
+		<Target Name="OhtEmulator:Make">
+			<MSBuild Projects="OHT_Emulator\OHT\OhtEmulator.cbproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="OHT;OHTAssistant;FileManager;OHT_TP;McpEmulator;OhtEmulator"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="OHT:Clean;OHTAssistant:Clean;FileManager:Clean;OHT_TP:Clean;McpEmulator:Clean;OhtEmulator:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="OHT:Make;OHTAssistant:Make;FileManager:Make;OHT_TP:Make;McpEmulator:Make;OhtEmulator:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>

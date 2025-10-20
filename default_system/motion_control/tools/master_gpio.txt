@@ -1,0 +1,88 @@
+# raw data from Fine-Tec
+
+1    RS485_1_DIR    AA3        3.3V    USED
+2    RS485?    AB9        3.3V    USED
+3    DIGITAL INPUT0    AF9    GPIO3_1    3.3V    _obstacle_long
+4    DIGITAL INPUT1    AE9    GPIO3_2    3.3V    _obstacle_middle
+5    DIGITAL INPUT2    AF8    GPIO3_3    3.3V    _obstacle_short
+6    DIGITAL INPUT3    AE8    GPIO3_4    3.3V    _obstacle_fail
+7    DIGITAL INPUT4    AD8    GPIO3_5    3.3V    _ohtdetect_long
+8    DIGITAL INPUT5    AG7    GPIO3_6    3.3V    _ohtdetect_middle
+9    DIGITAL INPUT6    AH6    GPIO3_7    3.3V    _ohtdetect_short
+10    DIGITAL INPUT7    AH3    GPIO3_8    3.3V    _ohtdetect_fail
+11    DIGITAL INPUT8    AH5    GPIO3_9    3.3V    _stop_driving_front
+12    DIGITAL INPUT9    AG6    GPIO3_10    3.3V    _stop_driving_precheck
+13        AH4        3.3V    USED
+14        AG4        3.3V    USED
+15    DIGITAL INPUT10    AG2    GPIO3_13    3.3V    bcr_driving_ok
+16    DIGITAL INPUT11    AG3    GPIO3_14    3.3V    bcr_driving_ng
+17    DIGITAL INPUT12    AG5    GPIO3_15    3.3V    _stop_trans_front
+18    DIGITAL INPUT13    A11    GPIO5_11    3.3V    _stop_trans_rear
+19    DIGITAL INPUT14    AF6    GPIO3_17    3.3V    bcr_trans_ok
+20    DIGITAL INPUT15    AF3    GPIO3_18    3.3V    bcr_trans_ng
+21    DIGITAL INPUT16    AF4    GPIO3_19    3.3V    Home_sensor1
+22    DIGITAL INPUT17    AF1    GPIO3_20    3.3V    Positive_Limit1
+23    DIGITAL INPUT18    AE3    GPIO3_21    3.3V    Negative_Limit1
+24        AE5        3.3V    USED
+25        AE1        3.3V    USED
+26    DIGITAL INPUT19    AE2    GPIO3_24    3.3V    Home_sensor2
+27    DIGITAL INPUT20    AE6    GPIO3_25    3.3V    Positive_Limit2
+28        AD2        3.3V    USED
+29    DIGITAL INPUT21    AD3    GPIO3_27    3.3V    Negative_Limit2
+30    DIGITAL INPUT22    E1    GPIO3_28    3.3V    Home_sensor3
+31    DIGITAL INPUT23    G2    GPIO3_29    3.3V    Positive_Limit3
+32    DIGITAL INPUT24    H7    GPIO3_30    3.3V    Negative_Limit3
+33    DIGITAL INPUT25    G1    GPIO3_31    3.3V    Home_sensor4
+34    DIGITAL INPUT26    D15    GPIO1_4    3.3V    Positive_Limit4
+35    DIGITAL INPUT27    A17    GPIO1_5    3.3V    Negative_Limit4
+36                    
+37        G6            USED
+38    DIGITAL OUT0    F2    GPIO4_1        _obstacle_AREA1_SEL
+39    DIGITAL OUT1    F3    GPIO4_2        _obstacle_AREA2_SEL
+40    DIGITAL OUT2    D1    GPIO4_3        _obstacle_AREA3_SEL
+41    DIGITAL OUT3    E2    GPIO4_4        _obstacle_AREA4_SEL
+42    DIGITAL OUT4    D2    GPIO4_5        _OHTDETECT_AREA1_SEL
+43    DIGITAL OUT5    F4    GPIO4_6        _OHTDETECT_AREA2_SEL
+44    DIGITAL OUT6    C1    GPIO4_7        _OHTDETECT_AREA3_SEL
+45    DIGITAL OUT7    E4    GPIO4_8        _OHTDETECT_AREA4_SEL
+46    DIGITAL OUT8    F5    GPIO4_9        Servo_Brake1
+47    DIGITAL OUT9    E6    GPIO4_10        Servo_Brake2
+48    DIGITAL OUT10    D3    GPIO4_11        Servo_Brake3
+49    DIGITAL OUT11    F6    GPIO4_12        Servo_Brake4
+50    DO    A12    GPIO4_17        Limit_IN1
+51    DI    E14    GPIO4_18        Limit_ST1
+52    DO    D11    GPIO4_19        Limit_IN2
+53    DI    B10    GPIO4_20        Limit_ST2
+54        B11            USED
+55                    
+56                    
+57                    
+58                    
+59                    
+60                    
+61    DO    AC8    GPIO1_22        OBS_ENABLE
+62    DI    AD6    GPIO1_24        OBS_STATUS
+63    DO    AB8    GPIO1_23        OHT_ENABLE
+64    DI    AB5    GPIO1_25        OHT_STATUS
+65    DO    P6    GPIO1_26        QRR1_IN1
+66    DI    R9    GPIO1_27        QRR1_ST1
+67    DO    R5    GPIO1_28        BCR1_IN2
+68    DI    P5    GPIO1_29        BCR1_ST2
+69    DO    N7    GPIO1_30        QRR2_IN3
+70    DI    R4    GPIO1_31        QRR2_ST3
+71                    
+72    DO    N9    GPIO2_0        BCR2_IN4
+73    DI    P9    GPIO2_1        BCR2_ST4
+74    DO    P4    GPIO2_2        Driving_Stop_IN1
+75    DI    B17    GPIO2_29        Driving_Stop_ST1
+76    DO    AG8    GPIO2_30        Trans_Stop_IN2
+77    DI    AH7    GPIO2_31        Trans_Stop_ST2
+78                    
+79                    
+80                    
+81        F21            USED
+82        B14            USED
+83        J14            USED
+84        J11            USED
+85        B15            USED
+86        A15            USED

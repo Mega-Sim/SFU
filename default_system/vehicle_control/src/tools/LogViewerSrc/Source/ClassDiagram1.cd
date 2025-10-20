@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="한개의 로그 폴더안에 로그 데이터를 객체화하여 저장&#xD;&#xA;한개의 로그 폴더 -&gt; 한개의 DDataSet 객체">
+    <Position X="3.51" Y="0.5" Height="0.615" Width="3.301" />
+  </Comment>
+  <Comment CommentText="다수의 로그폴더를 객체로 가짐.&#xD;&#xA;DLogMan은 최상위 객체">
+    <Position X="0.5" Y="0.5" Height="0.615" Width="2.742" />
+  </Comment>
+  <Comment CommentText="MapView와 UDP로 통신하여 Node, Station을 보여줌. 이때 사용하는 통신 프로토콜">
+    <Position X="16.906" Y="0.5" Height="0.604" Width="2.752" />
+  </Comment>
+  <Comment CommentText="최상위 Form">
+    <Position X="0.531" Y="6.083" Height="0.375" Width="1.7" />
+  </Comment>
+  <Comment CommentText="한개의 로그 폴더에 열었을 때 Form&#xD;&#xA;한개의 로그 폴더는 한개의 ULogFrame 객체">
+    <Position X="3.26" Y="6.198" Height="0.5" Width="3.13" />
+  </Comment>
+  <Comment CommentText="ULogFrame 폼을 UMain 폼에 붙일 때 다수의 로그폴더를 관리하기 위해서 관리하는 양식">
+    <Position X="6.573" Y="6.896" Height="0.5" Width="2.856" />
+  </Comment>
+  <Comment CommentText="파일 로딩 Form">
+    <Position X="10.771" Y="8.579" Height="0.339" Width="1.378" />
+  </Comment>
+  <Comment CommentText="DataManager 컨트롤 클래스">
+    <Position X="12.834" Y="8.671" Height="0.45" Width="2.297" />
+  </Comment>
+  <Comment CommentText="DataManager UI 클래스">
+    <Position X="15.869" Y="8.695" Height="0.413" Width="1.8" />
+  </Comment>
+  <Comment CommentText="DataManager 클래스가 방대해 지면서 모니터링 탭은 분리함">
+    <Position X="18.504" Y="8.386" Height="0.748" Width="1.8" />
+  </Comment>
+  <Comment CommentText="데이터메니저의 우측 OHT 브라우저 구조체">
+    <Position X="21.175" Y="8.772" Height="0.599" Width="1.949" />
+  </Comment>
+  <Comment CommentText="모니터링 로그 결과 구조">
+    <Position X="23.47" Y="8.95" Height="0.413" Width="1.8" />
+  </Comment>
+  <Comment CommentText="모니터링 로그 항목">
+    <Position X="26.25" Y="9" Height="0.413" Width="1.8" />
+  </Comment>
+  <Comment CommentText="타임라인 폼">
+    <Position X="27.151" Y="6.382" Height="0.413" Width="1.8" />
+  </Comment>
+  <Comment CommentText="타임라인 컨트롤 클래스">
+    <Position X="29.513" Y="6.247" Height="0.413" Width="1.8" />
+  </Comment>
+  <Comment CommentText="타임라인 그리기 객체(bar=&gt; 0/1막대기 표시, DblChart=&gt; 그래프 ...">
+    <Position X="32.036" Y="6.247" Height="0.413" Width="4.508" />
+  </Comment>
+  <Comment CommentText="일반 텍스트 로그인 경우 보여주는 폼">
+    <Position X="22.023" Y="5.203" Height="0.413" Width="2.732" />
+  </Comment>
+  <Class Name="LogViewer.DAmcRcvRowItem">
+    <Position X="8" Y="1.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAABACAAEAAABAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>DAmcRcv.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.DAmcRcv">
+    <Position X="6" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>SAAkAgBAAAABAABEBAAAACAAAAAAAFAAEQAAAAhABAA=</HashCode>
+      <FileName>DAmcRcv.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.DLogForm">
+    <Position X="6.5" Y="7.5" Width="1.75" />
+    <NestedTypes>
+      <Enum Name="LogViewer.DLogForm.FormType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DDataSet.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAACAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DDataSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.DDataSet">
+    <Position X="3.5" Y="1.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAhAAAAApCIAAAAQAAAAAABAAQgAAABAgAAIE=</HashCode>
+      <FileName>DDataSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.DLogMan">
+    <Position X="0.5" Y="1.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAEAAAIAAQAAAQAAAAgAAA=</HashCode>
+      <FileName>DLogMan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.DUserLogEventChangeRowItem">
+    <Position X="13.25" Y="4" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACABAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DUserLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.DUserLogRowItem">
+    <Position X="13.25" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABACAAAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAEAA=</HashCode>
+      <FileName>DUserLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.DUserLog">
+    <Position X="10.75" Y="1.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABAICgAAABkBAAJEBIAgAAAAAAAAAFAAAAAAAAhABAA=</HashCode>
+      <FileName>DUserLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.DCondition" Collapsed="true">
+    <Position X="26.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DViewColor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.DViewColor">
+    <Position X="24.75" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAQAEAAAEAAAAAAgIAAIAAAAAAAAAQAAA=</HashCode>
+      <FileName>DViewColor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.UAmcRecvCols" Collapsed="true">
+    <Position X="19.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIUAIgAgACAggFAYgA2UCgASAygBIQoEAUIAAoBABAA=</HashCode>
+      <FileName>UAmcRecvCols.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.UAmcRecvOpen" Collapsed="true">
+    <Position X="18" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAACCAAABAAAASAAAECAIAMBAAAAAAAEAAAAgA=</HashCode>
+      <FileName>UAmcRecvOpen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.UAmcRecvTable" Collapsed="true">
+    <Position X="16.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>xAQFQqUiECAABAAApM6BgcEKEGwCZUCAEAJAweqFoBM=</HashCode>
+      <FileName>UAmcRecvTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.ULogFrame">
+    <Position X="3.25" Y="6.75" Width="3" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QpUAjosJFCKYWAMCnmCSBgCKxGOAYePgAGSbZBWYUTI=</HashCode>
+      <FileName>ULogFrame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.UMain">
+    <Position X="0.5" Y="6.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="LogViewer.UMain.TableName" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UMain.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="LogViewer.UMain.eChildFormList" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UMain.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>UIAARAAMgCMIEACAC8LTACAyYABAAIIABCCEQQTAaAE=</HashCode>
+      <FileName>UMain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.UMainFiles" Collapsed="true">
+    <Position X="10.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UQBAAQQYAqCSghhQAALQACCCAAACQSAAAiAAAIjgFAA=</HashCode>
+      <FileName>UMainFiles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.UMapViewMan" Collapsed="true">
+    <Position X="19" Y="1.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="LogViewer.UMapViewMan.MapViewStat" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UMapViewMan.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Class Name="LogViewer.UMapViewMan.DMapViewStatus" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UMapViewMan.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="LogViewer.UMapViewMan.UdpState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UMapViewMan.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Delegate Name="LogViewer.UMapViewMan.DelegateUpdateList" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UMapViewMan.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AIQkQYBBQCCIMHAGSACAIAAjAhALISIKABAAAABhhCA=</HashCode>
+      <FileName>UMapViewMan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.UNotebook" Collapsed="true">
+    <Position X="22" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wAQAQZgEACBeAAAYgUSFBGILAaAAoBKAyBAQRQAAgEE=</HashCode>
+      <FileName>UNotebook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer_DataManager.DDataManager" Collapsed="true">
+    <Position X="12.75" Y="9.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gIIgABEYCCQAAITAAABAASkIgRlAIYDAAAAENEggSAE=</HashCode>
+      <FileName>DDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer_DataManager.sOHTList" Collapsed="true">
+    <Position X="21.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICAAAAAAAAAAAAAAAEAAAAQAIAAIAAACABAAAAAAAAA=</HashCode>
+      <FileName>DDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer_DataManager.DMonitorResult" Collapsed="true">
+    <Position X="23.5" Y="9.5" Width="2.25" />
+    <NestedTypes>
+      <Class Name="LogViewer_DataManager.DMonitorResult.iRow" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DDataManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="LogViewer_DataManager.DMonitorResult.iItem" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DDataManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAwAAEgAAAAAAAAAAAAAAAAAAAAKAAACAAA=</HashCode>
+      <FileName>DDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer_DataManager.UDataManager" Collapsed="true">
+    <Position X="15.75" Y="9.25" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="LogViewer_DataManager.UDataManager.eUploadGridCol" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UDataManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="LogViewer_DataManager.UDataManager.eMonitorResultCol" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UDataManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Class Name="LogViewer_DataManager.UDataManager.DMonitorResultRow" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UDataManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Enum Name="LogViewer_DataManager.UDataManager.eResultType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UDataManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Class Name="LogViewer_DataManager.UDataManager.JobLogQueue" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UDataManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Delegate Name="LogViewer_DataManager.UDataManager.OhtResult_UIDele" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UDataManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="LogViewer_DataManager.UDataManager.DelegateMonitorResultUpdate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UDataManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>/yxf6//1mmCVh7DYyuntxUubc5hSd17ulb2ZotnPdnY=</HashCode>
+      <FileName>UDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer_DataManager.UDataManager_MnOpt" Collapsed="true">
+    <Position X="18.75" Y="9.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>zVQCFES0ADAwABgAgoGeYAZCAohEowjGBUQKCgBDFLA=</HashCode>
+      <FileName>UDataManager_MnOpt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer_DataManager.DMonitorItems">
+    <Position X="26.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAEAAEAABAAAAAAAAAAAA=</HashCode>
+      <FileName>UDataManager_MnOpt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TimeLine.DTimeLine" Collapsed="true">
+    <Position X="29.5" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BROAIAAAECDAvUCAUBCAgAAAACCAAiGEgCBggAYICJY=</HashCode>
+      <FileName>DTimeLineControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TimeLine.TimeZoneArea" Collapsed="true">
+    <Position X="39.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>DTimeLineControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TimeLine.TimeLineItem" Collapsed="true">
+    <Position X="32.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ASAAAAAAAAAgCAAAAACAAAQAAgAAAAAAAAIggIAAAAI=</HashCode>
+      <FileName>DTimeLineControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Msg.Cmd">
+    <Position X="16.75" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAACAAAAAAAAAAAAAAAACAAAAAAgA=</HashCode>
+      <FileName>OHTEasyView_MapView_Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.UViewColor" Collapsed="true">
+    <Position X="21.5" Y="1.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAECAAADEABJCIAACCJAgAAw2AAEAACIFABAA=</HashCode>
+      <FileName>UViewColor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TimeLine.HorizonHeader" Collapsed="true">
+    <Position X="37.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAABAIAACAAAAAAAA=</HashCode>
+      <FileName>DTimeLineControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TimeLine.Bar" Collapsed="true">
+    <Position X="34.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EABAAAAAAAAAAAAAAAAgICAAACAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>DTimeLineControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TimeLine.DblChart" Collapsed="true">
+    <Position X="36" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBAQAAAAACAEAAAAAgAAAAgAEAAAAAAABAAgAAAAAQ=</HashCode>
+      <FileName>DTimeLineControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogViewer.UTimeLine" Collapsed="true">
+    <Position X="27.25" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAAgAAECAIAACAAAAAIEEAAAAAQAAAAA=</HashCode>
+      <FileName>UTimeLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="LogViewer.eAmcRcvSplitedIdx">
+    <Position X="7.25" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AMgAA0AAIAUAIQAAEAiALACAAYgAcEAADAABBD4hAQA=</HashCode>
+      <FileName>DAmcRcv.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LogViewer.eAmcRcvIdx">
+    <Position X="9.25" Y="11.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>26O4wMufPuP73q7nv/Hd9t+LK9gff7csHr4VFR/1FyI=</HashCode>
+      <FileName>DAmcRcv.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LogViewer.eUserLogSplittedIdx">
+    <Position X="12" Y="11.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQCABAAACIIgEABEAAAAACJEEAAABBCEABAAAAAwwA=</HashCode>
+      <FileName>DUserLog.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LogViewer.eUserLogIdx">
+    <Position X="14.25" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQCABAAQKIIgEABEAAAAACJEEAAIBBCEABAAAAAwwA=</HashCode>
+      <FileName>DUserLog.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LogViewer.eEventChangeLogIdx">
+    <Position X="16.25" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAIAAAAABEAAAAAABAAAAAAAAAAAAAAEAAQA=</HashCode>
+      <FileName>DUserLog.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LogViewer.eBuho">
+    <Position X="18.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAABAAAIAAACAAAAABAAAAAAAABAAAIAAAAAAA=</HashCode>
+      <FileName>DViewColor.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LogViewer_DataManager.eDataManTask">
+    <Position X="20.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAQAEACAAAAABAEIAABAAAAAAEAAAA=</HashCode>
+      <FileName>DDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

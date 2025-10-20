@@ -1,0 +1,20 @@
+LayoutID	LayoutType	ResetNode	StopNode1	StopNode2	ResetNodeType	CIDDirection1	CommStartNode1_1	CommStartNode1_2	CommStartNode1_3	CommStartNode1_4	CommStartNode1_5	CommStartNode1_Offset	CIDDirection2	CommStartNode2_1	CommStartNode2_2	CommStartNode2_3	CommStartNode2_4	CommStartNode2_5	CommStartNode2_Offset	Updated Date	
+CID002	NormalCID	114	113	122	NormalNode	Left	111	112	113	0	0	1000	Right	122	0	0	0	0	300		
+CID003	NormalCID	121	0	111	NormalNode	Left	0	0	0	0	0	0	Right	111	0	0	0	0	200		
+CID005	NormalCID	144	143	142	CommonNode	Left	118	143	0	0	0	100	Right	142	0	0	0	0	300		
+CID006	NormalCID	142	123	141	CommonNode	Left	123	0	0	0	0	0	Right	140	141	0	0	0	0		
+CID007	NormalCID	124	141	123	NormalNode	Left	141	0	0	0	0	0	Right	123	0	0	0	0	0		
+CID008	NormalCID	146	175	145	NormalNode	Left	175	0	0	0	0	0	Right	144	145	0	0	0	1500		
+CID009	NormalCID	150	149	0	CommonNode	Left	147	148	149	0	0	1000	Right	0	0	0	0	0	0		
+CID009	NormalCID	150	155	0	NormalNode	Left	155	0	0	0	0	0	Right	0	0	0	0	0	0		
+CID011	NormalCID	152	151	157	NormalNode	Left	150	151	0	0	0	500	Right	157	0	0	0	0	300		
+CID012	NormalCID	205	214	204	NormalNode	Left	214	0	0	0	0	0	Right	204	0	0	0	0	0		
+CID013	NormalCID	131	135	130	NormalNode	Left	136	135	0	0	0	0	Right	130	0	0	0	0	0		
+CID015	SlopeCID	160	0	159	SlopeRear	Left	0	0	0	0	0	0	Right	159	0	0	0	0	400		
+CID016	SlopeCID	162	0	161	NormalNode	Left	0	0	0	0	0	0	Right	161	0	0	0	0	200		
+CID017	SlopeCID	165	0	164	SlopeRear	Left	0	0	0	0	0	0	Right	164	0	0	0	0	0		
+CID018	SlopeCID	202	0	166	NormalNode	Left	0	0	0	0	0	0	Right	166	0	0	0	0	0		
+CID019	SlopeCID	168	0	167	SlopeRear	Left	0	0	0	0	0	0	Right	167	0	0	0	0	300		
+CID020	SlopeCID	170	0	169	NormalNode	Left	0	0	0	0	0	0	Right	169	0	0	0	0	300		
+CID021	SlopeCID	173	172	0	SlopeRear	Left	172	0	0	0	0	300	Right	0	0	0	0	0	0		
+CID022	SlopeCID	179	174	0	NormalNode	Left	174	0	0	0	0	300	Right	0	0	0	0	0	0		

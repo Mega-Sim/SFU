@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+package sephi;
+
+service EcMasterRpc {
+    rpc requestSlave(Request) returns (Response) { }
+    rpc releaseSlave(Request) returns (Response) { }
+    // stocker I/O
+    rpc stockerRead(Result) returns (StockerDataIn) { }
+    rpc stockerOutRead(Result) returns (StockerDataOut) { }
+    rpc stockerWrite(StockerDataOut) returns (Result) { }
+    rpc ohtFrontInRead(Result) returns (OhtDataIn) {}
+    rpc ohtRearInRead(Result) returns (OhtDataIn) {}
+    rpc ohtFrontOutRead(Result) returns (OhtDataOut) {}
+    rpc ohtRearOutRead(Result) returns (OhtDataOut) {}
+    rpc ohtFrontOutWrite(OhtDataOut) returns (Result) { }
+    rpc ohtRearOutWrite(OhtDataOut) returns (Result) { }
+
+
+    // for admin tools
+    rpc changeECatStateToOP(AdminCommand ) returns (Result) { }
+    rpc makeSwitchOnDisabled(AdminCommand) returns (Result) { }
+    rpc enableUserParameter(AdminCommand) returns (Result) { }
+    rpc resetAbsEncoder(AdminCommand) returns (Result) { }
+    rpc storeParameter(AdminCommand) returns (Result) { }
+    rpc restoreDefaultParameter(AdminCommand) returns (Result) { }
+    rpc readCoeValue(CoeInfo) returns (CoeData) { }
+    rpc writeCoeValue(CoeData) returns (Result) { }
+
+    // for simulator
+    rpc getSystemName(Empty) returns (ModelName) { }
+    rpc getStockerStatus(Empty) returns (StockerStatus) {}
+    rpc getFoupLocations(Empty) returns (FoupList){}
+    rpc getOHTStatus(Empty) returns (OHTStatus) {}
+}
+
+message Empty {
+}
+
+message ModelName {
+    string name = 1;
+}
+
+message OHTStatus {
+    string ymldata = 1; // status data in yaml format
+}
+
+message StockerStatus {
+    double z = 1;
+    double x = 2;
+    double r = 3;
+    double y = 4;
+    bool crash = 5;
+    uint64  dout = 6;
+}
+
+message FoupList {
+    string foups = 1;
+}
+
+message Request {
+    int32 slave_id = 1;
+    int32 pid = 2;
+}
+
+message Response {
+    int32 slave_id = 1;
+    uint32 in_pd_offset = 2;
+    uint32 out_pd_offset = 3;
+    uint32 bus_cycle_us = 4;
+}
+
+message AdminCommand {
+    int32 slave_id = 1;
+    int32 option = 2;
+}
+
+message CoeInfo {
+    int32 slave_id = 1;
+    int32 index = 2;
+    int32 subindex = 3;
+}
+
+message CoeData {
+    int32 slave_id = 1;
+    int32 index = 2;
+    int32 subindex = 3;
+    int32 type = 4;
+    uint32 value = 5;
+}
+
+message Result {
+    int32 result = 1;
+}
+
+message StockerDataIn {
+    uint64 ain = 1;
+    uint64 din = 2;
+}
+
+message StockerDataOut {
+    uint64 aout = 1;
+    uint64 dout = 2;
+}
+
+message OhtDataIn {
+    uint64 ain = 1;
+    uint64 din = 2;
+}
+
+message OhtDataOut {
+    uint64 aout = 1;
+    uint64 dout = 2;
+}

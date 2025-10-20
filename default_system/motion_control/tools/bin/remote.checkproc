@@ -1,0 +1,17 @@
+#!/usr/bin/python
+
+import sys, os
+from subprocess import * 
+
+procname = sys.argv[1]
+
+out = os.popen("ps -e | grep %s" % procname)            
+for line in out:
+    #print '>', line,
+    if procname in line.split() :
+        print "exist"
+        out.close()
+        sys.exit(0)
+    
+out.close()
+print "none"

@@ -1,0 +1,58 @@
+변 경 사 항
+Station의 Parent와 Next가 하나의 Link가 아닌지 Check 
+Station Offset이 음수이거나 5000mm를 넘는게 있는지 Check 
+"Speed의 최대, 최소가 틀린 지 Check 
+ -70 이상 500 이하의 값만 허용(< 700, > 5000 조건으로 구현완료)"
+Steering Pos가 L, R, N 이외의 값인지 Check (MAPDATA의 Steering) (Define된 값인지 검증)
+Collision UBG, Obtacle 값 Range 검증,  (Define된 값인지 검증)
+Node Type이 정해진 타입 이외의 값이 있는지 Check(MAPDATA의 NodeType) (Define된 값인지 검증)
+Branch Type이 B, N 이외의 값인지 Check(MAPDATA의 Branch - 1:일반분기, 2:N분기) (Define된 값인지 검증)
+Left Branch가 N분기인데 Left Steering이 L이 아닌 경우 Error
+Right Branch가 N분기인데 Right Steering이 R이 아닌 경우 Error 
+Branch가 N 분기인데 UBG, Obstacle Region이 S가 아닌 경우 Error
+속도가 1.3을 초과하는데 UBG, Obstacle Region이 N이 아닌 경우 Error
+NodeType이 LiftOut일 경우 UBG, Obstacle N, N 체크 제거
+Teaching PIOType, PIODirection Range검증 (Define된 값인지 검증)
+CID StopNode존재시 CommStartNode_1~5 값 유무 검증
+CID Direction 검증 (1=Left, 2=Right)
+FlowControl과 매칭되지 않는 CID 검증
+FlowControl의 Stop, Reset Node가 Link 구성이 되지 않는 경우 검증
+OCS/OHT Station 정보 상이함 검출 (Parent Node Id, Offset)
+OCS/OHT Steering 정보 상이함 검출 (분기구간(MapData의 Left, Right Node 둘다 존재)에서만 비교)
+MapGroup간 Vehicle 데이터 검증 (불일치시 Release 제한)
+Station Offset Parent Link Distance 범위 검증
+Station ID와 Teaching ID 동일 및 존재 여부 비교
+동일 Parent Node내의 동일 Type Station간 거리 검증
+합류부 구간 FlowControl 유무 검증
+OHT/OCS 통과허가 비교
+OHT/OCS Speed 비교
+CID offset값 갱신 기능 추가.
+OCS와 OHT Map 정보의 동일Data 동기화처리 기능(노드간 거리, Station Offset 등)
+분기 구간 Steering 값이 정상 적용되었는지 정합성 확인 기능(분기인 경우 좌/우 구분)
+STB Teaching Offset 10mm 이상 인 경우 경고 표시
+Map에  RightNode 링크가 없은데 데이터 들어가는 경우 경고표시
+"Collision UBG, Obtacle Data 검증 기능
+ - 제한 사항 : 직선, N분기, Left, Right, 예외처리 노드 설정(유턴등 구분 안되는 경우 처리)"
+Package Release 정보에 MapMake후 Merge 한 Mapset list 기입
+Data 별 수정 시간 실시간 적용(기본 릴리즈시 일시 기입)
+Map Maker 완료 후 Merge시, 수행된거와 안된거 분류 확인 방법
+조향 색상 표시
+MapData Node와 Collision Node ID 동일 및 존재 여부 비교
+MapData Branch가 N분기 일 경우 MapData Speed가 1.0 보다 작아야 함
+PortType이 EQ일 경우 StationID와 PIOID는 동일 여부
+Teaching PIOChannel 범위(178~217) 검증
+CID CommStartNode1_1~5가 OHT MapData Node 순서로 존재 여부
+CID ResetNode, StopNode1가 OHT MapData Node 순서로 존재 여부
+MapData Node와 OCS Node ID 동일 및 존재 여부 비교
+MapData Node, LeftNodeID/RightNodeID와 OCS Link에 존재 여부
+MapData Left, RightNode Distance와 OCS Link Distance일치 여부
+OCS StationID 중복 검증
+OCS PortID 중복 검증
+OCS PassControl내 CID가 CID그룹내 존재여부 확인
+OCS PassControl내 HID가 HID그룹내 존재여부 확인
+OCS Link내 HID가 HID그룹내 존재여부 확인
+OHT Teaching항목의 Stocker Port HandDetectEQ '1' 확인
+OHT Teaching항목의 PortType과 OCS Station의 PortType 일치 여부
+OHT Teaching Hoist 항목 범위 검증 (범위는 Preference 창에서 설정)
+OHT Teaching Shift 항목 범위 검증 (범위는 Preference 창에서 설정)
+OHT Teaching Rotate 항목 범위 검증 (범위는 Preference 창에서 설정)

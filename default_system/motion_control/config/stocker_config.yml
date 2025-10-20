@@ -1,0 +1,105 @@
+# stocker configuraiton file
+
+config:
+  type: stocker
+  axis_count: 4
+  axes: { # servo motor slave
+    Z : {
+      id: 0, # slave id
+      p_max: 20000, p_min:  -50000, #-25395.395508, # deg
+      v_max: 3000, # rpm
+      a_max: 5000, a_min: -5000, # rpm/s
+      jog: [
+            { speed: 10, displacement: 16 }, # speed: rpm, displacement: degree
+            { speed: 100, displacement: 1024},
+            { speed: 500, displacement: 10240},
+        ]
+      },
+    X : {
+      id: 1,
+      p_max: 48000, #33706.854591,
+      p_min: -5182, #-1100, # deg
+      v_max: 3600, # rpm
+      a_max: 6000, a_min: -6000, # rpm/s
+      jog: [
+            { speed: 10, displacement: 16 }, # speed: rpm, displacement: degree
+            { speed: 100, displacement: 1024},
+            { speed: 500, displacement: 20240},
+        ]
+      },
+    R : {
+      id: 2,
+      p_max: 16716.199989, p_min: -400, # deg
+      v_max: 3000, # rpm
+      a_max: 5000, a_min: -5000, # rpm/s
+      jog: [
+            { speed: 10, displacement: 16 }, # speed: rpm, displacement: degree
+            { speed: 100, displacement: 1024},
+            { speed: 500, displacement: 8192},
+        ]
+      },
+    Y : {
+      id: 3,
+      p_max: 72, p_min: -8100, #p_max 0, #-6588.169327, #p_max: 5471.004295, p_min: -1990.281143, # deg   -1990.281143 // 5169.046783 //6714.208532315918
+      v_max: 3000, # rpm
+      a_max: 5000, a_min: -5000, # rpm/s
+      jog: [
+            { speed: 10, displacement: 16 }, # speed: rpm, displacement: degree
+            { speed: 100, displacement: 512},
+            { speed: 500, displacement: 4096},
+        ]
+      },
+  }
+  io: { # i/o slave
+    id: 4,
+  }
+  load: {
+    Z: 18, #mm
+    Z_vel: 60, # rpm
+    Y: 373, # mm
+    Y_vel: 1500, # rpm
+  }
+  Shelves:
+  - { id: L002001, z: 0.00, x: 0.00, r: 0.00, y: 371.60}
+  - { id: L002005, z: 1539.80, x: -4.66, r: 0.12, y: 367.01}
+  - { id: L002010, z: 3690.00, x: -4.77, r: 0.00, y: 369.96}
+  - { id: L004001, z: 0.99, x: 889.68, r: 0.02, y: 369.05}
+  - { id: L004005, z: 1541.59, x: 887.63, r: 0.15, y: 367.40}
+  - { id: L004010, z: 3689.00, x: 887.00, r: 0.00, y: 369.96}
+  - { id: L005001, z: 3.47, x: 1431.13, r: -0.06, y: 372.17}
+  - { id: L005010, z: 3692.00, x: 1427.50, r: 0.00, y: 369.96}
+  - { id: L007001, z: 4.00, x: 2322.70, r: 0.07, y: 368.43}
+  - { id: L007010, z: 3692.00, x: 2321.00, r: 0.00, y: 369.96}
+  - { id: R002005, z: 1542.50, x: 1.67, r: 180.10, y: 373.27}
+  - { id: R002006, z: 2150.00, x: 0.00, r: 180.00, y: 375.96}
+  - { id: R002010, z: 3690.00, x: -5.00, r: 180.00, y: 375.96}
+  - { id: R004005, z: 1541.84, x: 890.48, r: 180.17, y: 373.13}
+  - { id: R004006, z: 2152.00, x: 895.48, r: 180.00, y: 372.95}
+  - { id: R004010, z: 3690.00, x: 892.48, r: 180.00, y: 373.96}
+  - { id: R005001, z: 4.00, x: 1436.97, r: 180.00, y: 373.75}
+  - { id: R005006, z: 2138.00, x: 1436.00, r: 180.00, y: 371.96}
+  - { id: R005010, z: 3690.00, x: 1430.00, r: 180.00, y: 373.96}
+  - { id: R006001, z: 4.00, x: 1879.14, r: 180.20, y: 373.34}
+  - { id: R006002, z: 388.37, x: 1877.14, r: 180.20, y: 373.43}
+  - { id: R006003, z: 773.23, x: 1879.14, r: 180.20, y: 374.00}
+  - { id: R006004, z: 1157.80, x: 1878.14, r: 180.20, y: 374.94}
+  - { id: R007001, z: 5.00, x: 2324.51, r: 180.20, y: 373.14}
+  - { id: R007002, z: 389.12, x: 2322.01, r: 180.20, y: 373.90}
+  - { id: R007003, z: 774.85, x: 2322.51, r: 180.20, y: 373.92}
+  - { id: R007004, z: 1160.90, x: 2322.01, r: 180.20, y: 375.84}
+  - { id: R007006, z: 2153.30, x: 2323.01, r: 180.00, y: 373.96}
+  - { id: R007010, z: 3693.00, x: 2321.01, r: 180.00, y: 375.96}
+  - { id: P000101, z: 348.34, x: -326.69, r: 180.01, y: 404.47}
+  - { id: P000102, z: 348.34, x: 353.19, r: 180.02, y: 406.03}
+  - { id: P000201, z: 1077.06, x: 2660.77, r: 0.27, y: 394.74}
+  - { id: P000202, z: 1078.06, x: 1978.82, r: -0.06, y: 400.58}
+  Robot:
+    PPMM: {z: -292.577, x: 262.070, r: 2063.170, y: -409.613 } # encoder pulse per mm or deg; using IPC's scale, 2^13 pls / rot
+    Offset: {z: 482, x: 615, robot_shelf_distance: 50 } # orobot origin offset with respect to frame origin
+    Size: {fork_width: 200, fork_offset: 300 } # fork_offset: fork y-axis offset
+
+# Home Offset
+#axis[0] : -969143 (-332.728844 deg)
+#axis[1] : 610713 (209.671669 deg) fff6ae67
+#axis[2] : -323479 (-111.057701 deg)
+#axis[3] : -94657 (-32.497902 deg)

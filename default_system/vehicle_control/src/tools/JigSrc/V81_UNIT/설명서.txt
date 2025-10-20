@@ -1,0 +1,30 @@
+기준코드 :  _Before (통합이전)
+
+OHT_Main_Before 
+OHT_TP_Before 
+OHT_COMMON_Before 
+
+통합 이전 GIT Develop_EUV_V8_5
+(최종수정날짜: 20200115)
+
+origin/Develop_EUV_V8_5
+
+Main Ver 2.0.1.12
+AMC Ver 20200_191209
+
+
+지그코드 : 
+OHT_Main
+OHT_TP
+OHT_COMMON
+
+Hand, Hoist, Rotate, Slide Unit 
+
+Main Ver 2.0.1.12
+AMC Ver 20200_191209
+
+
+파라미터 : DataFiles_V81(통합이전)
+
+
+

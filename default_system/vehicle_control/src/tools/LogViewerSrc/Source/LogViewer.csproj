@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Obfuscar.2.2.29\build\obfuscar.props" Condition="Exists('..\packages\Obfuscar.2.2.29\build\obfuscar.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5CA0F4B6-D5D3-40C1-AB16-6BD7B2E3CC8C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LogViewer</RootNamespace>
+    <AssemblyName>LogViewer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>게시\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>LogIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CustomColumns, Version=1.0.0.18804, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CustomColumns.dll</HintPath>
+    </Reference>
+    <Reference Include="MathGeometry2D, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>MapView\LinkedDll\MathGeometry2D.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DBcrLog.cs" />
+    <Compile Include="DDataManager.cs" />
+    <Compile Include="DIniComp.cs" />
+    <Compile Include="DLogVerConv.cs" />
+    <Compile Include="DManualTest.cs" />
+    <Compile Include="DCustomTest_UBG.cs" />
+    <Compile Include="DDataSet.cs" />
+    <Compile Include="DAmcRcv.cs" />
+    <Compile Include="DLogMan.cs" />
+    <Compile Include="DSensorArea.cs" />
+    <Compile Include="DSimpleLog.cs" />
+    <Compile Include="DUserLog.cs" />
+    <Compile Include="DViewColor.cs" />
+    <Compile Include="DTimeLineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OHTEasyView_MapView_Protocol.cs" />
+    <Compile Include="UAmcRecvOpen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UAmcRecvOpen.Designer.cs">
+      <DependentUpon>UAmcRecvOpen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCommentAttach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UCommentAttach.Designer.cs">
+      <DependentUpon>UCommentAttach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCommentMake.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UCommentMake.Designer.cs">
+      <DependentUpon>UCommentMake.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCommonProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UCommonProgressForm.Designer.cs">
+      <DependentUpon>UCommonProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCommonTypeIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UCommonTypeIn.Designer.cs">
+      <DependentUpon>UCommonTypeIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCustomTest_UBG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UCustomTest_UBG.Designer.cs">
+      <DependentUpon>UCustomTest_UBG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UDataManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UDataManager.Designer.cs">
+      <DependentUpon>UDataManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UDataManager_MnOpt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UDataManager_MnOpt.Designer.cs">
+      <DependentUpon>UDataManager_MnOpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UDiff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UDiff.Designer.cs">
+      <DependentUpon>UDiff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UDiff_Help.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UDiff_Help.Designer.cs">
+      <DependentUpon>UDiff_Help.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UDiff_Ini.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UDiff_Ini.Designer.cs">
+      <DependentUpon>UDiff_Ini.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UEventLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UEventLog.Designer.cs">
+      <DependentUpon>UEventLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UAmcRecvCols.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UAmcRecvCols.Designer.cs">
+      <DependentUpon>UAmcRecvCols.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UAmcRecvTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UAmcRecvTable.Designer.cs">
+      <DependentUpon>UAmcRecvTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UFindGridColData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UFindGridColData.designer.cs">
+      <DependentUpon>UFindGridColData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UGridOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UGridOption.Designer.cs">
+      <DependentUpon>UGridOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ULogFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ULogFrame.Designer.cs">
+      <DependentUpon>ULogFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UMain.Designer.cs">
+      <DependentUpon>UMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UMainFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UMainFiles.Designer.cs">
+      <DependentUpon>UMainFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UManualTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UManualTest.Designer.cs">
+      <DependentUpon>UManualTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UMapViewMan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UMapViewMan.Designer.cs">
+      <DependentUpon>UMapViewMan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UNotebook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UNotebook.Designer.cs">
+      <DependentUpon>UNotebook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="USensorArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="USensorArea.Designer.cs">
+      <DependentUpon>USensorArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="USetUploadPath.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="USetUploadPath.Designer.cs">
+      <DependentUpon>USetUploadPath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="USnakeGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="USnakeGame.Designer.cs">
+      <DependentUpon>USnakeGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UTest.Designer.cs">
+      <DependentUpon>UTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyTool.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DTestClass.cs" />
+    <Compile Include="UTestEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UTestEdit.Designer.cs">
+      <DependentUpon>UTestEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UTimeLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UTimeLine.Designer.cs">
+      <DependentUpon>UTimeLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UUserLogTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UUserLogTable.Designer.cs">
+      <DependentUpon>UUserLogTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UVersionConv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UVersionConv.Designer.cs">
+      <DependentUpon>UVersionConv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UVhlList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UVhlList.Designer.cs">
+      <DependentUpon>UVhlList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UViewColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UViewColor.Designer.cs">
+      <DependentUpon>UViewColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UViewColor_Input.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UViewColor_Input.Designer.cs">
+      <DependentUpon>UViewColor_Input.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UAmcRecvOpen.resx">
+      <DependentUpon>UAmcRecvOpen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCommentAttach.resx">
+      <DependentUpon>UCommentAttach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCommentMake.resx">
+      <DependentUpon>UCommentMake.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCommonProgressForm.resx">
+      <DependentUpon>UCommonProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCommonTypeIn.resx">
+      <DependentUpon>UCommonTypeIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCustomTest_UBG.resx">
+      <DependentUpon>UCustomTest_UBG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UDataManager.resx">
+      <DependentUpon>UDataManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UDataManager_MnOpt.resx">
+      <DependentUpon>UDataManager_MnOpt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UDiff.resx">
+      <DependentUpon>UDiff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UDiff_Help.resx">
+      <DependentUpon>UDiff_Help.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UDiff_Ini.resx">
+      <DependentUpon>UDiff_Ini.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UEventLog.resx">
+      <DependentUpon>UEventLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UAmcRecvCols.resx">
+      <DependentUpon>UAmcRecvCols.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UAmcRecvTable.resx">
+      <DependentUpon>UAmcRecvTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UFindGridColData.resx">
+      <DependentUpon>UFindGridColData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UGridOption.resx">
+      <DependentUpon>UGridOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ULogFrame.resx">
+      <DependentUpon>ULogFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UMain.resx">
+      <DependentUpon>UMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UMainFiles.resx">
+      <DependentUpon>UMainFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UManualTest.resx">
+      <DependentUpon>UManualTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UMapViewMan.resx">
+      <DependentUpon>UMapViewMan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UNotebook.resx">
+      <DependentUpon>UNotebook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="USensorArea.resx">
+      <DependentUpon>USensorArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="USetUploadPath.resx">
+      <DependentUpon>USetUploadPath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="USnakeGame.resx">
+      <DependentUpon>USnakeGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UTest.resx">
+      <DependentUpon>UTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UTestEdit.resx">
+      <DependentUpon>UTestEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UTimeLine.resx">
+      <DependentUpon>UTimeLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UUserLogTable.resx">
+      <DependentUpon>UUserLogTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UVersionConv.resx">
+      <DependentUpon>UVersionConv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UVhlList.resx">
+      <DependentUpon>UVhlList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UViewColor.resx">
+      <DependentUpon>UViewColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UViewColor_Input.resx">
+      <DependentUpon>UViewColor_Input.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2%28x86 및 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon_res\셀너비_크게_60x30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LogIcon.ico" />
+    <Content Include="Obfuscar.xml" />
+    <None Include="Resources\bit.PNG" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>이 프로젝트는 이 컴퓨터에 없는 NuGet 패키지를 참조합니다. 해당 패키지를 다운로드하려면 NuGet 패키지 복원을 사용하십시오. 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=322105를 참조하십시오. 누락된 파일은 {0}입니다.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Obfuscar.2.2.29\build\obfuscar.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Obfuscar.2.2.29\build\obfuscar.props'))" />
+  </Target>
+  <PropertyGroup>
+    <PostBuildEvent>"$(Obfuscar)" ..\Source\obfuscar.xml</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

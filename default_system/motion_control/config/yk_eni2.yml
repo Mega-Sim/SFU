@@ -1,0 +1,1709 @@
+!!python/unicode 'EtherCATConfig':
+  !!python/unicode '@Version': !!python/unicode '1.3'
+  !!python/unicode '@xmlns:xsi': !!python/unicode 'http://www.w3.org/2001/XMLSchema-instance'
+  !!python/unicode '@xsi:noNamespaceSchemaLocation': !!python/unicode 'EtherCATConfig.xsd'
+  !!python/unicode 'Config':
+    !!python/unicode 'Cyclic':
+      !!python/unicode 'CycleTime': !!python/unicode '1000'
+      !!python/unicode 'Frame':
+        !!python/unicode 'Cmd':
+        - !!python/unicode 'Ado': !!python/unicode '2304'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'Cmd': !!python/unicode '0'
+          !!python/unicode 'Comment': !!python/unicode 'DC; NOP; Receive Time Port
+            1 Register'
+          !!python/unicode 'DataLength': !!python/unicode '4'
+          !!python/unicode 'InputOffs': !!python/unicode '14'
+          !!python/unicode 'OutputOffs': !!python/unicode '14'
+          !!python/unicode 'State': [!!python/unicode 'PREOP', !!python/unicode 'SAFEOP',
+            !!python/unicode 'OP']
+        - !!python/unicode 'Ado': !!python/unicode '2320'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'Cmd': !!python/unicode '13'
+          !!python/unicode 'Comment': !!python/unicode 'DC; ARMW; System Time Register'
+          !!python/unicode 'DataLength': !!python/unicode '4'
+          !!python/unicode 'InputOffs': !!python/unicode '18'
+          !!python/unicode 'OutputOffs': !!python/unicode '18'
+          !!python/unicode 'State': [!!python/unicode 'PREOP', !!python/unicode 'SAFEOP',
+            !!python/unicode 'OP']
+        - !!python/unicode 'Ado': !!python/unicode '2320'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'Cmd': !!python/unicode '2'
+          !!python/unicode 'Comment': !!python/unicode 'DC; APWR; System Time Register
+            (Bus-Shift)'
+          !!python/unicode 'DataLength': !!python/unicode '4'
+          !!python/unicode 'InputOffs': !!python/unicode '22'
+          !!python/unicode 'OutputOffs': !!python/unicode '22'
+          !!python/unicode 'State': [!!python/unicode 'PREOP', !!python/unicode 'SAFEOP',
+            !!python/unicode 'OP']
+        - !!python/unicode 'Addr': !!python/unicode '150994944'
+          !!python/unicode 'Cmd': !!python/unicode '10'
+          !!python/unicode 'Comment': !!python/unicode 'MISC; LRD; Poll Mailbox State'
+          !!python/unicode 'DataLength': !!python/unicode '2'
+          !!python/unicode 'InputOffs': !!python/unicode '26'
+          !!python/unicode 'OutputOffs': !!python/unicode '26'
+          !!python/unicode 'State': [!!python/unicode 'PREOP', !!python/unicode 'SAFEOP',
+            !!python/unicode 'OP']
+        - !!python/unicode 'Addr': !!python/unicode '268435456'
+          !!python/unicode 'Cmd': !!python/unicode '11'
+          !!python/unicode 'Cnt': !!python/unicode '2'
+          !!python/unicode 'Comment': !!python/unicode 'PD; LWR;'
+          !!python/unicode 'DataLength': !!python/unicode '12'
+          !!python/unicode 'InputOffs': !!python/unicode '0'
+          !!python/unicode 'OutputOffs': !!python/unicode '0'
+          !!python/unicode 'State': [!!python/unicode 'SAFEOP', !!python/unicode 'OP']
+        - !!python/unicode 'Addr': !!python/unicode '268437504'
+          !!python/unicode 'Cmd': !!python/unicode '10'
+          !!python/unicode 'Cnt': !!python/unicode '2'
+          !!python/unicode 'Comment': !!python/unicode 'PD; LRD;'
+          !!python/unicode 'DataLength': !!python/unicode '12'
+          !!python/unicode 'InputOffs': !!python/unicode '0'
+          !!python/unicode 'OutputOffs': !!python/unicode '0'
+          !!python/unicode 'State': [!!python/unicode 'SAFEOP', !!python/unicode 'OP']
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'Cmd': !!python/unicode '7'
+          !!python/unicode 'Cnt': !!python/unicode '2'
+          !!python/unicode 'Comment': !!python/unicode 'MISC; BRD; AL Status Register'
+          !!python/unicode 'DataLength': !!python/unicode '2'
+          !!python/unicode 'InputOffs': !!python/unicode '12'
+          !!python/unicode 'OutputOffs': !!python/unicode '12'
+          !!python/unicode 'State': [!!python/unicode 'PREOP', !!python/unicode 'SAFEOP',
+            !!python/unicode 'OP']
+    !!python/unicode 'Master':
+      !!python/unicode 'Info': {!!python/unicode 'Destination': !!python/unicode 'ffffffffffff',
+        !!python/unicode 'EtherType': !!python/unicode 'a488', !!python/unicode 'Name': !!python/unicode 'Class-A
+          Master', !!python/unicode 'Source': !!python/unicode '7085c203f3e6'}
+      !!python/unicode 'InitCmds':
+        !!python/unicode 'InitCmd':
+        - {!!python/unicode 'Ado': !!python/unicode '304', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'BeforeSlave': !!python/unicode '1', !!python/unicode 'Cmd': !!python/unicode '7',
+          !!python/unicode 'Comment': !!python/unicode 'read slave count', !!python/unicode 'Data': !!python/unicode '0000',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '0',
+          !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '304', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'BeforeSlave': !!python/unicode '1', !!python/unicode 'Cmd': !!python/unicode '7',
+          !!python/unicode 'Comment': !!python/unicode 'read slave count', !!python/unicode 'Data': !!python/unicode '0000',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '0',
+          !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '512', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'BeforeSlave': !!python/unicode '1', !!python/unicode 'Cmd': !!python/unicode '8',
+          !!python/unicode 'Comment': !!python/unicode 'enable ECAT IRQ', !!python/unicode 'Data': !!python/unicode '0400',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '16', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'BeforeSlave': !!python/unicode '1', !!python/unicode 'Cmd': !!python/unicode '8',
+          !!python/unicode 'Comment': !!python/unicode 'clear configured addresses',
+          !!python/unicode 'Data': !!python/unicode '0000', !!python/unicode 'Requires': !!python/unicode 'cycle',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '768', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'BeforeSlave': !!python/unicode '1', !!python/unicode 'Cmd': !!python/unicode '8',
+          !!python/unicode 'Comment': !!python/unicode 'clear crc register', !!python/unicode 'Data': !!python/unicode '0000000000000000',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - !!python/unicode 'Ado': !!python/unicode '1536'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'BeforeSlave': !!python/unicode '1'
+          !!python/unicode 'Cmd': !!python/unicode '8'
+          !!python/unicode 'Comment': !!python/unicode 'clear fmmu'
+          !!python/unicode 'DataLength': !!python/unicode '256'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'PI',
+            !!python/unicode 'BI', !!python/unicode 'SI', !!python/unicode 'OI']
+        - {!!python/unicode 'Ado': !!python/unicode '2048', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'BeforeSlave': !!python/unicode '1', !!python/unicode 'Cmd': !!python/unicode '8',
+          !!python/unicode 'Comment': !!python/unicode 'clear sm', !!python/unicode 'DataLength': !!python/unicode '256',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '2320', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'BeforeSlave': !!python/unicode '1', !!python/unicode 'Cmd': !!python/unicode '8',
+          !!python/unicode 'Comment': !!python/unicode 'clear dc system time', !!python/unicode 'DataLength': !!python/unicode '32',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '2433', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'BeforeSlave': !!python/unicode '1', !!python/unicode 'Cmd': !!python/unicode '8',
+          !!python/unicode 'Comment': !!python/unicode 'clear dc cycle cfg', !!python/unicode 'Data': !!python/unicode '00',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '2352', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'BeforeSlave': !!python/unicode '1', !!python/unicode 'Cmd': !!python/unicode '8',
+          !!python/unicode 'Comment': !!python/unicode 'reset dc speed', !!python/unicode 'Data': !!python/unicode '0010',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '2356', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'BeforeSlave': !!python/unicode '1', !!python/unicode 'Cmd': !!python/unicode '8',
+          !!python/unicode 'Comment': !!python/unicode 'configure dc filter', !!python/unicode 'Data': !!python/unicode '000c',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '259', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'BeforeSlave': !!python/unicode '1', !!python/unicode 'Cmd': !!python/unicode '8',
+          !!python/unicode 'Comment': !!python/unicode 'en/disable second physical
+            address', !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Requires': !!python/unicode 'cycle',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'IP'}
+      !!python/unicode 'MailboxStates': {!!python/unicode 'Count': !!python/unicode '2',
+        !!python/unicode 'StartAddr': !!python/unicode '150994944'}
+    !!python/unicode 'ProcessImage':
+      !!python/unicode 'Inputs':
+        !!python/unicode 'ByteSize': !!python/unicode '28'
+        !!python/unicode 'Variable':
+        - {!!python/unicode 'BitOffs': !!python/unicode '0', !!python/unicode 'BitSize': !!python/unicode '16',
+          !!python/unicode 'DataType': !!python/unicode 'UINT', !!python/unicode 'Name': !!python/unicode 'Slave_1001
+            [SGD7S-xxxxA0x CoE Drive].2nd Transmit PDO mapping.Status word'}
+        - {!!python/unicode 'BitOffs': !!python/unicode '16', !!python/unicode 'BitSize': !!python/unicode '32',
+          !!python/unicode 'DataType': !!python/unicode 'DINT', !!python/unicode 'Name': !!python/unicode 'Slave_1001
+            [SGD7S-xxxxA0x CoE Drive].2nd Transmit PDO mapping.Position actual value'}
+        - {!!python/unicode 'BitOffs': !!python/unicode '48', !!python/unicode 'BitSize': !!python/unicode '16',
+          !!python/unicode 'DataType': !!python/unicode 'UINT', !!python/unicode 'Name': !!python/unicode 'Slave_1002
+            [SGD7S-xxxxA0x CoE Drive].2nd Transmit PDO mapping.Status word'}
+        - {!!python/unicode 'BitOffs': !!python/unicode '64', !!python/unicode 'BitSize': !!python/unicode '32',
+          !!python/unicode 'DataType': !!python/unicode 'DINT', !!python/unicode 'Name': !!python/unicode 'Slave_1002
+            [SGD7S-xxxxA0x CoE Drive].2nd Transmit PDO mapping.Position actual value'}
+      !!python/unicode 'Outputs':
+        !!python/unicode 'ByteSize': !!python/unicode '28'
+        !!python/unicode 'Variable':
+        - {!!python/unicode 'BitOffs': !!python/unicode '0', !!python/unicode 'BitSize': !!python/unicode '16',
+          !!python/unicode 'DataType': !!python/unicode 'UINT', !!python/unicode 'Name': !!python/unicode 'Slave_1001
+            [SGD7S-xxxxA0x CoE Drive].2nd Receive PDO mapping.Control word'}
+        - {!!python/unicode 'BitOffs': !!python/unicode '16', !!python/unicode 'BitSize': !!python/unicode '32',
+          !!python/unicode 'DataType': !!python/unicode 'DINT', !!python/unicode 'Name': !!python/unicode 'Slave_1001
+            [SGD7S-xxxxA0x CoE Drive].2nd Receive PDO mapping.Target position'}
+        - {!!python/unicode 'BitOffs': !!python/unicode '48', !!python/unicode 'BitSize': !!python/unicode '16',
+          !!python/unicode 'DataType': !!python/unicode 'UINT', !!python/unicode 'Name': !!python/unicode 'Slave_1002
+            [SGD7S-xxxxA0x CoE Drive].2nd Receive PDO mapping.Control word'}
+        - {!!python/unicode 'BitOffs': !!python/unicode '64', !!python/unicode 'BitSize': !!python/unicode '32',
+          !!python/unicode 'DataType': !!python/unicode 'DINT', !!python/unicode 'Name': !!python/unicode 'Slave_1002
+            [SGD7S-xxxxA0x CoE Drive].2nd Receive PDO mapping.Target position'}
+    !!python/unicode 'Slave':
+    - !!python/unicode 'DC': {!!python/unicode 'CycleTime0': !!python/unicode '1000000',
+        !!python/unicode 'CycleTime1': !!python/unicode '0', !!python/unicode 'PotentialReferenceClock': !!python/unicode '0',
+        !!python/unicode 'ReferenceClock': !!python/unicode '1', !!python/unicode 'ShiftTime': !!python/unicode '0'}
+      !!python/unicode 'Info': {!!python/unicode 'AutoIncAddr': !!python/unicode '0',
+        !!python/unicode 'Name': !!python/unicode 'Slave_1001 [SGD7S-xxxxA0x CoE Drive]',
+        !!python/unicode 'PhysAddr': !!python/unicode '1001', !!python/unicode 'Physics': !!python/unicode 'YY',
+        !!python/unicode 'ProductCode': !!python/unicode '35652353', !!python/unicode 'RevisionNo': !!python/unicode '458756',
+        !!python/unicode 'SerialNo': !!python/unicode '0', !!python/unicode 'VendorId': !!python/unicode '1337'}
+      !!python/unicode 'InitCmds':
+        !!python/unicode 'InitCmd':
+        - !!python/unicode 'Ado': !!python/unicode '288'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'Cmd': !!python/unicode '2'
+          !!python/unicode 'Comment': !!python/unicode 'set device state to INIT'
+          !!python/unicode 'Data': !!python/unicode '1100'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Timeout': !!python/unicode '5000'
+          !!python/unicode 'Transition': [!!python/unicode 'PI', !!python/unicode 'BI',
+            !!python/unicode 'SI', !!python/unicode 'OI']
+        - !!python/unicode 'Ado': !!python/unicode '2432'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'Cmd': !!python/unicode '2'
+          !!python/unicode 'Comment': !!python/unicode 'clear DC activation'
+          !!python/unicode 'Data': !!python/unicode '0000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'SI', !!python/unicode 'OI']
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'Cmd': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for INIT'
+          !!python/unicode 'Data': !!python/unicode '0000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'PI', !!python/unicode 'SI',
+            !!python/unicode 'OI']
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '0100',
+            !!python/unicode 'DataMask': !!python/unicode '0f00', !!python/unicode 'Timeout': !!python/unicode '5000'}
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'Cmd': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for INIT'
+          !!python/unicode 'Data': !!python/unicode '0000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'BI'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '0100',
+            !!python/unicode 'DataMask': !!python/unicode '0f00', !!python/unicode 'Timeout': !!python/unicode '10000'}
+        - !!python/unicode 'Ado': !!python/unicode '288'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'Cmd': !!python/unicode '2'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'set device state to INIT'
+          !!python/unicode 'Data': !!python/unicode '1100'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Timeout': !!python/unicode '3000'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'IB']
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'Cmd': !!python/unicode '1'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for INIT'
+          !!python/unicode 'Data': !!python/unicode '0000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'IB']
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '0100',
+            !!python/unicode 'DataMask': !!python/unicode '0f00', !!python/unicode 'Timeout': !!python/unicode '3000'}
+        - {!!python/unicode 'Ado': !!python/unicode '1280', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'Cmd': !!python/unicode '2', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'assign EEPROM to ECAT', !!python/unicode 'Data': !!python/unicode '00',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '1282', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'Cmd': !!python/unicode '2', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'check vendor id', !!python/unicode 'Data': !!python/unicode '000108000000',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - !!python/unicode 'Ado': !!python/unicode '1288'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'Cmd': !!python/unicode '1'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check vendor id'
+          !!python/unicode 'Data': !!python/unicode '00000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'IP'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '39050000',
+            !!python/unicode 'Timeout': !!python/unicode '100'}
+        - {!!python/unicode 'Ado': !!python/unicode '1282', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'Cmd': !!python/unicode '2', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'check product code', !!python/unicode 'Data': !!python/unicode '00010a000000',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - !!python/unicode 'Ado': !!python/unicode '1288'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'Cmd': !!python/unicode '1'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check product code'
+          !!python/unicode 'Data': !!python/unicode '00000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'IP'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '01032002',
+            !!python/unicode 'Timeout': !!python/unicode '100'}
+        - !!python/unicode 'Ado': !!python/unicode '16'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'Cmd': !!python/unicode '2'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'set physical address'
+          !!python/unicode 'Data': !!python/unicode 'e903'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'IB']
+        - !!python/unicode 'Ado': !!python/unicode '2048'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'clear sm 0/1 (mailbox out/in)'
+          !!python/unicode 'Data': !!python/unicode '00000000000000000000000000000000'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'IB',
+            !!python/unicode 'PI', !!python/unicode 'SI', !!python/unicode 'OI']
+        - {!!python/unicode 'Ado': !!python/unicode '2048', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'Cmd': !!python/unicode '2', !!python/unicode 'Comment': !!python/unicode 'clear
+            sm 0/1 (mailbox out/in)', !!python/unicode 'Data': !!python/unicode '00000000000000000000000000000000',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'BI'}
+        - {!!python/unicode 'Ado': !!python/unicode '2048', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set sm 0 (mailbox out)', !!python/unicode 'Data': !!python/unicode '0010800036000100',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '2056', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set sm 1 (mailbox in)', !!python/unicode 'Data': !!python/unicode '8010800032000100',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '2048', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set sm 0 (bootstrap out)',
+          !!python/unicode 'Data': !!python/unicode '0010800036000100', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'IB'}
+        - {!!python/unicode 'Ado': !!python/unicode '2056', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set sm 1 (bootstrap in)',
+          !!python/unicode 'Data': !!python/unicode '8010800032000100', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'IB'}
+        - {!!python/unicode 'Ado': !!python/unicode '2464', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set DC cycle time', !!python/unicode 'Data': !!python/unicode '40420f0000000000',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - {!!python/unicode 'Ado': !!python/unicode '2448', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set DC start time', !!python/unicode 'Data': !!python/unicode '0000000000000000',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - {!!python/unicode 'Ado': !!python/unicode '2432', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set DC activation', !!python/unicode 'Data': !!python/unicode '0003',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - {!!python/unicode 'Ado': !!python/unicode '2472', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Comment': !!python/unicode 'set
+            DC latch cfg', !!python/unicode 'Data': !!python/unicode '0000', !!python/unicode 'Requires': !!python/unicode 'cycle',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - !!python/unicode 'Ado': !!python/unicode '2432'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'clear DC activation'
+          !!python/unicode 'Data': !!python/unicode '0000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'PP']
+        - !!python/unicode 'Ado': !!python/unicode '288'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'set device state to PREOP'
+          !!python/unicode 'Data': !!python/unicode '1200'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '300'
+          !!python/unicode 'Timeout': !!python/unicode '5000'
+          !!python/unicode 'Transition': [!!python/unicode 'SP', !!python/unicode 'OP']
+        - !!python/unicode 'Ado': !!python/unicode '2064'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'clear sms'
+          !!python/unicode 'DataLength': !!python/unicode '16'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'SP',
+            !!python/unicode 'SI', !!python/unicode 'OP', !!python/unicode 'OI']
+        - {!!python/unicode 'Ado': !!python/unicode '2064', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set sm 2 (outputs)', !!python/unicode 'Data': !!python/unicode '0011060074000100',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - {!!python/unicode 'Ado': !!python/unicode '2072', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set sm 3 (inputs)', !!python/unicode 'Data': !!python/unicode '0014060030000100',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - {!!python/unicode 'Ado': !!python/unicode '1536', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set fmmu 0 (outputs)', !!python/unicode 'Data': !!python/unicode '00000010060000070011000201000000',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - {!!python/unicode 'Ado': !!python/unicode '1552', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set fmmu 1 (inputs)', !!python/unicode 'Data': !!python/unicode '00080010060000070014000101000000',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - !!python/unicode 'Ado': !!python/unicode '1568'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'set fmmu 2 (mailbox state)'
+          !!python/unicode 'Data': !!python/unicode '00000009010000000d08000101000000'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'IB']
+        - {!!python/unicode 'Ado': !!python/unicode '288', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Comment': !!python/unicode 'set
+            device state to SAFEOP', !!python/unicode 'Data': !!python/unicode '0400',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Timeout': !!python/unicode '200', !!python/unicode 'Transition': !!python/unicode 'OS'}
+        - !!python/unicode 'Ado': !!python/unicode '1536'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'clear fmmu 0'
+          !!python/unicode 'Data': !!python/unicode '00000000000000000000000000000000'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'SP', !!python/unicode 'SI',
+            !!python/unicode 'OP', !!python/unicode 'OI']
+        - !!python/unicode 'Ado': !!python/unicode '1552'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'clear fmmu 1'
+          !!python/unicode 'Data': !!python/unicode '00000000000000000000000000000000'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'SP', !!python/unicode 'SI',
+            !!python/unicode 'OP', !!python/unicode 'OI']
+        - !!python/unicode 'Ado': !!python/unicode '1568'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'clear fmmu 2'
+          !!python/unicode 'Data': !!python/unicode '00000000000000000000000000000000'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'PI', !!python/unicode 'BI',
+            !!python/unicode 'SI', !!python/unicode 'OI']
+        - !!python/unicode 'Ado': !!python/unicode '2432'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'clear DC activation'
+          !!python/unicode 'Data': !!python/unicode '0000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'SP', !!python/unicode 'OP']
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '4'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for PREOP'
+          !!python/unicode 'Data': !!python/unicode '000000000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'SP', !!python/unicode 'OP']
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '020000000000',
+            !!python/unicode 'DataMask': !!python/unicode '0f0000000000', !!python/unicode 'Timeout': !!python/unicode '5000'}
+        - !!python/unicode 'Ado': !!python/unicode '1280'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'assign EEPROM to PDI'
+          !!python/unicode 'Data': !!python/unicode '01'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'IB']
+        - {!!python/unicode 'Ado': !!python/unicode '1280', !!python/unicode 'Adp': !!python/unicode '0',
+          !!python/unicode 'Cmd': !!python/unicode '2', !!python/unicode 'Comment': !!python/unicode 'assign
+            EEPROM back to ECAT', !!python/unicode 'Data': !!python/unicode '00',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'II'}
+        - {!!python/unicode 'Ado': !!python/unicode '288', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set device state to PREOP',
+          !!python/unicode 'Data': !!python/unicode '1200', !!python/unicode 'Requires': !!python/unicode 'cycle',
+          !!python/unicode 'Retries': !!python/unicode '300', !!python/unicode 'Timeout': !!python/unicode '3000',
+          !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '4'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for PREOP'
+          !!python/unicode 'Data': !!python/unicode '000000000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'IP'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '020000000000',
+            !!python/unicode 'DataMask': !!python/unicode '1f0000000000', !!python/unicode 'Timeout': !!python/unicode '3000'}
+        - !!python/unicode 'Ado': !!python/unicode '1280'
+          !!python/unicode 'Adp': !!python/unicode '0'
+          !!python/unicode 'Cmd': !!python/unicode '2'
+          !!python/unicode 'Comment': !!python/unicode 'assign EEPROM back to ECAT'
+          !!python/unicode 'Data': !!python/unicode '00'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'BI']
+        - {!!python/unicode 'Ado': !!python/unicode '288', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set device state to BOOT',
+          !!python/unicode 'Data': !!python/unicode '1300', !!python/unicode 'Requires': !!python/unicode 'cycle',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Timeout': !!python/unicode '3000',
+          !!python/unicode 'Transition': !!python/unicode 'IB'}
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '4'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for BOOT'
+          !!python/unicode 'Data': !!python/unicode '000000000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'IB'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '030000000000',
+            !!python/unicode 'DataMask': !!python/unicode '1f0000000000', !!python/unicode 'Timeout': !!python/unicode '3000'}
+        - {!!python/unicode 'Ado': !!python/unicode '288', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set device state to SAFEOP',
+          !!python/unicode 'Data': !!python/unicode '0400', !!python/unicode 'Requires': !!python/unicode 'cycle',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Timeout': !!python/unicode '10000',
+          !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '4'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for SAFEOP'
+          !!python/unicode 'Data': !!python/unicode '000000000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'PS'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '040000000000',
+            !!python/unicode 'DataMask': !!python/unicode '1f0000000000', !!python/unicode 'Timeout': !!python/unicode '10000'}
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '4'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for SAFEOP'
+          !!python/unicode 'Data': !!python/unicode '000000000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'OS'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '040000000000',
+            !!python/unicode 'DataMask': !!python/unicode '0f0000000000', !!python/unicode 'Timeout': !!python/unicode '200'}
+        - {!!python/unicode 'Ado': !!python/unicode '288', !!python/unicode 'Adp': !!python/unicode '1001',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set device state to OP', !!python/unicode 'Data': !!python/unicode '0800',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Timeout': !!python/unicode '10000', !!python/unicode 'Transition': !!python/unicode 'SO'}
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '1001'
+          !!python/unicode 'Cmd': !!python/unicode '4'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for OP'
+          !!python/unicode 'Data': !!python/unicode '000000000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'SO'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '080000000000',
+            !!python/unicode 'DataMask': !!python/unicode '1f0000000000', !!python/unicode 'Timeout': !!python/unicode '10000'}
+      !!python/unicode 'Mailbox':
+        !!python/unicode 'BootStrap':
+          !!python/unicode 'Recv': {!!python/unicode 'Length': !!python/unicode '128',
+            !!python/unicode 'Start': !!python/unicode '4224'}
+          !!python/unicode 'Send': {!!python/unicode 'Length': !!python/unicode '128',
+            !!python/unicode 'Start': !!python/unicode '4096'}
+        !!python/unicode 'CoE':
+          !!python/unicode 'InitCmds':
+            !!python/unicode 'InitCmd':
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear sm pdos (0x1C12)',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '7186',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear sm pdos (0x1C13)',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '7187',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1A00 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '10004160', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '20006460', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '10007760', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '3', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '2000f460', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '4', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '08006160', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '5', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '08000000', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '6', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '1000b960', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '7', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '2000ba60', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '8', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry
+                count', !!python/unicode 'Data': !!python/unicode '08', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1A01 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '6657',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A01 entry',
+              !!python/unicode 'Data': !!python/unicode '10004160', !!python/unicode 'Index': !!python/unicode '6657',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A01 entry',
+              !!python/unicode 'Data': !!python/unicode '20006460', !!python/unicode 'Index': !!python/unicode '6657',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A01 entry
+                count', !!python/unicode 'Data': !!python/unicode '02', !!python/unicode 'Index': !!python/unicode '6657',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1A02 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '6658',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A02 entry',
+              !!python/unicode 'Data': !!python/unicode '10004160', !!python/unicode 'Index': !!python/unicode '6658',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A02 entry',
+              !!python/unicode 'Data': !!python/unicode '20006460', !!python/unicode 'Index': !!python/unicode '6658',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A02 entry
+                count', !!python/unicode 'Data': !!python/unicode '02', !!python/unicode 'Index': !!python/unicode '6658',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1A03 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '6659',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A03 entry',
+              !!python/unicode 'Data': !!python/unicode '10004160', !!python/unicode 'Index': !!python/unicode '6659',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A03 entry',
+              !!python/unicode 'Data': !!python/unicode '20006460', !!python/unicode 'Index': !!python/unicode '6659',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A03 entry',
+              !!python/unicode 'Data': !!python/unicode '10007760', !!python/unicode 'Index': !!python/unicode '6659',
+              !!python/unicode 'SubIndex': !!python/unicode '3', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A03 entry
+                count', !!python/unicode 'Data': !!python/unicode '03', !!python/unicode 'Index': !!python/unicode '6659',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1600 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '10004060', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '20007a60', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '2000ff60', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '3', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '10007160', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '4', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '10007260', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '5', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '08006060', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '6', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '08000000', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '7', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '1000b860', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '8', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry
+                count', !!python/unicode 'Data': !!python/unicode '08', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1601 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '5633',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1601 entry',
+              !!python/unicode 'Data': !!python/unicode '10004060', !!python/unicode 'Index': !!python/unicode '5633',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1601 entry',
+              !!python/unicode 'Data': !!python/unicode '20007a60', !!python/unicode 'Index': !!python/unicode '5633',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1601 entry
+                count', !!python/unicode 'Data': !!python/unicode '02', !!python/unicode 'Index': !!python/unicode '5633',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1602 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '5634',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1602 entry',
+              !!python/unicode 'Data': !!python/unicode '10004060', !!python/unicode 'Index': !!python/unicode '5634',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1602 entry',
+              !!python/unicode 'Data': !!python/unicode '2000ff60', !!python/unicode 'Index': !!python/unicode '5634',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1602 entry
+                count', !!python/unicode 'Data': !!python/unicode '02', !!python/unicode 'Index': !!python/unicode '5634',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1603 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '5635',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1603 entry',
+              !!python/unicode 'Data': !!python/unicode '10004060', !!python/unicode 'Index': !!python/unicode '5635',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1603 entry',
+              !!python/unicode 'Data': !!python/unicode '10007160', !!python/unicode 'Index': !!python/unicode '5635',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1603 entry
+                count', !!python/unicode 'Data': !!python/unicode '02', !!python/unicode 'Index': !!python/unicode '5635',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1C12:01
+                index', !!python/unicode 'Data': !!python/unicode '0116', !!python/unicode 'Index': !!python/unicode '7186',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1C12 count',
+              !!python/unicode 'Data': !!python/unicode '01', !!python/unicode 'Index': !!python/unicode '7186',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1C13:01
+                index', !!python/unicode 'Data': !!python/unicode '011a', !!python/unicode 'Index': !!python/unicode '7187',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1C13 count',
+              !!python/unicode 'Data': !!python/unicode '01', !!python/unicode 'Index': !!python/unicode '7187',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode 'Ccs': !!python/unicode '1', !!python/unicode 'Comment': !!python/unicode 'Op
+                mode', !!python/unicode 'Data': !!python/unicode '08', !!python/unicode 'Index': !!python/unicode '24672',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode 'Ccs': !!python/unicode '1', !!python/unicode 'Comment': !!python/unicode 'Interpolation
+                time period', !!python/unicode 'Data': !!python/unicode '01', !!python/unicode 'Index': !!python/unicode '24770',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode 'Ccs': !!python/unicode '1', !!python/unicode 'Comment': !!python/unicode 'Interpolation
+                time index', !!python/unicode 'Data': !!python/unicode 'fd', !!python/unicode 'Index': !!python/unicode '24770',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+        !!python/unicode 'Protocol': [!!python/unicode 'CoE', !!python/unicode 'FoE']
+        !!python/unicode 'Recv': {!!python/unicode 'Length': !!python/unicode '128',
+          !!python/unicode 'Start': !!python/unicode '4224', !!python/unicode 'StatusBitAddr': !!python/unicode '0'}
+        !!python/unicode 'Send': {!!python/unicode 'Length': !!python/unicode '128',
+          !!python/unicode 'Start': !!python/unicode '4096'}
+      !!python/unicode 'ProcessData':
+        !!python/unicode 'Recv': {!!python/unicode 'BitLength': !!python/unicode '48',
+          !!python/unicode 'BitStart': !!python/unicode '0'}
+        !!python/unicode 'RxPdo':
+        - !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6040', !!python/unicode 'Name': !!python/unicode 'Control
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x607a', !!python/unicode 'Name': !!python/unicode 'Target
+              position', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x60ff', !!python/unicode 'Name': !!python/unicode 'Target
+              velocity', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'INT',
+            !!python/unicode 'Index': !!python/unicode '#x6071', !!python/unicode 'Name': !!python/unicode 'Target
+              torque', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6072', !!python/unicode 'Name': !!python/unicode 'Max
+              torque', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '8', !!python/unicode 'DataType': !!python/unicode 'SINT',
+            !!python/unicode 'Index': !!python/unicode '#x6060', !!python/unicode 'Name': !!python/unicode 'Modes
+              of operation', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '8', !!python/unicode 'Index': !!python/unicode '#x0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x60b8', !!python/unicode 'Name': !!python/unicode 'Touch
+              probe function', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1600'
+          !!python/unicode 'Name': !!python/unicode '1st Receive PDO mapping'
+        - !!python/unicode '@Sm': !!python/unicode '2'
+          !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6040', !!python/unicode 'Name': !!python/unicode 'Control
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x607a', !!python/unicode 'Name': !!python/unicode 'Target
+              position', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1601'
+          !!python/unicode 'Name': !!python/unicode '2nd Receive PDO mapping'
+        - !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6040', !!python/unicode 'Name': !!python/unicode 'Control
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x60ff', !!python/unicode 'Name': !!python/unicode 'Target
+              velocity', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1602'
+          !!python/unicode 'Name': !!python/unicode '3rd Receive PDO mapping'
+        - !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6040', !!python/unicode 'Name': !!python/unicode 'Control
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'INT',
+            !!python/unicode 'Index': !!python/unicode '#x6071', !!python/unicode 'Name': !!python/unicode 'Target
+              torque', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1603'
+          !!python/unicode 'Name': !!python/unicode '4th Receive PDO mapping'
+        !!python/unicode 'Send': {!!python/unicode 'BitLength': !!python/unicode '48',
+          !!python/unicode 'BitStart': !!python/unicode '0'}
+        !!python/unicode 'Sm2': {!!python/unicode 'ControlByte': !!python/unicode '116',
+          !!python/unicode 'DefaultSize': !!python/unicode '6', !!python/unicode 'Enable': !!python/unicode '1',
+          !!python/unicode 'MaxSize': !!python/unicode '256', !!python/unicode 'MinSize': !!python/unicode '1',
+          !!python/unicode 'Pdo': !!python/unicode '5633', !!python/unicode 'StartAddress': !!python/unicode '4352',
+          !!python/unicode 'Type': !!python/unicode 'Outputs'}
+        !!python/unicode 'Sm3': {!!python/unicode 'ControlByte': !!python/unicode '48',
+          !!python/unicode 'DefaultSize': !!python/unicode '6', !!python/unicode 'Enable': !!python/unicode '1',
+          !!python/unicode 'MaxSize': !!python/unicode '256', !!python/unicode 'MinSize': !!python/unicode '1',
+          !!python/unicode 'Pdo': !!python/unicode '6657', !!python/unicode 'StartAddress': !!python/unicode '5120',
+          !!python/unicode 'Type': !!python/unicode 'Inputs'}
+        !!python/unicode 'TxPdo':
+        - !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6041', !!python/unicode 'Name': !!python/unicode 'Status
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x6064', !!python/unicode 'Name': !!python/unicode 'Position
+              actual value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'INT',
+            !!python/unicode 'Index': !!python/unicode '#x6077', !!python/unicode 'Name': !!python/unicode 'Torque
+              actual value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x60f4', !!python/unicode 'Name': !!python/unicode 'Following
+              error actual value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '8', !!python/unicode 'DataType': !!python/unicode 'SINT',
+            !!python/unicode 'Index': !!python/unicode '#x6061', !!python/unicode 'Name': !!python/unicode 'Modes
+              of operation display', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '8', !!python/unicode 'Index': !!python/unicode '#x0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x60b9', !!python/unicode 'Name': !!python/unicode 'Touch
+              probe status', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x60ba', !!python/unicode 'Name': !!python/unicode 'Touch
+              probe 1 position value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1a00'
+          !!python/unicode 'Name': !!python/unicode '1st Transmit PDO mapping'
+        - !!python/unicode '@Sm': !!python/unicode '3'
+          !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6041', !!python/unicode 'Name': !!python/unicode 'Status
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x6064', !!python/unicode 'Name': !!python/unicode 'Position
+              actual value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1a01'
+          !!python/unicode 'Name': !!python/unicode '2nd Transmit PDO mapping'
+        - !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6041', !!python/unicode 'Name': !!python/unicode 'Status
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x6064', !!python/unicode 'Name': !!python/unicode 'Position
+              actual value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1a02'
+          !!python/unicode 'Name': !!python/unicode '3rd Transmit PDO mapping'
+        - !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6041', !!python/unicode 'Name': !!python/unicode 'Status
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x6064', !!python/unicode 'Name': !!python/unicode 'Position
+              actual value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'INT',
+            !!python/unicode 'Index': !!python/unicode '#x6077', !!python/unicode 'Name': !!python/unicode 'Torque
+              actual value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1a03'
+          !!python/unicode 'Name': !!python/unicode '4th Transmit PDO mapping'
+    - !!python/unicode 'DC': {!!python/unicode 'CycleTime0': !!python/unicode '1000000',
+        !!python/unicode 'CycleTime1': !!python/unicode '0', !!python/unicode 'PotentialReferenceClock': !!python/unicode '0',
+        !!python/unicode 'ReferenceClock': !!python/unicode '0', !!python/unicode 'ShiftTime': !!python/unicode '0'}
+      !!python/unicode 'Info': {!!python/unicode 'AutoIncAddr': !!python/unicode '65535',
+        !!python/unicode 'Name': !!python/unicode 'Slave_1002 [SGD7S-xxxxA0x CoE Drive]',
+        !!python/unicode 'PhysAddr': !!python/unicode '1002', !!python/unicode 'Physics': !!python/unicode 'YY',
+        !!python/unicode 'ProductCode': !!python/unicode '35652353', !!python/unicode 'RevisionNo': !!python/unicode '458756',
+        !!python/unicode 'SerialNo': !!python/unicode '0', !!python/unicode 'VendorId': !!python/unicode '1337'}
+      !!python/unicode 'InitCmds':
+        !!python/unicode 'InitCmd':
+        - !!python/unicode 'Ado': !!python/unicode '288'
+          !!python/unicode 'Adp': !!python/unicode '65535'
+          !!python/unicode 'Cmd': !!python/unicode '2'
+          !!python/unicode 'Comment': !!python/unicode 'set device state to INIT'
+          !!python/unicode 'Data': !!python/unicode '1100'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Timeout': !!python/unicode '5000'
+          !!python/unicode 'Transition': [!!python/unicode 'PI', !!python/unicode 'BI',
+            !!python/unicode 'SI', !!python/unicode 'OI']
+        - !!python/unicode 'Ado': !!python/unicode '2432'
+          !!python/unicode 'Adp': !!python/unicode '65535'
+          !!python/unicode 'Cmd': !!python/unicode '2'
+          !!python/unicode 'Comment': !!python/unicode 'clear DC activation'
+          !!python/unicode 'Data': !!python/unicode '0000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'SI', !!python/unicode 'OI']
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '65535'
+          !!python/unicode 'Cmd': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for INIT'
+          !!python/unicode 'Data': !!python/unicode '0000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'PI', !!python/unicode 'SI',
+            !!python/unicode 'OI']
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '0100',
+            !!python/unicode 'DataMask': !!python/unicode '0f00', !!python/unicode 'Timeout': !!python/unicode '5000'}
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '65535'
+          !!python/unicode 'Cmd': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for INIT'
+          !!python/unicode 'Data': !!python/unicode '0000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'BI'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '0100',
+            !!python/unicode 'DataMask': !!python/unicode '0f00', !!python/unicode 'Timeout': !!python/unicode '10000'}
+        - !!python/unicode 'Ado': !!python/unicode '288'
+          !!python/unicode 'Adp': !!python/unicode '65535'
+          !!python/unicode 'Cmd': !!python/unicode '2'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'set device state to INIT'
+          !!python/unicode 'Data': !!python/unicode '1100'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Timeout': !!python/unicode '3000'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'IB']
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '65535'
+          !!python/unicode 'Cmd': !!python/unicode '1'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for INIT'
+          !!python/unicode 'Data': !!python/unicode '0000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'IB']
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '0100',
+            !!python/unicode 'DataMask': !!python/unicode '0f00', !!python/unicode 'Timeout': !!python/unicode '3000'}
+        - {!!python/unicode 'Ado': !!python/unicode '1280', !!python/unicode 'Adp': !!python/unicode '65535',
+          !!python/unicode 'Cmd': !!python/unicode '2', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'assign EEPROM to ECAT', !!python/unicode 'Data': !!python/unicode '00',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '1282', !!python/unicode 'Adp': !!python/unicode '65535',
+          !!python/unicode 'Cmd': !!python/unicode '2', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'check vendor id', !!python/unicode 'Data': !!python/unicode '000108000000',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - !!python/unicode 'Ado': !!python/unicode '1288'
+          !!python/unicode 'Adp': !!python/unicode '65535'
+          !!python/unicode 'Cmd': !!python/unicode '1'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check vendor id'
+          !!python/unicode 'Data': !!python/unicode '00000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'IP'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '39050000',
+            !!python/unicode 'Timeout': !!python/unicode '100'}
+        - {!!python/unicode 'Ado': !!python/unicode '1282', !!python/unicode 'Adp': !!python/unicode '65535',
+          !!python/unicode 'Cmd': !!python/unicode '2', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'check product code', !!python/unicode 'Data': !!python/unicode '00010a000000',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - !!python/unicode 'Ado': !!python/unicode '1288'
+          !!python/unicode 'Adp': !!python/unicode '65535'
+          !!python/unicode 'Cmd': !!python/unicode '1'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check product code'
+          !!python/unicode 'Data': !!python/unicode '00000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'IP'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '01032002',
+            !!python/unicode 'Timeout': !!python/unicode '100'}
+        - !!python/unicode 'Ado': !!python/unicode '16'
+          !!python/unicode 'Adp': !!python/unicode '65535'
+          !!python/unicode 'Cmd': !!python/unicode '2'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'set physical address'
+          !!python/unicode 'Data': !!python/unicode 'ea03'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'IB']
+        - !!python/unicode 'Ado': !!python/unicode '2048'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'clear sm 0/1 (mailbox out/in)'
+          !!python/unicode 'Data': !!python/unicode '00000000000000000000000000000000'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'IB',
+            !!python/unicode 'PI', !!python/unicode 'SI', !!python/unicode 'OI']
+        - {!!python/unicode 'Ado': !!python/unicode '2048', !!python/unicode 'Adp': !!python/unicode '65535',
+          !!python/unicode 'Cmd': !!python/unicode '2', !!python/unicode 'Comment': !!python/unicode 'clear
+            sm 0/1 (mailbox out/in)', !!python/unicode 'Data': !!python/unicode '00000000000000000000000000000000',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'BI'}
+        - {!!python/unicode 'Ado': !!python/unicode '2048', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set sm 0 (mailbox out)', !!python/unicode 'Data': !!python/unicode '0010800036000100',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '2056', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set sm 1 (mailbox in)', !!python/unicode 'Data': !!python/unicode '8010800032000100',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - {!!python/unicode 'Ado': !!python/unicode '2048', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set sm 0 (bootstrap out)',
+          !!python/unicode 'Data': !!python/unicode '0010800036000100', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'IB'}
+        - {!!python/unicode 'Ado': !!python/unicode '2056', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set sm 1 (bootstrap in)',
+          !!python/unicode 'Data': !!python/unicode '8010800032000100', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'IB'}
+        - {!!python/unicode 'Ado': !!python/unicode '2464', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set DC cycle time', !!python/unicode 'Data': !!python/unicode '40420f0000000000',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - {!!python/unicode 'Ado': !!python/unicode '2448', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set DC start time', !!python/unicode 'Data': !!python/unicode '0000000000000000',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - {!!python/unicode 'Ado': !!python/unicode '2432', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set DC activation', !!python/unicode 'Data': !!python/unicode '0003',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - {!!python/unicode 'Ado': !!python/unicode '2472', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Comment': !!python/unicode 'set
+            DC latch cfg', !!python/unicode 'Data': !!python/unicode '0000', !!python/unicode 'Requires': !!python/unicode 'cycle',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - !!python/unicode 'Ado': !!python/unicode '2432'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'clear DC activation'
+          !!python/unicode 'Data': !!python/unicode '0000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'PP']
+        - !!python/unicode 'Ado': !!python/unicode '288'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'set device state to PREOP'
+          !!python/unicode 'Data': !!python/unicode '1200'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '300'
+          !!python/unicode 'Timeout': !!python/unicode '5000'
+          !!python/unicode 'Transition': [!!python/unicode 'SP', !!python/unicode 'OP']
+        - !!python/unicode 'Ado': !!python/unicode '2064'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'clear sms'
+          !!python/unicode 'DataLength': !!python/unicode '16'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'SP',
+            !!python/unicode 'SI', !!python/unicode 'OP', !!python/unicode 'OI']
+        - {!!python/unicode 'Ado': !!python/unicode '2064', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set sm 2 (outputs)', !!python/unicode 'Data': !!python/unicode '0011060074000100',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - {!!python/unicode 'Ado': !!python/unicode '2072', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set sm 3 (inputs)', !!python/unicode 'Data': !!python/unicode '0014060030000100',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - {!!python/unicode 'Ado': !!python/unicode '1536', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set fmmu 0 (outputs)', !!python/unicode 'Data': !!python/unicode '06000010060000070011000201000000',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - {!!python/unicode 'Ado': !!python/unicode '1552', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set fmmu 1 (inputs)', !!python/unicode 'Data': !!python/unicode '06080010060000070014000101000000',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - !!python/unicode 'Ado': !!python/unicode '1568'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'set fmmu 2 (mailbox state)'
+          !!python/unicode 'Data': !!python/unicode '00000009010001010d08000101000000'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'IB']
+        - {!!python/unicode 'Ado': !!python/unicode '288', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Comment': !!python/unicode 'set
+            device state to SAFEOP', !!python/unicode 'Data': !!python/unicode '0400',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Timeout': !!python/unicode '200', !!python/unicode 'Transition': !!python/unicode 'OS'}
+        - !!python/unicode 'Ado': !!python/unicode '1536'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'clear fmmu 0'
+          !!python/unicode 'Data': !!python/unicode '00000000000000000000000000000000'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'SP', !!python/unicode 'SI',
+            !!python/unicode 'OP', !!python/unicode 'OI']
+        - !!python/unicode 'Ado': !!python/unicode '1552'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'clear fmmu 1'
+          !!python/unicode 'Data': !!python/unicode '00000000000000000000000000000000'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'SP', !!python/unicode 'SI',
+            !!python/unicode 'OP', !!python/unicode 'OI']
+        - !!python/unicode 'Ado': !!python/unicode '1568'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'clear fmmu 2'
+          !!python/unicode 'Data': !!python/unicode '00000000000000000000000000000000'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'PI', !!python/unicode 'BI',
+            !!python/unicode 'SI', !!python/unicode 'OI']
+        - !!python/unicode 'Ado': !!python/unicode '2432'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Comment': !!python/unicode 'clear DC activation'
+          !!python/unicode 'Data': !!python/unicode '0000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'SP', !!python/unicode 'OP']
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '4'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for PREOP'
+          !!python/unicode 'Data': !!python/unicode '000000000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'SP', !!python/unicode 'OP']
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '020000000000',
+            !!python/unicode 'DataMask': !!python/unicode '0f0000000000', !!python/unicode 'Timeout': !!python/unicode '5000'}
+        - !!python/unicode 'Ado': !!python/unicode '1280'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '5'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'assign EEPROM to PDI'
+          !!python/unicode 'Data': !!python/unicode '01'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'IB']
+        - {!!python/unicode 'Ado': !!python/unicode '1280', !!python/unicode 'Adp': !!python/unicode '65535',
+          !!python/unicode 'Cmd': !!python/unicode '2', !!python/unicode 'Comment': !!python/unicode 'assign
+            EEPROM back to ECAT', !!python/unicode 'Data': !!python/unicode '00',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Transition': !!python/unicode 'II'}
+        - {!!python/unicode 'Ado': !!python/unicode '288', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set device state to PREOP',
+          !!python/unicode 'Data': !!python/unicode '1200', !!python/unicode 'Requires': !!python/unicode 'cycle',
+          !!python/unicode 'Retries': !!python/unicode '300', !!python/unicode 'Timeout': !!python/unicode '3000',
+          !!python/unicode 'Transition': !!python/unicode 'IP'}
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '4'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for PREOP'
+          !!python/unicode 'Data': !!python/unicode '000000000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'IP'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '020000000000',
+            !!python/unicode 'DataMask': !!python/unicode '1f0000000000', !!python/unicode 'Timeout': !!python/unicode '3000'}
+        - !!python/unicode 'Ado': !!python/unicode '1280'
+          !!python/unicode 'Adp': !!python/unicode '65535'
+          !!python/unicode 'Cmd': !!python/unicode '2'
+          !!python/unicode 'Comment': !!python/unicode 'assign EEPROM back to ECAT'
+          !!python/unicode 'Data': !!python/unicode '00'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': [!!python/unicode 'IP', !!python/unicode 'BI']
+        - {!!python/unicode 'Ado': !!python/unicode '288', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set device state to BOOT',
+          !!python/unicode 'Data': !!python/unicode '1300', !!python/unicode 'Requires': !!python/unicode 'cycle',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Timeout': !!python/unicode '3000',
+          !!python/unicode 'Transition': !!python/unicode 'IB'}
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '4'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for BOOT'
+          !!python/unicode 'Data': !!python/unicode '000000000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'IB'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '030000000000',
+            !!python/unicode 'DataMask': !!python/unicode '1f0000000000', !!python/unicode 'Timeout': !!python/unicode '3000'}
+        - {!!python/unicode 'Ado': !!python/unicode '288', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set device state to SAFEOP',
+          !!python/unicode 'Data': !!python/unicode '0400', !!python/unicode 'Requires': !!python/unicode 'cycle',
+          !!python/unicode 'Retries': !!python/unicode '3', !!python/unicode 'Timeout': !!python/unicode '10000',
+          !!python/unicode 'Transition': !!python/unicode 'PS'}
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '4'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for SAFEOP'
+          !!python/unicode 'Data': !!python/unicode '000000000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'PS'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '040000000000',
+            !!python/unicode 'DataMask': !!python/unicode '1f0000000000', !!python/unicode 'Timeout': !!python/unicode '10000'}
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '4'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for SAFEOP'
+          !!python/unicode 'Data': !!python/unicode '000000000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'OS'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '040000000000',
+            !!python/unicode 'DataMask': !!python/unicode '0f0000000000', !!python/unicode 'Timeout': !!python/unicode '200'}
+        - {!!python/unicode 'Ado': !!python/unicode '288', !!python/unicode 'Adp': !!python/unicode '1002',
+          !!python/unicode 'Cmd': !!python/unicode '5', !!python/unicode 'Cnt': !!python/unicode '1',
+          !!python/unicode 'Comment': !!python/unicode 'set device state to OP', !!python/unicode 'Data': !!python/unicode '0800',
+          !!python/unicode 'Requires': !!python/unicode 'cycle', !!python/unicode 'Retries': !!python/unicode '3',
+          !!python/unicode 'Timeout': !!python/unicode '10000', !!python/unicode 'Transition': !!python/unicode 'SO'}
+        - !!python/unicode 'Ado': !!python/unicode '304'
+          !!python/unicode 'Adp': !!python/unicode '1002'
+          !!python/unicode 'Cmd': !!python/unicode '4'
+          !!python/unicode 'Cnt': !!python/unicode '1'
+          !!python/unicode 'Comment': !!python/unicode 'check device state for OP'
+          !!python/unicode 'Data': !!python/unicode '000000000000'
+          !!python/unicode 'Requires': !!python/unicode 'cycle'
+          !!python/unicode 'Retries': !!python/unicode '3'
+          !!python/unicode 'Transition': !!python/unicode 'SO'
+          !!python/unicode 'Validate': {!!python/unicode 'Data': !!python/unicode '080000000000',
+            !!python/unicode 'DataMask': !!python/unicode '1f0000000000', !!python/unicode 'Timeout': !!python/unicode '10000'}
+      !!python/unicode 'Mailbox':
+        !!python/unicode 'BootStrap':
+          !!python/unicode 'Recv': {!!python/unicode 'Length': !!python/unicode '128',
+            !!python/unicode 'Start': !!python/unicode '4224'}
+          !!python/unicode 'Send': {!!python/unicode 'Length': !!python/unicode '128',
+            !!python/unicode 'Start': !!python/unicode '4096'}
+        !!python/unicode 'CoE':
+          !!python/unicode 'InitCmds':
+            !!python/unicode 'InitCmd':
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear sm pdos (0x1C12)',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '7186',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear sm pdos (0x1C13)',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '7187',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1A00 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '10004160', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '20006460', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '10007760', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '3', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '2000f460', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '4', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '08006160', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '5', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '08000000', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '6', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '1000b960', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '7', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry',
+              !!python/unicode 'Data': !!python/unicode '2000ba60', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '8', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A00 entry
+                count', !!python/unicode 'Data': !!python/unicode '08', !!python/unicode 'Index': !!python/unicode '6656',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1A01 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '6657',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A01 entry',
+              !!python/unicode 'Data': !!python/unicode '10004160', !!python/unicode 'Index': !!python/unicode '6657',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A01 entry',
+              !!python/unicode 'Data': !!python/unicode '20006460', !!python/unicode 'Index': !!python/unicode '6657',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A01 entry
+                count', !!python/unicode 'Data': !!python/unicode '02', !!python/unicode 'Index': !!python/unicode '6657',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1A02 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '6658',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A02 entry',
+              !!python/unicode 'Data': !!python/unicode '10004160', !!python/unicode 'Index': !!python/unicode '6658',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A02 entry',
+              !!python/unicode 'Data': !!python/unicode '20006460', !!python/unicode 'Index': !!python/unicode '6658',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A02 entry
+                count', !!python/unicode 'Data': !!python/unicode '02', !!python/unicode 'Index': !!python/unicode '6658',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1A03 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '6659',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A03 entry',
+              !!python/unicode 'Data': !!python/unicode '10004160', !!python/unicode 'Index': !!python/unicode '6659',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A03 entry',
+              !!python/unicode 'Data': !!python/unicode '20006460', !!python/unicode 'Index': !!python/unicode '6659',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A03 entry',
+              !!python/unicode 'Data': !!python/unicode '10007760', !!python/unicode 'Index': !!python/unicode '6659',
+              !!python/unicode 'SubIndex': !!python/unicode '3', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1A03 entry
+                count', !!python/unicode 'Data': !!python/unicode '03', !!python/unicode 'Index': !!python/unicode '6659',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1600 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '10004060', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '20007a60', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '2000ff60', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '3', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '10007160', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '4', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '10007260', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '5', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '08006060', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '6', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '08000000', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '7', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry',
+              !!python/unicode 'Data': !!python/unicode '1000b860', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '8', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1600 entry
+                count', !!python/unicode 'Data': !!python/unicode '08', !!python/unicode 'Index': !!python/unicode '5632',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1601 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '5633',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1601 entry',
+              !!python/unicode 'Data': !!python/unicode '10004060', !!python/unicode 'Index': !!python/unicode '5633',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1601 entry',
+              !!python/unicode 'Data': !!python/unicode '20007a60', !!python/unicode 'Index': !!python/unicode '5633',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1601 entry
+                count', !!python/unicode 'Data': !!python/unicode '02', !!python/unicode 'Index': !!python/unicode '5633',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1602 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '5634',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1602 entry',
+              !!python/unicode 'Data': !!python/unicode '10004060', !!python/unicode 'Index': !!python/unicode '5634',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1602 entry',
+              !!python/unicode 'Data': !!python/unicode '2000ff60', !!python/unicode 'Index': !!python/unicode '5634',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1602 entry
+                count', !!python/unicode 'Data': !!python/unicode '02', !!python/unicode 'Index': !!python/unicode '5634',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'clear pdo 0x1603 entries',
+              !!python/unicode 'Data': !!python/unicode '00', !!python/unicode 'Index': !!python/unicode '5635',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1603 entry',
+              !!python/unicode 'Data': !!python/unicode '10004060', !!python/unicode 'Index': !!python/unicode '5635',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1603 entry',
+              !!python/unicode 'Data': !!python/unicode '10007160', !!python/unicode 'Index': !!python/unicode '5635',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1603 entry
+                count', !!python/unicode 'Data': !!python/unicode '02', !!python/unicode 'Index': !!python/unicode '5635',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1C12:01
+                index', !!python/unicode 'Data': !!python/unicode '0116', !!python/unicode 'Index': !!python/unicode '7186',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1C12 count',
+              !!python/unicode 'Data': !!python/unicode '01', !!python/unicode 'Index': !!python/unicode '7186',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1C13:01
+                index', !!python/unicode 'Data': !!python/unicode '011a', !!python/unicode 'Index': !!python/unicode '7187',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode '@Fixed': !!python/unicode '1', !!python/unicode 'Ccs': !!python/unicode '1',
+              !!python/unicode 'Comment': !!python/unicode 'download pdo 0x1C13 count',
+              !!python/unicode 'Data': !!python/unicode '01', !!python/unicode 'Index': !!python/unicode '7187',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode 'Ccs': !!python/unicode '1', !!python/unicode 'Comment': !!python/unicode 'Op
+                mode', !!python/unicode 'Data': !!python/unicode '08', !!python/unicode 'Index': !!python/unicode '24672',
+              !!python/unicode 'SubIndex': !!python/unicode '0', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode 'Ccs': !!python/unicode '1', !!python/unicode 'Comment': !!python/unicode 'Interpolation
+                time period', !!python/unicode 'Data': !!python/unicode '01', !!python/unicode 'Index': !!python/unicode '24770',
+              !!python/unicode 'SubIndex': !!python/unicode '1', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+            - {!!python/unicode 'Ccs': !!python/unicode '1', !!python/unicode 'Comment': !!python/unicode 'Interpolation
+                time index', !!python/unicode 'Data': !!python/unicode 'fd', !!python/unicode 'Index': !!python/unicode '24770',
+              !!python/unicode 'SubIndex': !!python/unicode '2', !!python/unicode 'Timeout': !!python/unicode '0',
+              !!python/unicode 'Transition': !!python/unicode 'PS'}
+        !!python/unicode 'Protocol': [!!python/unicode 'CoE', !!python/unicode 'FoE']
+        !!python/unicode 'Recv': {!!python/unicode 'Length': !!python/unicode '128',
+          !!python/unicode 'Start': !!python/unicode '4224', !!python/unicode 'StatusBitAddr': !!python/unicode '1'}
+        !!python/unicode 'Send': {!!python/unicode 'Length': !!python/unicode '128',
+          !!python/unicode 'Start': !!python/unicode '4096'}
+      !!python/unicode 'PreviousPort': {!!python/unicode '@Selected': !!python/unicode '1',
+        !!python/unicode 'PhysAddr': !!python/unicode '1001', !!python/unicode 'Port': !!python/unicode 'B'}
+      !!python/unicode 'ProcessData':
+        !!python/unicode 'Recv': {!!python/unicode 'BitLength': !!python/unicode '48',
+          !!python/unicode 'BitStart': !!python/unicode '48'}
+        !!python/unicode 'RxPdo':
+        - !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6040', !!python/unicode 'Name': !!python/unicode 'Control
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x607a', !!python/unicode 'Name': !!python/unicode 'Target
+              position', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x60ff', !!python/unicode 'Name': !!python/unicode 'Target
+              velocity', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'INT',
+            !!python/unicode 'Index': !!python/unicode '#x6071', !!python/unicode 'Name': !!python/unicode 'Target
+              torque', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6072', !!python/unicode 'Name': !!python/unicode 'Max
+              torque', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '8', !!python/unicode 'DataType': !!python/unicode 'SINT',
+            !!python/unicode 'Index': !!python/unicode '#x6060', !!python/unicode 'Name': !!python/unicode 'Modes
+              of operation', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '8', !!python/unicode 'Index': !!python/unicode '#x0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x60b8', !!python/unicode 'Name': !!python/unicode 'Touch
+              probe function', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1600'
+          !!python/unicode 'Name': !!python/unicode '1st Receive PDO mapping'
+        - !!python/unicode '@Sm': !!python/unicode '2'
+          !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6040', !!python/unicode 'Name': !!python/unicode 'Control
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x607a', !!python/unicode 'Name': !!python/unicode 'Target
+              position', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1601'
+          !!python/unicode 'Name': !!python/unicode '2nd Receive PDO mapping'
+        - !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6040', !!python/unicode 'Name': !!python/unicode 'Control
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x60ff', !!python/unicode 'Name': !!python/unicode 'Target
+              velocity', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1602'
+          !!python/unicode 'Name': !!python/unicode '3rd Receive PDO mapping'
+        - !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6040', !!python/unicode 'Name': !!python/unicode 'Control
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'INT',
+            !!python/unicode 'Index': !!python/unicode '#x6071', !!python/unicode 'Name': !!python/unicode 'Target
+              torque', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1603'
+          !!python/unicode 'Name': !!python/unicode '4th Receive PDO mapping'
+        !!python/unicode 'Send': {!!python/unicode 'BitLength': !!python/unicode '48',
+          !!python/unicode 'BitStart': !!python/unicode '48'}
+        !!python/unicode 'Sm2': {!!python/unicode 'ControlByte': !!python/unicode '116',
+          !!python/unicode 'DefaultSize': !!python/unicode '6', !!python/unicode 'Enable': !!python/unicode '1',
+          !!python/unicode 'MaxSize': !!python/unicode '256', !!python/unicode 'MinSize': !!python/unicode '1',
+          !!python/unicode 'Pdo': !!python/unicode '5633', !!python/unicode 'StartAddress': !!python/unicode '4352',
+          !!python/unicode 'Type': !!python/unicode 'Outputs'}
+        !!python/unicode 'Sm3': {!!python/unicode 'ControlByte': !!python/unicode '48',
+          !!python/unicode 'DefaultSize': !!python/unicode '6', !!python/unicode 'Enable': !!python/unicode '1',
+          !!python/unicode 'MaxSize': !!python/unicode '256', !!python/unicode 'MinSize': !!python/unicode '1',
+          !!python/unicode 'Pdo': !!python/unicode '6657', !!python/unicode 'StartAddress': !!python/unicode '5120',
+          !!python/unicode 'Type': !!python/unicode 'Inputs'}
+        !!python/unicode 'TxPdo':
+        - !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6041', !!python/unicode 'Name': !!python/unicode 'Status
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x6064', !!python/unicode 'Name': !!python/unicode 'Position
+              actual value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'INT',
+            !!python/unicode 'Index': !!python/unicode '#x6077', !!python/unicode 'Name': !!python/unicode 'Torque
+              actual value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x60f4', !!python/unicode 'Name': !!python/unicode 'Following
+              error actual value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '8', !!python/unicode 'DataType': !!python/unicode 'SINT',
+            !!python/unicode 'Index': !!python/unicode '#x6061', !!python/unicode 'Name': !!python/unicode 'Modes
+              of operation display', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '8', !!python/unicode 'Index': !!python/unicode '#x0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x60b9', !!python/unicode 'Name': !!python/unicode 'Touch
+              probe status', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x60ba', !!python/unicode 'Name': !!python/unicode 'Touch
+              probe 1 position value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1a00'
+          !!python/unicode 'Name': !!python/unicode '1st Transmit PDO mapping'
+        - !!python/unicode '@Sm': !!python/unicode '3'
+          !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6041', !!python/unicode 'Name': !!python/unicode 'Status
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x6064', !!python/unicode 'Name': !!python/unicode 'Position
+              actual value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1a01'
+          !!python/unicode 'Name': !!python/unicode '2nd Transmit PDO mapping'
+        - !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6041', !!python/unicode 'Name': !!python/unicode 'Status
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x6064', !!python/unicode 'Name': !!python/unicode 'Position
+              actual value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1a02'
+          !!python/unicode 'Name': !!python/unicode '3rd Transmit PDO mapping'
+        - !!python/unicode 'Entry':
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'UINT',
+            !!python/unicode 'Index': !!python/unicode '#x6041', !!python/unicode 'Name': !!python/unicode 'Status
+              word', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '32', !!python/unicode 'DataType': !!python/unicode 'DINT',
+            !!python/unicode 'Index': !!python/unicode '#x6064', !!python/unicode 'Name': !!python/unicode 'Position
+              actual value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          - {!!python/unicode 'BitLen': !!python/unicode '16', !!python/unicode 'DataType': !!python/unicode 'INT',
+            !!python/unicode 'Index': !!python/unicode '#x6077', !!python/unicode 'Name': !!python/unicode 'Torque
+              actual value', !!python/unicode 'SubIndex': !!python/unicode '0'}
+          !!python/unicode 'Index': !!python/unicode '#x1a03'
+          !!python/unicode 'Name': !!python/unicode '4th Transmit PDO mapping'

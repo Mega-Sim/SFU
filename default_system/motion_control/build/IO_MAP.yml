@@ -1,0 +1,744 @@
+Model:
+    OHT_NAME_V82:
+      Input:
+        - {Num: 0, Name: hand_inposition, Board: 3, Port: 1, Bit: 4}
+        - {Num: 1, Name: hand_alarm, Board: 3, Port: 1, Bit: 0}
+        - {Num: 2, Name: hand_gripper_right, Board: 3, Port: 0, Bit: 7}
+        - {Num: 3, Name: hand_gripper_left, Board: 3, Port: 0, Bit: 6}
+        - {Num: 4, Name: hand_close_sen, Board: 3, Port: 1, Bit: 2}
+        - {Num: 5, Name: hand_open_sen, Board: 3, Port: 1, Bit: 5}
+        - {Num: 6, Name: hand_push_sen, Board: 3, Port: 1, Bit: 7}
+        #- {Num: 7, Name: , Board: 0, Port: 0, Bit: 0}
+        - {Num: 8, Name: hand_es, Board: 3, Port: 1, Bit: 3}
+        - {Num: 9, Name: hand_pio_go, Board: 3, Port: 1, Bit: 6}
+        - {Num: 10, Name: eq_pio_load_req, Board: 5, Port: 0, Bit: 7}
+        - {Num: 11, Name: eq_pio_unload_req, Board: 5, Port: 1, Bit: 1}
+        - {Num: 12, Name: eq_pio_ready, Board: 5, Port: 1, Bit: 0}
+        - {Num: 13, Name: eq_pio_ho_avbl, Board: 5, Port: 0, Bit: 3}
+        - {Num: 14, Name: eq_pio_es, Board: 5, Port: 0, Bit: 2}
+        - {Num: 15, Name: eq_pio_right_go, Board: 5, Port: 0, Bit: 0}
+        - {Num: 16, Name: eq_pio_left_go, Board: 5, Port: 0, Bit: 1}
+        - {Num: 17, Name: steer_front_left, Board: 3, Port: 3, Bit: 5}
+        - {Num: 18, Name: steer_rear_left, Board: 5, Port: 5, Bit: 0}
+        - {Num: 19, Name: steer_front_right, Board: 3, Port: 3, Bit: 6}
+        - {Num: 20, Name: steer_rear_right, Board: 5, Port: 5, Bit: 1}
+        - {Num: 21, Name: shutter_front_close_sen, Board: 3, Port: 2, Bit: 6}
+        - {Num: 22, Name: shutter_rear_close_sen, Board: 5, Port: 4, Bit: 1}
+        - {Num: 23, Name: shutter_front_open_sen, Board: 3, Port: 3, Bit: 0}
+        - {Num: 24, Name: shutter_rear_open_sen, Board: 5, Port: 4, Bit: 3}
+        - {Num: 25, Name: shutter_front_alarm, Board: 3, Port: 3, Bit: 1}
+        - {Num: 26, Name: shutter_rear_alarm, Board: 5, Port: 4, Bit: 4}
+        - {Num: 27, Name: shutter_front_inposition, Board: 3, Port: 3, Bit: 2}
+        - {Num: 28, Name: shutter_rear_inposition, Board: 5, Port: 4, Bit: 5}
+        #- {Num: 29, Name: _obstacle_input_extend, Board: 3, Port: 1, Bit: 4}
+        - {Num: 30, Name: _obstacle_long, Board: 1, Port: 2, Bit: 6}
+        - {Num: 31, Name: _obstacle_middle, Board: 1, Port: 2, Bit: 7}
+        - {Num: 32, Name: _obstacle_short, Board: 1, Port: 2, Bit: 8}
+        - {Num: 33, Name: _obstacle_fail, Board: 1, Port: 2, Bit: 9}
+        #- {Num: 34, Name: , Board: 1, Port: 2, Bit: 7}
+        - {Num: 35, Name: _ohtdetect_long, Board: 1, Port: 1, Bit: 19}
+        - {Num: 36, Name: _ohtdetect_middle, Board: 1, Port: 1, Bit: 20}
+        - {Num: 37, Name: _ohtdetect_short, Board: 1, Port: 1, Bit: 18}
+        - {Num: 38, Name: _ohtdetect_fail, Board: 1, Port: 1, Bit: 21}
+        - {Num: 39, Name: _lookdown_detect, Board: 3, Port: 4, Bit: 0}
+        - {Num: 40, Name: _lookdown_error, Board: 3, Port: 3, Bit: 7}
+        - {Num: 41, Name: slide_home_sensor, Board: 5, Port: 6, Bit: 3}
+        - {Num: 42, Name: _stb_detect_left, Board: 5, Port: 3, Bit: 7}
+        - {Num: 43, Name: _stb_detect_right, Board: 5, Port: 4, Bit: 0}
+        - {Num: 44, Name: _utb_detect, Board: 5, Port: 6, Bit: 2}
+        - {Num: 45, Name: _foup_detect, Board: 5, Port: 6, Bit: 5}
+        - {Num: 46, Name: _oscillation_sensor, Board: 3, Port: 4, Bit: 6}
+        - {Num: 47, Name: emo_press, Board: 3, Port: 5, Bit: 3}
+        - {Num: 48, Name: bumper_press, Board: 3, Port: 2, Bit: 5}
+        - {Num: 49, Name: _fan_fail, Board: 5, Port: 6, Bit: 6}
+        - {Num: 50, Name: _hoist_belt_detect_2, Board: 3, Port: 4, Bit: 5}
+        #- {Num: 51, Name: , Board: 3, Port: 3, Bit: 7}
+        - {Num: 52, Name: REMOCON_CONNECT_M, Board: 5, Port: 1, Bit: 5}
+        - {Num: 53, Name: _foup_cover_open_detect, Board: 5, Port: 6, Bit: 4}
+        - {Num: 54, Name: _stop_driving_front, Board: 1, Port: 1, Bit: 22}
+        - {Num: 55, Name: _stop_driving_precheck, Board: 1, Port: 1, Bit: 23}
+        - {Num: 56, Name: _stop_trans_front, Board: 1, Port: 1, Bit: 26}
+        - {Num: 57, Name: _stop_trans_rear, Board: 1, Port: 1, Bit: 27}
+        - {Num: 58, Name: bcr_driving_ok, Board: 1, Port: 1, Bit: 24}
+        - {Num: 59, Name: bcr_driving_ng, Board: 1, Port: 1, Bit: 25}
+        - {Num: 60, Name: bcr_trans_ok, Board: 1, Port: 1, Bit: 28}
+        - {Num: 61, Name: bcr_trans_ng, Board: 1, Port: 1, Bit: 29}
+        - {Num: 62, Name: _hoist_belt_detect_1, Board: 3, Port: 4, Bit: 4}
+        - {Num: 63, Name: pio_input3, Board: 5, Port: 0, Bit: 4}
+        - {Num: 64, Name: pio_input5, Board: 5, Port: 0, Bit: 5}
+        - {Num: 65, Name: _pio_input6, Board: 5, Port: 0, Bit: 6}
+        - {Num: 66, Name: _smps_short_check, Board: 5, Port: 6, Bit: 7}
+        - {Num: 67, Name: cid_link_complete, Board: 3, Port: 0, Bit: 1}
+        - {Num: 68, Name: cid_interlock, Board: 3, Port: 0, Bit: 0}
+        - {Num: 69, Name: cid_pass_ok, Board: 3, Port: 0, Bit: 2}
+        - {Num: 70, Name: cid_status, Board: 3, Port: 0, Bit: 5}
+        - {Num: 71, Name: cid_reserved1, Board: 3, Port: 0, Bit: 3}
+        - {Num: 72, Name: cid_reserved2, Board: 3, Port: 0, Bit: 4}
+        - {Num: 73, Name: HOIST_ALIGN_SENSOR_M, Board: 3, Port: 4, Bit: 3}
+        #- {Num: 74, Name: blackbox_di2, Board: 5, Port: 1, Bit: 4}
+        #- {Num: 75, Name: blackbox_di1, Board: 5, Port: 1, Bit: 3}
+        #- {Num: 76, Name: blackbox_di0, Board: 5, Port: 1, Bit: 2}
+      Output:
+        - {Num: 0, Name: hand_close, Board: 2, Port: 1, Bit: 1}
+        - {Num: 1, Name: hand_open, Board: 2, Port: 1, Bit: 3}
+        - {Num: 2, Name: hand_origin, Board: 2, Port: 1, Bit: 4}
+        - {Num: 3, Name: hand_reset, Board: 2, Port: 1, Bit: 0}
+        - {Num: 4, Name: hand_free, Board: 2, Port: 1, Bit: 2}
+        - {Num: 5, Name: hand_reserved_6, Board: 2, Port: 1, Bit: 5}
+        - {Num: 6, Name: hand_reserved_7, Board: 2, Port: 1, Bit: 6}
+        - {Num: 7, Name: hand_reserved_8, Board: 2, Port: 1, Bit: 7}
+        - {Num: 8, Name: hand_trigger_out, Board: 2, Port: 2, Bit: 1}
+        - {Num: 9, Name: hand_pio_select, Board: 2, Port: 2, Bit: 0}
+        - {Num: 10, Name: eq_pio_valid, Board: 4, Port: 1, Bit: 1}
+        - {Num: 11, Name: eq_pio_cs0, Board: 4, Port: 0, Bit: 4}
+        - {Num: 12, Name: eq_pio_cs1, Board: 4, Port: 0, Bit: 5}
+        - {Num: 13, Name: eq_pio_cs2, Board: 4, Port: 0, Bit: 6}
+        - {Num: 14, Name: eq_pio_cs3, Board: 4, Port: 0, Bit: 7}
+        - {Num: 15, Name: eq_pio_tr_req, Board: 4, Port: 1, Bit: 0}
+        - {Num: 16, Name: eq_pio_busy, Board: 4, Port: 0, Bit: 2}
+        - {Num: 17, Name: eq_pio_complete, Board: 4, Port: 0, Bit: 3}
+        - {Num: 18, Name: _eq_pio_right_select, Board: 4, Port: 0, Bit: 0}
+        - {Num: 19, Name: _eq_pio_left_select, Board: 4, Port: 0, Bit: 1}
+        - {Num: 20, Name: steer_front_torque0, Board: 2, Port: 3, Bit: 5}
+        - {Num: 21, Name: steer_front_torque1, Board: 2, Port: 3, Bit: 6}
+        - {Num: 22, Name: steer_rear_torque0, Board: 4, Port: 3, Bit: 7}
+        - {Num: 23, Name: steer_rear_torque1, Board: 4, Port: 4, Bit: 0}
+        - {Num: 24, Name: steer_front_dir, Board: 2, Port: 3, Bit: 7}
+        - {Num: 25, Name: steer_rear_dir, Board: 4, Port: 4, Bit: 1}
+        - {Num: 26, Name: shutter_front_reset, Board: 2, Port: 3, Bit: 0}
+        - {Num: 27, Name: shutter_rear_reset, Board: 4, Port: 3, Bit: 2}
+        - {Num: 28, Name: shutter_front_close, Board: 2, Port: 3, Bit: 1}
+        - {Num: 29, Name: shutter_rear_close, Board: 4, Port: 3, Bit: 3}
+        - {Num: 30, Name: shutter_front_open, Board: 2, Port: 3, Bit: 2}
+        - {Num: 31, Name: shutter_rear_open, Board: 4, Port: 3, Bit: 4}
+        - {Num: 32, Name: shutter_front_origin, Board: 2, Port: 3, Bit: 3}
+        - {Num: 33, Name: shutter_rear_origin, Board: 4, Port: 3, Bit: 5}
+        - {Num: 34, Name: shutter_front_free, Board: 2, Port: 3, Bit: 4}
+        - {Num: 35, Name: shutter_rear_free, Board: 4, Port: 3, Bit: 6}
+        - {Num: 36, Name: _obstacle_area1_sel, Board: 0, Port: 1, Bit: 0}
+        - {Num: 37, Name: _obstacle_area2_sel, Board: 0, Port: 1, Bit: 1}
+        - {Num: 38, Name: _obstacle_area3_sel, Board: 0, Port: 1, Bit: 2}
+        - {Num: 39, Name: _obstacle_area4_sel, Board: 0, Port: 1, Bit: 3}
+        #- {Num: 40, Name: _obstacle_area5_sel, Board: 0, Port: 1, Bit: 4}
+        - {Num: 41, Name: _obs_en, Board: 0, Port: 1, Bit: 11}
+        - {Num: 42, Name: _ohtdetect_area1_sel, Board: 0, Port: 1, Bit: 5}
+        - {Num: 43, Name: _ohtdetect_area2_sel, Board: 0, Port: 1, Bit: 6}
+        - {Num: 44, Name: _ohtdetect_area3_sel, Board: 0, Port: 1, Bit: 7}
+        - {Num: 45, Name: _ohtdetect_area4_sel, Board: 0, Port: 1, Bit: 8}
+        - {Num: 46, Name: _ohtdetect_area5_sel, Board: 0, Port: 1, Bit: 9}
+        - {Num: 47, Name: _oht_en, Board: 0, Port: 1, Bit: 10}
+        - {Num: 48, Name: _lookdown_area1_sel, Board: 2, Port: 4, Bit: 0}
+        - {Num: 49, Name: _lookdown_area2_sel, Board: 2, Port: 4, Bit: 1}
+        - {Num: 50, Name: _lookdown_area3_sel, Board: 2, Port: 4, Bit: 2}
+        - {Num: 51, Name: _lookdown_area4_sel, Board: 2, Port: 4, Bit: 3}
+        - {Num: 52, Name: LD_Power_EN, Board: 2, Port: 5, Bit: 1}
+        - {Num: 53, Name: lamp_red, Board: 4, Port: 1, Bit: 5}
+        - {Num: 54, Name: LAMP_RIGHT_M, Board: 4, Port: 1, Bit: 4}
+        - {Num: 55, Name: lamp_green, Board: 4, Port: 1, Bit: 2}
+        #- {Num: 56, Name: lamp_red, Board: 4, Port: 1, Bit: 5}
+        - {Num: 57, Name: LAMP_LEFT_M, Board: 4, Port: 1, Bit: 3}
+        #- {Num: 58, Name: lamp_green, Board: 4, Port: 1, Bit: 2}
+        - {Num: 59, Name: HAND_POWER_RESET_M, Board: 2, Port: 5, Bit: 5}
+        - {Num: 60, Name: driving_brake_release, Board: 2, Port: 5, Bit: 4}
+        - {Num: 61, Name: safety_clear, Board: 2, Port: 2, Bit: 7}
+        - {Num: 62, Name: safety_control, Board: 2, Port: 5, Bit: 7}
+        - {Num: 63, Name: hoist_ext_brake_release, Board: 2, Port: 5, Bit: 6}
+        #- {Num: 64, Name: , Board: 2, Port: 5, Bit: 5}
+        #- {Num: 65, Name: , Board: 2, Port: 5, Bit: 5}
+        - {Num: 66, Name: _obstacle_area5_sel, Board: 0, Port: 1, Bit: 4}
+        #- {Num: 67, Name: , Board: 0, Port: 1, Bit: 4}
+        #- {Num: 68, Name: , Board: 0, Port: 1, Bit: 4}
+        #- {Num: 69, Name: , Board: 0, Port: 1, Bit: 4}
+        - {Num: 70, Name: cid_left_select, Board: 2, Port: 0, Bit: 0}
+        - {Num: 71, Name: cid_right_select, Board: 2, Port: 0, Bit: 7}
+        - {Num: 72, Name: cid_occup_req, Board: 2, Port: 0, Bit: 2}
+        - {Num: 73, Name: cid_pass_complete, Board: 2, Port: 0, Bit: 3}
+        - {Num: 74, Name: cid_manual, Board: 2, Port: 0, Bit: 1}
+        - {Num: 75, Name: cid_reserved_1, Board: 2, Port: 0, Bit: 4}
+        - {Num: 76, Name: cid_reserved_2, Board: 2, Port: 0, Bit: 6}
+        - {Num: 77, Name: CID_RESERVED_OUT3_M, Board: 2, Port: 0, Bit: 5}
+        - {Num: 78, Name: blackbox_do2, Board: 4, Port: 2, Bit: 0}
+        - {Num: 79, Name: blackbox_do1, Board: 4, Port: 1, Bit: 7}
+        - {Num: 80, Name: blackbox_do0, Board: 4, Port: 1, Bit: 6}
+      Etc:
+        - {Num: 0, Name: oht_en_slave, Board: 4, Port: 4, Bit: 5}
+        - {Num: 1, Name: obs_en_slave, Board: 2, Port: 5, Bit: 2}
+        - {Num: 2, Name: qrr1_in1, Board: 0, Port: 1, Bit: 12}  #qrr1_in1
+        - {Num: 3, Name: bcr1_in2, Board: 0, Port: 1, Bit: 13}  #bcr1_in2
+        - {Num: 4, Name: qrr2_in3, Board: 0, Port: 1, Bit: 14}  #qrr2_in3
+        - {Num: 5, Name: bcr2_in4, Board: 0, Port: 1, Bit: 15}  #bcr2_in4
+        - {Num: 6, Name: driving_stop_in1, Board: 0, Port: 1, Bit: 16}  #driving_stop_in1
+        - {Num: 7, Name: trans_stop_in2, Board: 0, Port: 1, Bit: 17}  #trans_stop_in2
+        #- {Num: 8, Name: LD_Power_EN, Board: 2, Port: 5, Bit: 1}  #LD_Power_EN
+        - {Num: 9, Name: CID_Power_EN, Board: 2, Port: 4, Bit: 7}  #CID_Power_EN
+        #- {Num: 10, Name: _eq_pio_right_select, Board: 4, Port: 0, Bit: 0}  #_eq_pio_right_select
+        #- {Num: 11, Name: _eq_pio_left_select, Board: 4, Port: 0, Bit: 1}  #_eq_pio_left_select
+        - {Num: 12, Name: Driving_Stop_EN, Board: 4, Port: 4, Bit: 2}  #Driving_Stop_EN
+        #- {Num: 13, Name: hand_pio_select, Board: 2, Port: 2, Bit: 0}  #hand_pio_select
+        #- {Num: 14, Name: safety_clear, Board: 2, Port: 2, Bit: 7}  #safety_clear
+        #- {Num: 15, Name: , Board: 4, Port: 0, Bit: 0} #LAN_PWR_EN
+        #- {Num: 16, Name: driving_brake_release, Board: 2, Port: 5, Bit: 4}  #driving_brake_release
+        - {Num: 17, Name: Spare_Output2_M, Board: 2, Port: 6, Bit: 0}  #Spare_Output2_M
+
+    OHT_NAME_V86:
+      Input:
+        - {Num: 0, Name: hand_inposition, Board: 3, Port: 1, Bit: 4}
+        - {Num: 1, Name: hand_alarm, Board: 3, Port: 1, Bit: 0}
+        - {Num: 2, Name: hand_gripper_right, Board: 3, Port: 0, Bit: 7}
+        - {Num: 3, Name: hand_gripper_left, Board: 3, Port: 0, Bit: 6}
+        - {Num: 4, Name: hand_close_sen, Board: 3, Port: 1, Bit: 2}
+        - {Num: 5, Name: hand_open_sen, Board: 3, Port: 1, Bit: 5}
+        - {Num: 6, Name: hand_push_sen, Board: 3, Port: 1, Bit: 7}
+        #- {Num: 7, Name: , Board: 0, Port: 0, Bit: 0}
+        - {Num: 8, Name: hand_es, Board: 3, Port: 1, Bit: 3}
+        - {Num: 9, Name: hand_pio_go, Board: 3, Port: 1, Bit: 6}
+        - {Num: 10, Name: eq_pio_load_req, Board: 5, Port: 0, Bit: 7}
+        - {Num: 11, Name: eq_pio_unload_req, Board: 5, Port: 1, Bit: 1}
+        - {Num: 12, Name: eq_pio_ready, Board: 5, Port: 1, Bit: 0}
+        - {Num: 13, Name: eq_pio_ho_avbl, Board: 5, Port: 0, Bit: 3}
+        - {Num: 14, Name: eq_pio_es, Board: 5, Port: 0, Bit: 2}
+        - {Num: 15, Name: eq_pio_right_go, Board: 5, Port: 0, Bit: 0}
+        - {Num: 16, Name: eq_pio_left_go, Board: 5, Port: 0, Bit: 1}
+        - {Num: 17, Name: steer_front_left, Board: 3, Port: 3, Bit: 5}
+        - {Num: 18, Name: steer_rear_left, Board: 5, Port: 5, Bit: 0}
+        - {Num: 19, Name: steer_front_right, Board: 3, Port: 3, Bit: 6}
+        - {Num: 20, Name: steer_rear_right, Board: 5, Port: 5, Bit: 1}
+        - {Num: 21, Name: shutter_front_close_sen, Board: 3, Port: 2, Bit: 6}
+        - {Num: 22, Name: shutter_rear_close_sen, Board: 5, Port: 4, Bit: 1}
+        - {Num: 23, Name: shutter_front_open_sen, Board: 3, Port: 3, Bit: 0}
+        - {Num: 24, Name: shutter_rear_open_sen, Board: 5, Port: 4, Bit: 3}
+        - {Num: 25, Name: shutter_front_alarm, Board: 3, Port: 3, Bit: 1}
+        - {Num: 26, Name: shutter_rear_alarm, Board: 5, Port: 4, Bit: 4}
+        - {Num: 27, Name: shutter_front_inposition, Board: 3, Port: 3, Bit: 2}
+        - {Num: 28, Name: shutter_rear_inposition, Board: 5, Port: 4, Bit: 5}
+        #- {Num: 29, Name: _obstacle_input_extend, Board: 3, Port: 1, Bit: 4}
+        - {Num: 30, Name: _obstacle_long, Board: 1, Port: 2, Bit: 6}
+        - {Num: 31, Name: _obstacle_middle, Board: 1, Port: 2, Bit: 7}
+        - {Num: 32, Name: _obstacle_short, Board: 1, Port: 2, Bit: 8}
+        - {Num: 33, Name: _obstacle_fail, Board: 1, Port: 2, Bit: 9}
+        #- {Num: 34, Name: , Board: 1, Port: 2, Bit: 7}
+        - {Num: 35, Name: _ohtdetect_long, Board: 1, Port: 1, Bit: 19}
+        - {Num: 36, Name: _ohtdetect_middle, Board: 1, Port: 1, Bit: 20}
+        - {Num: 37, Name: _ohtdetect_short, Board: 1, Port: 1, Bit: 18}
+        - {Num: 38, Name: _ohtdetect_fail, Board: 1, Port: 1, Bit: 21}
+        - {Num: 39, Name: _lookdown_detect, Board: 3, Port: 4, Bit: 0}
+        - {Num: 40, Name: _lookdown_error, Board: 3, Port: 3, Bit: 7}
+        - {Num: 41, Name: slide_home_sensor, Board: 5, Port: 6, Bit: 3}
+        - {Num: 42, Name: _stb_detect_left, Board: 5, Port: 3, Bit: 7}
+        - {Num: 43, Name: _stb_detect_right, Board: 5, Port: 4, Bit: 0}
+        - {Num: 44, Name: _utb_detect, Board: 5, Port: 6, Bit: 2}
+        - {Num: 45, Name: _pod_detect, Board: 5, Port: 6, Bit: 5}
+        - {Num: 46, Name: _oscillation_sensor, Board: 3, Port: 4, Bit: 6}
+        - {Num: 47, Name: emo_press, Board: 3, Port: 5, Bit: 3}
+        - {Num: 48, Name: bumper_press, Board: 3, Port: 2, Bit: 5}
+        - {Num: 49, Name: _fan_fail, Board: 5, Port: 6, Bit: 6}
+        - {Num: 50, Name: _hoist_belt_detect_2, Board: 3, Port: 4, Bit: 5}
+        #- {Num: 51, Name: , Board: 3, Port: 3, Bit: 7}
+        - {Num: 52, Name: REMOCON_CONNECT_M, Board: 5, Port: 1, Bit: 5}
+        - {Num: 53, Name: _pod_devision_open_detect, Board: 5, Port: 6, Bit: 4}
+        - {Num: 54, Name: _stop_driving_front, Board: 1, Port: 1, Bit: 22}
+        - {Num: 55, Name: _stop_driving_precheck, Board: 1, Port: 1, Bit: 23}
+        - {Num: 56, Name: _stop_trans_front, Board: 1, Port: 1, Bit: 26}
+        - {Num: 57, Name: _stop_trans_rear, Board: 1, Port: 1, Bit: 27}
+        - {Num: 58, Name: bcr_driving_ok, Board: 1, Port: 1, Bit: 24}
+        - {Num: 59, Name: bcr_driving_ng, Board: 1, Port: 1, Bit: 25}
+        - {Num: 60, Name: bcr_trans_ok, Board: 1, Port: 1, Bit: 28}
+        - {Num: 61, Name: bcr_trans_ng, Board: 1, Port: 1, Bit: 29}
+        - {Num: 62, Name: _hoist_belt_detect_1, Board: 3, Port: 4, Bit: 4}
+        - {Num: 63, Name: pio_input3, Board: 5, Port: 0, Bit: 4}
+        - {Num: 64, Name: pio_input5, Board: 5, Port: 0, Bit: 5}
+        - {Num: 65, Name: _pio_input6, Board: 5, Port: 0, Bit: 6}
+        - {Num: 66, Name: _smps_short_check, Board: 5, Port: 6, Bit: 7}
+        - {Num: 67, Name: cid_link_complete, Board: 3, Port: 0, Bit: 1}
+        - {Num: 68, Name: cid_interlock, Board: 3, Port: 0, Bit: 0}
+        - {Num: 69, Name: cid_pass_ok, Board: 3, Port: 0, Bit: 2}
+        - {Num: 70, Name: cid_status, Board: 3, Port: 0, Bit: 5}
+        - {Num: 71, Name: cid_reserved1, Board: 3, Port: 0, Bit: 3}
+        - {Num: 72, Name: cid_reserved2, Board: 3, Port: 0, Bit: 4}
+        - {Num: 73, Name: HOIST_ALIGN_SENSOR_M, Board: 3, Port: 4, Bit: 3}
+        #- {Num: 74, Name: blackbox_di2, Board: 5, Port: 1, Bit: 4}
+        #- {Num: 75, Name: blackbox_di1, Board: 5, Port: 1, Bit: 3}
+        #- {Num: 76, Name: blackbox_di0, Board: 5, Port: 1, Bit: 2}
+        - {Num: 77, Name: rotate_0_sensor, Board: 5, Port: 2, Bit: 3}
+        - {Num: 78, Name: rotate_90_sensor, Board: 5, Port: 2, Bit: 4}
+        - {Num: 79, Name: rotate_180_sensor, Board: 5, Port: 2, Bit: 5}
+        #- {Num: 80, Name: rotate_270_sensor, Board: 5, Port: 2, Bit: 6}
+        - {Num: 81, Name: shutter_front_middle_close_sen, Board: 3, Port: 2, Bit: 7}
+        - {Num: 82, Name: shutter_rear_middle_close_sen, Board: 5, Port: 4, Bit: 2}
+      Output:
+        - {Num: 0, Name: hand_close, Board: 2, Port: 1, Bit: 1}
+        - {Num: 1, Name: hand_open, Board: 2, Port: 1, Bit: 3}
+        - {Num: 2, Name: hand_origin, Board: 2, Port: 1, Bit: 4}
+        - {Num: 3, Name: hand_reset, Board: 2, Port: 1, Bit: 0}
+        - {Num: 4, Name: hand_free, Board: 2, Port: 1, Bit: 2}
+        - {Num: 5, Name: hand_reserved_6, Board: 2, Port: 1, Bit: 5}
+        - {Num: 6, Name: hand_reserved_7, Board: 2, Port: 1, Bit: 6}
+        - {Num: 7, Name: hand_reserved_8, Board: 2, Port: 1, Bit: 7}
+        - {Num: 8, Name: hand_trigger_out, Board: 2, Port: 2, Bit: 1}
+        - {Num: 9, Name: hand_pio_select, Board: 2, Port: 2, Bit: 0}
+        - {Num: 10, Name: eq_pio_valid, Board: 4, Port: 1, Bit: 1}
+        - {Num: 11, Name: eq_pio_cs0, Board: 4, Port: 0, Bit: 4}
+        - {Num: 12, Name: eq_pio_cs1, Board: 4, Port: 0, Bit: 5}
+        - {Num: 13, Name: eq_pio_cs2, Board: 4, Port: 0, Bit: 6}
+        - {Num: 14, Name: eq_pio_cs3, Board: 4, Port: 0, Bit: 7}
+        - {Num: 15, Name: eq_pio_tr_req, Board: 4, Port: 1, Bit: 0}
+        - {Num: 16, Name: eq_pio_busy, Board: 4, Port: 0, Bit: 2}
+        - {Num: 17, Name: eq_pio_complete, Board: 4, Port: 0, Bit: 3}
+        - {Num: 18, Name: _eq_pio_right_select, Board: 4, Port: 0, Bit: 0}
+        - {Num: 19, Name: _eq_pio_left_select, Board: 4, Port: 0, Bit: 1}
+        - {Num: 20, Name: steer_front_torque0, Board: 2, Port: 3, Bit: 5}
+        - {Num: 21, Name: steer_front_torque1, Board: 2, Port: 3, Bit: 6}
+        - {Num: 22, Name: steer_rear_torque0, Board: 4, Port: 3, Bit: 7}
+        - {Num: 23, Name: steer_rear_torque1, Board: 4, Port: 4, Bit: 0}
+        - {Num: 24, Name: steer_front_dir, Board: 2, Port: 3, Bit: 7}
+        - {Num: 25, Name: steer_rear_dir, Board: 4, Port: 4, Bit: 1}
+        - {Num: 26, Name: shutter_front_reset, Board: 2, Port: 3, Bit: 0}
+        - {Num: 27, Name: shutter_rear_reset, Board: 4, Port: 3, Bit: 2}
+        - {Num: 28, Name: shutter_front_close, Board: 2, Port: 3, Bit: 1}
+        - {Num: 29, Name: shutter_rear_close, Board: 4, Port: 3, Bit: 3}
+        - {Num: 30, Name: shutter_front_open, Board: 2, Port: 3, Bit: 2}
+        - {Num: 31, Name: shutter_rear_open, Board: 4, Port: 3, Bit: 4}
+        - {Num: 32, Name: shutter_front_origin, Board: 2, Port: 3, Bit: 3}
+        - {Num: 33, Name: shutter_rear_origin, Board: 4, Port: 3, Bit: 5}
+        - {Num: 34, Name: shutter_front_free, Board: 2, Port: 3, Bit: 4}
+        - {Num: 35, Name: shutter_rear_free, Board: 4, Port: 3, Bit: 6}
+        - {Num: 36, Name: _obstacle_area1_sel, Board: 0, Port: 1, Bit: 0}
+        - {Num: 37, Name: _obstacle_area2_sel, Board: 0, Port: 1, Bit: 1}
+        - {Num: 38, Name: _obstacle_area3_sel, Board: 0, Port: 1, Bit: 2}
+        - {Num: 39, Name: _obstacle_area4_sel, Board: 0, Port: 1, Bit: 3}
+        #- {Num: 40, Name: _obstacle_area5_sel, Board: 0, Port: 1, Bit: 4}
+        - {Num: 41, Name: _obs_en, Board: 0, Port: 1, Bit: 11}
+        - {Num: 42, Name: _ohtdetect_area1_sel, Board: 0, Port: 1, Bit: 5}
+        - {Num: 43, Name: _ohtdetect_area2_sel, Board: 0, Port: 1, Bit: 6}
+        - {Num: 44, Name: _ohtdetect_area3_sel, Board: 0, Port: 1, Bit: 7}
+        - {Num: 45, Name: _ohtdetect_area4_sel, Board: 0, Port: 1, Bit: 8}
+        #- {Num: 46, Name: _ohtdetect_area5_sel, Board: 0, Port: 1, Bit: 9}
+        - {Num: 47, Name: _oht_en, Board: 0, Port: 1, Bit: 10}
+        - {Num: 48, Name: _lookdown_area1_sel, Board: 2, Port: 4, Bit: 0}
+        - {Num: 49, Name: _lookdown_area2_sel, Board: 2, Port: 4, Bit: 1}
+        - {Num: 50, Name: _lookdown_area3_sel, Board: 2, Port: 4, Bit: 2}
+        - {Num: 51, Name: _lookdown_area4_sel, Board: 2, Port: 4, Bit: 3}
+        - {Num: 52, Name: LD_Power_EN, Board: 2, Port: 5, Bit: 1}
+        - {Num: 53, Name: lamp_red, Board: 4, Port: 1, Bit: 5}
+        - {Num: 54, Name: LAMP_RIGHT_M, Board: 4, Port: 1, Bit: 4}
+        - {Num: 55, Name: lamp_green, Board: 4, Port: 1, Bit: 2}
+        #- {Num: 56, Name: lamp_red, Board: 4, Port: 1, Bit: 5}
+        - {Num: 57, Name: LAMP_LEFT_M, Board: 4, Port: 1, Bit: 3}
+        #- {Num: 58, Name: lamp_green, Board: 4, Port: 1, Bit: 2}
+        - {Num: 59, Name: HAND_POWER_RESET_M, Board: 2, Port: 5, Bit: 5}
+        - {Num: 60, Name: driving_brake_release, Board: 2, Port: 5, Bit: 4}
+        - {Num: 61, Name: safety_clear, Board: 2, Port: 2, Bit: 7}
+        - {Num: 62, Name: safety_control, Board: 2, Port: 5, Bit: 7}
+        - {Num: 63, Name: hoist_ext_brake_release, Board: 2, Port: 5, Bit: 6}
+        #- {Num: 64, Name: , Board: 2, Port: 5, Bit: 5}
+        #- {Num: 65, Name: , Board: 2, Port: 5, Bit: 5}
+        - {Num: 66, Name: _obstacle_area5_sel, Board: 0, Port: 1, Bit: 4}
+        #- {Num: 67, Name: , Board: 0, Port: 1, Bit: 4}
+        #- {Num: 68, Name: , Board: 0, Port: 1, Bit: 4}
+        #- {Num: 69, Name: , Board: 0, Port: 1, Bit: 4}
+        - {Num: 70, Name: cid_left_select, Board: 2, Port: 0, Bit: 0}
+        - {Num: 71, Name: cid_right_select, Board: 2, Port: 0, Bit: 7}
+        - {Num: 72, Name: cid_occup_req, Board: 2, Port: 0, Bit: 2}
+        - {Num: 73, Name: cid_pass_complete, Board: 2, Port: 0, Bit: 3}
+        - {Num: 74, Name: cid_manual, Board: 2, Port: 0, Bit: 1}
+        - {Num: 75, Name: cid_reserved_1, Board: 2, Port: 0, Bit: 4}
+        - {Num: 76, Name: cid_reserved_2, Board: 2, Port: 0, Bit: 6}
+        - {Num: 77, Name: CID_RESERVED_OUT3_M, Board: 2, Port: 0, Bit: 5}
+        - {Num: 78, Name: blackbox_do2, Board: 4, Port: 2, Bit: 0}
+        - {Num: 79, Name: blackbox_do1, Board: 4, Port: 1, Bit: 7}
+        - {Num: 80, Name: blackbox_do0, Board: 4, Port: 1, Bit: 6}
+        - {Num: 81, Name: shutter_front_middle, Board: 2, Port: 6, Bit: 1}
+        - {Num: 82, Name: shutter_rear_middle, Board: 4, Port: 5, Bit: 3}
+      Etc:
+        - {Num: 0, Name: oht_en_slave, Board: 4, Port: 4, Bit: 5}
+        - {Num: 1, Name: obs_en_slave, Board: 2, Port: 5, Bit: 2}
+        - {Num: 2, Name: qrr1_in1, Board: 0, Port: 1, Bit: 12}  #qrr1_in1
+        - {Num: 3, Name: bcr1_in2, Board: 0, Port: 1, Bit: 13}  #bcr1_in2
+        - {Num: 4, Name: qrr2_in3, Board: 0, Port: 1, Bit: 14}  #qrr2_in3
+        - {Num: 5, Name: bcr2_in4, Board: 0, Port: 1, Bit: 15}  #bcr2_in4
+        - {Num: 6, Name: driving_stop_in1, Board: 0, Port: 1, Bit: 16}  #driving_stop_in1
+        - {Num: 7, Name: trans_stop_in2, Board: 0, Port: 1, Bit: 17}  #trans_stop_in2
+        #- {Num: 8, Name: LD_Power_EN, Board: 2, Port: 5, Bit: 1}  #LD_Power_EN
+        - {Num: 9, Name: CID_Power_EN, Board: 2, Port: 4, Bit: 7}  #CID_Power_EN
+        #- {Num: 10, Name: _eq_pio_right_select, Board: 4, Port: 0, Bit: 0}  #_eq_pio_right_select
+        #- {Num: 11, Name: _eq_pio_left_select, Board: 4, Port: 0, Bit: 1}  #_eq_pio_left_select
+        - {Num: 12, Name: Driving_Stop_EN, Board: 4, Port: 4, Bit: 2}  #Driving_Stop_EN
+        #- {Num: 13, Name: hand_pio_select, Board: 2, Port: 2, Bit: 0}  #hand_pio_select
+        #- {Num: 14, Name: safety_clear, Board: 2, Port: 2, Bit: 7}  #safety_clear
+        #- {Num: 15, Name: , Board: 4, Port: 0, Bit: 0} #LAN_PWR_EN
+        #- {Num: 16, Name: driving_brake_release, Board: 2, Port: 5, Bit: 4}  #driving_brake_release
+        - {Num: 17, Name: Spare_Output2_M, Board: 2, Port: 6, Bit: 0}  #Spare_Output2_M
+
+    OHT_NAME_P4MASK:
+      Input:
+        - {Num: 0, Name: hand_inposition, Board: 3, Port: 1, Bit: 4}
+        - {Num: 1, Name: hand_alarm, Board: 3, Port: 1, Bit: 0}
+        - {Num: 2, Name: hand_gripper_right, Board: 3, Port: 0, Bit: 7}
+        - {Num: 3, Name: hand_gripper_left, Board: 3, Port: 0, Bit: 6}
+        - {Num: 4, Name: hand_close_sen, Board: 3, Port: 1, Bit: 2}
+        - {Num: 5, Name: hand_open_sen, Board: 3, Port: 1, Bit: 5}
+        - {Num: 6, Name: hand_push_sen, Board: 3, Port: 1, Bit: 7}
+        - {Num: 7, Name: hand_unload_position , Board: 3, Port: 1, Bit: 1}  # 221107 Mask 추가
+        - {Num: 8, Name: hand_es, Board: 3, Port: 1, Bit: 3}
+        - {Num: 9, Name: hand_pio_go, Board: 3, Port: 1, Bit: 6}
+        - {Num: 10, Name: eq_pio_load_req, Board: 5, Port: 0, Bit: 7}
+        - {Num: 11, Name: eq_pio_unload_req, Board: 5, Port: 1, Bit: 1}
+        - {Num: 12, Name: eq_pio_ready, Board: 5, Port: 1, Bit: 0}
+        - {Num: 13, Name: eq_pio_ho_avbl, Board: 5, Port: 0, Bit: 3}
+        - {Num: 14, Name: eq_pio_es, Board: 5, Port: 0, Bit: 2}
+        - {Num: 15, Name: eq_pio_right_go, Board: 5, Port: 0, Bit: 0}
+        - {Num: 16, Name: eq_pio_left_go, Board: 5, Port: 0, Bit: 1}
+        - {Num: 17, Name: steer_front_left, Board: 3, Port: 3, Bit: 5}
+        - {Num: 18, Name: steer_rear_left, Board: 5, Port: 5, Bit: 0} # 확인 필요
+        - {Num: 19, Name: steer_front_right, Board: 3, Port: 3, Bit: 6}
+        - {Num: 20, Name: steer_rear_right, Board: 5, Port: 5, Bit: 1} # 확인 필요
+        - {Num: 21, Name: shutter_front_close_sen, Board: 3, Port: 2, Bit: 6}
+        - {Num: 22, Name: Antidrop_Pod_Placement_Detect1, Board: 5, Port: 4, Bit: 1}
+        - {Num: 23, Name: shutter_front_open_sen, Board: 3, Port: 3, Bit: 0}
+        - {Num: 24, Name: Antidrop_Pod_Placement_Detect2, Board: 5, Port: 4, Bit: 3}
+        - {Num: 25, Name: shutter_front_alarm, Board: 3, Port: 3, Bit: 1}
+        - {Num: 26, Name: shutter_rear_alarm, Board: 5, Port: 4, Bit: 4}
+        - {Num: 27, Name: shutter_front_inposition, Board: 3, Port: 3, Bit: 2}
+        - {Num: 28, Name: shutter_rear_inposition, Board: 5, Port: 4, Bit: 5}
+        #- {Num: 29, Name: _obstacle_input_extend, Board: 3, Port: 1, Bit: 4}
+        - {Num: 30, Name: _obstacle_long, Board: 1, Port: 2, Bit: 6}
+        - {Num: 31, Name: _obstacle_middle, Board: 1, Port: 2, Bit: 7}
+        - {Num: 32, Name: _obstacle_short, Board: 1, Port: 2, Bit: 8}
+        - {Num: 33, Name: _obstacle_fail, Board: 1, Port: 2, Bit: 9}
+        #- {Num: 34, Name: , Board: 1, Port: 2, Bit: 7}
+        - {Num: 35, Name: _ohtdetect_long, Board: 1, Port: 1, Bit: 19}
+        - {Num: 36, Name: _ohtdetect_middle, Board: 1, Port: 1, Bit: 20}
+        - {Num: 37, Name: _ohtdetect_short, Board: 1, Port: 1, Bit: 18}
+        - {Num: 38, Name: _ohtdetect_fail, Board: 1, Port: 1, Bit: 21}
+        - {Num: 39, Name: _lookdown_detect, Board: 3, Port: 4, Bit: 0}
+        - {Num: 40, Name: _lookdown_error, Board: 3, Port: 3, Bit: 7}
+        - {Num: 41, Name: ffu_fail_hoist, Board: 5, Port: 6, Bit: 3}
+        - {Num: 42, Name: Antidrop_Pod_Placement_Detect1, Board: 5, Port: 3, Bit: 7}
+        - {Num: 43, Name: Antidrop_Pod_Placement_Detect2, Board: 5, Port: 4, Bit: 0}
+        - {Num: 44, Name: _utb_detect, Board: 5, Port: 6, Bit: 2}
+        - {Num: 45, Name: EUV_Pod_Detect_Sensor, Board: 5, Port: 6, Bit: 5}
+        - {Num: 46, Name: _oscillation_sensor, Board: 3, Port: 4, Bit: 6}
+        - {Num: 47, Name: emo_press, Board: 3, Port: 5, Bit: 3}
+        - {Num: 48, Name: bumper_press, Board: 3, Port: 2, Bit: 5}
+        - {Num: 49, Name: ffu_fail_frame, Board: 5, Port: 6, Bit: 6}
+        - {Num: 50, Name: slide_neg_limit, Board: 3, Port: 4, Bit: 5}
+        #- {Num: 51, Name: , Board: 3, Port: 3, Bit: 7}
+        - {Num: 52, Name: REMOCON_CONNECT_M, Board: 5, Port: 1, Bit: 5}
+        - {Num: 53, Name: RSP200_Detect_Sensor, Board: 5, Port: 6, Bit: 4}
+        - {Num: 54, Name: _stop_driving_front, Board: 1, Port: 1, Bit: 22}
+        - {Num: 55, Name: _stop_driving_precheck, Board: 1, Port: 1, Bit: 23}
+        - {Num: 56, Name: _stop_trans_front, Board: 1, Port: 1, Bit: 26}
+        - {Num: 57, Name: _stop_trans_rear, Board: 1, Port: 1, Bit: 27}
+        - {Num: 58, Name: bcr_driving_ok, Board: 1, Port: 1, Bit: 24}
+        - {Num: 59, Name: bcr_driving_ng, Board: 1, Port: 1, Bit: 25}
+        - {Num: 60, Name: bcr_trans_ok, Board: 1, Port: 1, Bit: 28}
+        - {Num: 61, Name: bcr_trans_ng, Board: 1, Port: 1, Bit: 29}
+        - {Num: 62, Name: slide_pos_limit, Board: 3, Port: 4, Bit: 4}
+        - {Num: 63, Name: pio_input3, Board: 5, Port: 0, Bit: 4}
+        - {Num: 64, Name: pio_input5, Board: 5, Port: 0, Bit: 5}
+        - {Num: 65, Name: _pio_input6, Board: 5, Port: 0, Bit: 6}
+        - {Num: 66, Name: _smps_short_check, Board: 5, Port: 6, Bit: 7}
+        - {Num: 67, Name: HOIST_ALIGN_SENSOR_M, Board: 3, Port: 0, Bit: 1}
+        - {Num: 68, Name: EUV_Pod_home, Board: 3, Port: 0, Bit: 0}
+        - {Num: 69, Name: RSP200_home, Board: 3, Port: 0, Bit: 2}
+        - {Num: 70, Name: RSP150_home, Board: 3, Port: 0, Bit: 5}
+        - {Num: 71, Name: cid_reserved1, Board: 3, Port: 0, Bit: 3}
+        - {Num: 72, Name: cid_reserved2, Board: 3, Port: 0, Bit: 4}
+        - {Num: 73, Name: slide_home_sensor, Board: 3, Port: 4, Bit: 3}
+        - {Num: 74, Name: blackbox_di2, Board: 5, Port: 1, Bit: 4}
+        - {Num: 75, Name: blackbox_di1, Board: 5, Port: 1, Bit: 3}
+        - {Num: 76, Name: blackbox_di0, Board: 5, Port: 1, Bit: 2}
+        - {Num: 77, Name: pod_detect_sensor, Board: 5, Port: 7, Bit: 0}
+        - {Num: 78, Name: rsp150_detect_sensor, Board: 3, Port: 5, Bit: 4}
+        - {Num: 79, Name: antidrop_pod_placement_detect3, Board: 3, Port: 2, Bit: 0}
+        - {Num: 80, Name: antidrop_pod_placement_detect4, Board: 3, Port: 2, Bit: 1}
+        - {Num: 81, Name: obstacle_input3, Board: 3, Port: 2, Bit: 2}
+        - {Num: 82, Name: obstacle_input4, Board: 3, Port: 2, Bit: 3}
+      Output:
+        - {Num: 0, Name: hand_work, Board: 2, Port: 1, Bit: 1}
+        - {Num: 1, Name: hand_work_interlock, Board: 2, Port: 1, Bit: 3}
+        - {Num: 2, Name: hand_home, Board: 2, Port: 1, Bit: 4}
+        - {Num: 3, Name: hand_home_interlock, Board: 2, Port: 1, Bit: 0}
+        - {Num: 4, Name: hand_origin, Board: 2, Port: 1, Bit: 2}
+        - {Num: 5, Name: hand_alarm_reset, Board: 2, Port: 1, Bit: 5}
+        - {Num: 6, Name: hand_free, Board: 2, Port: 1, Bit: 6}
+        - {Num: 7, Name: hand_out8, Board: 2, Port: 1, Bit: 7}
+        - {Num: 8, Name: hand_trigger_out, Board: 2, Port: 2, Bit: 1}
+        - {Num: 9, Name: hand_pio_select, Board: 2, Port: 2, Bit: 0}
+        - {Num: 10, Name: eq_pio_valid, Board: 4, Port: 1, Bit: 1}
+        - {Num: 11, Name: eq_pio_cs0, Board: 4, Port: 0, Bit: 4}
+        - {Num: 12, Name: eq_pio_cs1, Board: 4, Port: 0, Bit: 5}
+        - {Num: 13, Name: eq_pio_cs2, Board: 4, Port: 0, Bit: 6}
+        - {Num: 14, Name: eq_pio_cs3, Board: 4, Port: 0, Bit: 7}
+        - {Num: 15, Name: eq_pio_tr_req, Board: 4, Port: 1, Bit: 0}
+        - {Num: 16, Name: eq_pio_busy, Board: 4, Port: 0, Bit: 2}
+        - {Num: 17, Name: eq_pio_complete, Board: 4, Port: 0, Bit: 3}
+        - {Num: 18, Name: _eq_pio_right_select, Board: 4, Port: 0, Bit: 0}
+        - {Num: 19, Name: _eq_pio_left_select, Board: 4, Port: 0, Bit: 1}
+        - {Num: 20, Name: steer_front_torque0, Board: 2, Port: 3, Bit: 5}
+        - {Num: 21, Name: steer_front_torque1, Board: 2, Port: 3, Bit: 6}
+        - {Num: 22, Name: steer_rear_torque0, Board: 4, Port: 3, Bit: 7}
+        - {Num: 23, Name: steer_rear_torque1, Board: 4, Port: 4, Bit: 0}
+        - {Num: 24, Name: steer_front_dir, Board: 2, Port: 3, Bit: 7}
+        - {Num: 25, Name: steer_rear_dir, Board: 4, Port: 4, Bit: 1}
+        - {Num: 26, Name: shutter_front_reset, Board: 2, Port: 3, Bit: 0}
+        - {Num: 27, Name: shutter_rear_reset, Board: 4, Port: 3, Bit: 2}
+        - {Num: 28, Name: shutter_front_close, Board: 2, Port: 3, Bit: 1}
+        - {Num: 29, Name: shutter_rear_close, Board: 4, Port: 3, Bit: 3}
+        - {Num: 30, Name: shutter_front_open, Board: 2, Port: 3, Bit: 2}
+        - {Num: 31, Name: shutter_rear_open, Board: 4, Port: 3, Bit: 4}
+        - {Num: 32, Name: shutter_front_origin, Board: 2, Port: 3, Bit: 3}
+        - {Num: 33, Name: shutter_rear_origin, Board: 4, Port: 3, Bit: 5}
+        - {Num: 34, Name: shutter_front_free, Board: 2, Port: 3, Bit: 4}
+        - {Num: 35, Name: shutter_rear_free, Board: 4, Port: 3, Bit: 6}
+        - {Num: 36, Name: _obstacle_area1_sel, Board: 0, Port: 1, Bit: 0}
+        - {Num: 37, Name: _obstacle_area2_sel, Board: 0, Port: 1, Bit: 1}
+        - {Num: 38, Name: _obstacle_area3_sel, Board: 0, Port: 1, Bit: 2}
+        - {Num: 39, Name: _obstacle_area4_sel, Board: 0, Port: 1, Bit: 3}
+        #- {Num: 40, Name: _obstacle_area5_sel, Board: 0, Port: 1, Bit: 4}
+        - {Num: 41, Name: _obs_en, Board: 0, Port: 1, Bit: 11}
+        - {Num: 42, Name: _ohtdetect_area1_sel, Board: 0, Port: 1, Bit: 5}
+        - {Num: 43, Name: _ohtdetect_area2_sel, Board: 0, Port: 1, Bit: 6}
+        - {Num: 44, Name: _ohtdetect_area3_sel, Board: 0, Port: 1, Bit: 7}
+        - {Num: 45, Name: _ohtdetect_area4_sel, Board: 0, Port: 1, Bit: 8}
+        - {Num: 46, Name: _ohtdetect_area5_sel, Board: 0, Port: 1, Bit: 9}
+        - {Num: 47, Name: _oht_en, Board: 0, Port: 1, Bit: 10}
+        - {Num: 48, Name: _lookdown_area1_sel, Board: 2, Port: 4, Bit: 0}
+        - {Num: 49, Name: _lookdown_area2_sel, Board: 2, Port: 4, Bit: 1}
+        - {Num: 50, Name: _lookdown_area3_sel, Board: 2, Port: 4, Bit: 2}
+        - {Num: 51, Name: _lookdown_area4_sel, Board: 2, Port: 4, Bit: 3}
+        - {Num: 52, Name: LD_Power_EN, Board: 2, Port: 5, Bit: 1}
+        - {Num: 53, Name: lamp_red, Board: 4, Port: 1, Bit: 5}
+        - {Num: 54, Name: LAMP_RIGHT_M, Board: 4, Port: 1, Bit: 4}
+        - {Num: 55, Name: lamp_green, Board: 4, Port: 1, Bit: 2}
+        #- {Num: 56, Name: lamp_red, Board: 4, Port: 1, Bit: 5}
+        - {Num: 57, Name: LAMP_LEFT_M, Board: 4, Port: 1, Bit: 3}
+        #- {Num: 58, Name: lamp_green, Board: 4, Port: 1, Bit: 2}
+        - {Num: 59, Name: HAND_POWER_RESET_M, Board: 2, Port: 5, Bit: 5}
+        - {Num: 60, Name: driving_brake_release, Board: 2, Port: 5, Bit: 4}
+        - {Num: 61, Name: safety_clear, Board: 2, Port: 2, Bit: 7}
+        - {Num: 62, Name: safety_control, Board: 2, Port: 5, Bit: 7}
+        - {Num: 63, Name: hoist_ext_brake_release, Board: 2, Port: 5, Bit: 6}
+        #- {Num: 64, Name: , Board: 2, Port: 5, Bit: 5}
+        #- {Num: 65, Name: , Board: 2, Port: 5, Bit: 5}
+        - {Num: 66, Name: _obstacle_area5_sel, Board: 0, Port: 1, Bit: 4}
+        #- {Num: 67, Name: , Board: 0, Port: 1, Bit: 4}
+        #- {Num: 68, Name: , Board: 0, Port: 1, Bit: 4}
+        #- {Num: 69, Name: , Board: 0, Port: 1, Bit: 4}
+        - {Num: 70, Name: cid_left_select, Board: 2, Port: 0, Bit: 0}
+        - {Num: 71, Name: cid_right_select, Board: 2, Port: 0, Bit: 7}
+        - {Num: 72, Name: cid_occup_req, Board: 2, Port: 0, Bit: 2}
+        - {Num: 73, Name: cid_pass_complete, Board: 2, Port: 0, Bit: 3}
+        - {Num: 74, Name: cid_manual, Board: 2, Port: 0, Bit: 1}
+        - {Num: 75, Name: cid_reserved_1, Board: 2, Port: 0, Bit: 4}
+        - {Num: 76, Name: cid_reserved_2, Board: 2, Port: 0, Bit: 6}
+        - {Num: 77, Name: CID_RESERVED_OUT3_M, Board: 2, Port: 0, Bit: 5}
+        - {Num: 78, Name: blackbox_do2, Board: 4, Port: 2, Bit: 0}
+        - {Num: 79, Name: blackbox_do1, Board: 4, Port: 1, Bit: 7}
+        - {Num: 80, Name: blackbox_do0, Board: 4, Port: 1, Bit: 6}
+      Etc:
+        - {Num: 0, Name: oht_en_slave, Board: 4, Port: 4, Bit: 5}
+        - {Num: 1, Name: obs_en_slave, Board: 2, Port: 5, Bit: 2}
+        - {Num: 2, Name: qrr1_in1, Board: 0, Port: 1, Bit: 12}  #qrr1_in1
+        - {Num: 3, Name: bcr1_in2, Board: 0, Port: 1, Bit: 13}  #bcr1_in2
+        - {Num: 4, Name: qrr2_in3, Board: 0, Port: 1, Bit: 14}  #qrr2_in3
+        - {Num: 5, Name: bcr2_in4, Board: 0, Port: 1, Bit: 15}  #bcr2_in4
+        - {Num: 6, Name: driving_stop_in1, Board: 0, Port: 1, Bit: 16}  #driving_stop_in1
+        - {Num: 7, Name: trans_stop_in2, Board: 0, Port: 1, Bit: 17}  #trans_stop_in2
+        #- {Num: 8, Name: LD_Power_EN, Board: 2, Port: 5, Bit: 1}  #LD_Power_EN
+        - {Num: 9, Name: CID_Power_EN, Board: 2, Port: 4, Bit: 7}  #CID_Power_EN
+        #- {Num: 10, Name: _eq_pio_right_select, Board: 4, Port: 0, Bit: 0}  #_eq_pio_right_select
+        #- {Num: 11, Name: _eq_pio_left_select, Board: 4, Port: 0, Bit: 1}  #_eq_pio_left_select
+        - {Num: 12, Name: Driving_Stop_EN, Board: 4, Port: 4, Bit: 2}  #Driving_Stop_EN
+        #- {Num: 13, Name: hand_pio_select, Board: 2, Port: 2, Bit: 0}  #hand_pio_select
+        #- {Num: 14, Name: safety_clear, Board: 2, Port: 2, Bit: 7}  #safety_clear
+        #- {Num: 15, Name: , Board: 4, Port: 0, Bit: 0} #LAN_PWR_EN
+        #- {Num: 16, Name: driving_brake_release, Board: 2, Port: 5, Bit: 4}  #driving_brake_release
+        - {Num: 17, Name: Spare_Output2_M, Board: 2, Port: 6, Bit: 0}  #Spare_Output2_M
+
+    OHT_NAME_V82MASK:
+      Input:
+        - {Num: 0, Name: hand_inposition, Board: 3, Port: 1, Bit: 4}
+        - {Num: 1, Name: hand_alarm, Board: 3, Port: 1, Bit: 0}
+        - {Num: 2, Name: hand_gripper_right, Board: 3, Port: 0, Bit: 7}
+        - {Num: 3, Name: hand_gripper_left, Board: 3, Port: 0, Bit: 6}
+        - {Num: 4, Name: hand_close_sen, Board: 3, Port: 1, Bit: 2}
+        - {Num: 5, Name: hand_open_sen, Board: 3, Port: 1, Bit: 5}
+        - {Num: 6, Name: hand_push_sen, Board: 3, Port: 1, Bit: 7}
+        - {Num: 7, Name: hand_unload_position , Board: 3, Port: 1, Bit: 1}  # 221107 Mask 추가
+        - {Num: 8, Name: hand_es, Board: 3, Port: 1, Bit: 3}
+        - {Num: 9, Name: hand_pio_go, Board: 3, Port: 1, Bit: 6}
+        - {Num: 10, Name: eq_pio_load_req, Board: 5, Port: 0, Bit: 7}
+        - {Num: 11, Name: eq_pio_unload_req, Board: 5, Port: 1, Bit: 1}
+        - {Num: 12, Name: eq_pio_ready, Board: 5, Port: 1, Bit: 0}
+        - {Num: 13, Name: eq_pio_ho_avbl, Board: 5, Port: 0, Bit: 3}
+        - {Num: 14, Name: eq_pio_es, Board: 5, Port: 0, Bit: 2}
+        - {Num: 15, Name: eq_pio_right_go, Board: 5, Port: 0, Bit: 0}
+        - {Num: 16, Name: eq_pio_left_go, Board: 5, Port: 0, Bit: 1}
+        - {Num: 17, Name: steer_front_left, Board: 3, Port: 3, Bit: 5}
+        - {Num: 18, Name: steer_rear_left, Board: 5, Port: 5, Bit: 0} # 확인 필요
+        - {Num: 19, Name: steer_front_right, Board: 3, Port: 3, Bit: 6}
+        - {Num: 20, Name: steer_rear_right, Board: 5, Port: 5, Bit: 1} # 확인 필요
+        - {Num: 21, Name: shutter_front_close_sen, Board: 3, Port: 2, Bit: 6}
+        - {Num: 22, Name: Antidrop_Pod_Placement_Detect1, Board: 5, Port: 4, Bit: 1}
+        - {Num: 23, Name: shutter_front_open_sen, Board: 3, Port: 3, Bit: 0}
+        - {Num: 24, Name: Antidrop_Pod_Placement_Detect2, Board: 5, Port: 4, Bit: 3}
+        - {Num: 25, Name: shutter_front_alarm, Board: 3, Port: 3, Bit: 1}
+        - {Num: 26, Name: shutter_rear_alarm, Board: 5, Port: 4, Bit: 4}
+        - {Num: 27, Name: shutter_front_inposition, Board: 3, Port: 3, Bit: 2}
+        - {Num: 28, Name: shutter_rear_inposition, Board: 5, Port: 4, Bit: 5}
+        #- {Num: 29, Name: _obstacle_input_extend, Board: 3, Port: 1, Bit: 4}
+        - {Num: 30, Name: _obstacle_long, Board: 1, Port: 2, Bit: 6}
+        - {Num: 31, Name: _obstacle_middle, Board: 1, Port: 2, Bit: 7}
+        - {Num: 32, Name: _obstacle_short, Board: 1, Port: 2, Bit: 8}
+        - {Num: 33, Name: _obstacle_fail, Board: 1, Port: 2, Bit: 9}
+        #- {Num: 34, Name: , Board: 1, Port: 2, Bit: 7}
+        - {Num: 35, Name: _ohtdetect_long, Board: 1, Port: 1, Bit: 19}
+        - {Num: 36, Name: _ohtdetect_middle, Board: 1, Port: 1, Bit: 20}
+        - {Num: 37, Name: _ohtdetect_short, Board: 1, Port: 1, Bit: 18}
+        - {Num: 38, Name: _ohtdetect_fail, Board: 1, Port: 1, Bit: 21}
+        - {Num: 39, Name: _lookdown_detect, Board: 3, Port: 4, Bit: 0}
+        - {Num: 40, Name: _lookdown_error, Board: 3, Port: 3, Bit: 7}
+        - {Num: 41, Name: ffu_fail_hoist, Board: 5, Port: 6, Bit: 3}
+        - {Num: 42, Name: Antidrop_Pod_Placement_Detect1, Board: 5, Port: 3, Bit: 7}
+        - {Num: 43, Name: Antidrop_Pod_Placement_Detect2, Board: 5, Port: 4, Bit: 0}
+        - {Num: 44, Name: _utb_detect, Board: 5, Port: 6, Bit: 2}
+        - {Num: 45, Name: EUV_Pod_Detect_Sensor, Board: 5, Port: 6, Bit: 5}
+        - {Num: 46, Name: _oscillation_sensor, Board: 3, Port: 4, Bit: 6}
+        - {Num: 47, Name: emo_press, Board: 3, Port: 5, Bit: 3}
+        - {Num: 48, Name: bumper_press, Board: 3, Port: 2, Bit: 5}
+        - {Num: 49, Name: ffu_fail_frame, Board: 5, Port: 6, Bit: 6}
+        - {Num: 50, Name: slide_neg_limit, Board: 3, Port: 4, Bit: 5}
+        #- {Num: 51, Name: , Board: 3, Port: 3, Bit: 7}
+        - {Num: 52, Name: REMOCON_CONNECT_M, Board: 5, Port: 1, Bit: 5}
+        - {Num: 53, Name: RSP200_Detect_Sensor, Board: 5, Port: 6, Bit: 4}
+        - {Num: 54, Name: _stop_driving_front, Board: 1, Port: 1, Bit: 22}
+        - {Num: 55, Name: _stop_driving_precheck, Board: 1, Port: 1, Bit: 23}
+        - {Num: 56, Name: _stop_trans_front, Board: 1, Port: 1, Bit: 26}
+        - {Num: 57, Name: _stop_trans_rear, Board: 1, Port: 1, Bit: 27}
+        - {Num: 58, Name: bcr_driving_ok, Board: 1, Port: 1, Bit: 24}
+        - {Num: 59, Name: bcr_driving_ng, Board: 1, Port: 1, Bit: 25}
+        - {Num: 60, Name: bcr_trans_ok, Board: 1, Port: 1, Bit: 28}
+        - {Num: 61, Name: bcr_trans_ng, Board: 1, Port: 1, Bit: 29}
+        - {Num: 62, Name: slide_pos_limit, Board: 3, Port: 4, Bit: 4}
+        - {Num: 63, Name: pio_input3, Board: 5, Port: 0, Bit: 4}
+        - {Num: 64, Name: pio_input5, Board: 5, Port: 0, Bit: 5}
+        - {Num: 65, Name: _pio_input6, Board: 5, Port: 0, Bit: 6}
+        - {Num: 66, Name: _smps_short_check, Board: 5, Port: 6, Bit: 7}
+        - {Num: 67, Name: HOIST_ALIGN_SENSOR_M, Board: 3, Port: 0, Bit: 1}
+        - {Num: 68, Name: EUV_Pod_home, Board: 3, Port: 0, Bit: 0}
+        - {Num: 69, Name: RSP200_home, Board: 3, Port: 0, Bit: 2}
+        - {Num: 70, Name: RSP150_home, Board: 3, Port: 0, Bit: 5}
+        - {Num: 71, Name: cid_reserved1, Board: 3, Port: 0, Bit: 3}
+        - {Num: 72, Name: cid_reserved2, Board: 3, Port: 0, Bit: 4}
+        - {Num: 73, Name: slide_home_sensor, Board: 3, Port: 4, Bit: 3}
+        - {Num: 74, Name: blackbox_di2, Board: 5, Port: 1, Bit: 4}
+        - {Num: 75, Name: blackbox_di1, Board: 5, Port: 1, Bit: 3}
+        - {Num: 76, Name: blackbox_di0, Board: 5, Port: 1, Bit: 2}
+        - {Num: 77, Name: pod_detect_sensor, Board: 5, Port: 7, Bit: 0}
+        - {Num: 78, Name: rsp150_detect_sensor, Board: 3, Port: 5, Bit: 4}
+        - {Num: 79, Name: antidrop_pod_placement_detect3, Board: 3, Port: 2, Bit: 0}
+        - {Num: 80, Name: antidrop_pod_placement_detect4, Board: 3, Port: 2, Bit: 1}
+        - {Num: 81, Name: obstacle_input3, Board: 3, Port: 2, Bit: 2}
+        - {Num: 82, Name: obstacle_input4, Board: 3, Port: 2, Bit: 3}
+      Output:
+        - {Num: 0, Name: hand_work, Board: 2, Port: 1, Bit: 1}
+        - {Num: 1, Name: hand_work_interlock, Board: 2, Port: 1, Bit: 3}
+        - {Num: 2, Name: hand_home, Board: 2, Port: 1, Bit: 4}
+        - {Num: 3, Name: hand_home_interlock, Board: 2, Port: 1, Bit: 0}
+        - {Num: 4, Name: hand_origin, Board: 2, Port: 1, Bit: 2}
+        - {Num: 5, Name: hand_alarm_reset, Board: 2, Port: 1, Bit: 5}
+        - {Num: 6, Name: hand_free, Board: 2, Port: 1, Bit: 6}
+        - {Num: 7, Name: hand_out8, Board: 2, Port: 1, Bit: 7}
+        - {Num: 8, Name: hand_trigger_out, Board: 2, Port: 2, Bit: 1}
+        - {Num: 9, Name: hand_pio_select, Board: 2, Port: 2, Bit: 0}
+        - {Num: 10, Name: eq_pio_valid, Board: 4, Port: 1, Bit: 1}
+        - {Num: 11, Name: eq_pio_cs0, Board: 4, Port: 0, Bit: 4}
+        - {Num: 12, Name: eq_pio_cs1, Board: 4, Port: 0, Bit: 5}
+        - {Num: 13, Name: eq_pio_cs2, Board: 4, Port: 0, Bit: 6}
+        - {Num: 14, Name: eq_pio_cs3, Board: 4, Port: 0, Bit: 7}
+        - {Num: 15, Name: eq_pio_tr_req, Board: 4, Port: 1, Bit: 0}
+        - {Num: 16, Name: eq_pio_busy, Board: 4, Port: 0, Bit: 2}
+        - {Num: 17, Name: eq_pio_complete, Board: 4, Port: 0, Bit: 3}
+        - {Num: 18, Name: _eq_pio_right_select, Board: 4, Port: 0, Bit: 0}
+        - {Num: 19, Name: _eq_pio_left_select, Board: 4, Port: 0, Bit: 1}
+        - {Num: 20, Name: steer_front_torque0, Board: 2, Port: 3, Bit: 5}
+        - {Num: 21, Name: steer_front_torque1, Board: 2, Port: 3, Bit: 6}
+        - {Num: 22, Name: steer_rear_torque0, Board: 4, Port: 3, Bit: 7}
+        - {Num: 23, Name: steer_rear_torque1, Board: 4, Port: 4, Bit: 0}
+        - {Num: 24, Name: steer_front_dir, Board: 2, Port: 3, Bit: 7}
+        - {Num: 25, Name: steer_rear_dir, Board: 4, Port: 4, Bit: 1}
+        - {Num: 26, Name: shutter_front_reset, Board: 2, Port: 3, Bit: 0}
+        - {Num: 27, Name: shutter_rear_reset, Board: 4, Port: 3, Bit: 2}
+        - {Num: 28, Name: shutter_front_close, Board: 2, Port: 3, Bit: 1}
+        - {Num: 29, Name: shutter_rear_close, Board: 4, Port: 3, Bit: 3}
+        - {Num: 30, Name: shutter_front_open, Board: 2, Port: 3, Bit: 2}
+        - {Num: 31, Name: shutter_rear_open, Board: 4, Port: 3, Bit: 4}
+        - {Num: 32, Name: shutter_front_origin, Board: 2, Port: 3, Bit: 3}
+        - {Num: 33, Name: shutter_rear_origin, Board: 4, Port: 3, Bit: 5}
+        - {Num: 34, Name: shutter_front_free, Board: 2, Port: 3, Bit: 4}
+        - {Num: 35, Name: shutter_rear_free, Board: 4, Port: 3, Bit: 6}
+        - {Num: 36, Name: _obstacle_area1_sel, Board: 0, Port: 1, Bit: 0}
+        - {Num: 37, Name: _obstacle_area2_sel, Board: 0, Port: 1, Bit: 1}
+        - {Num: 38, Name: _obstacle_area3_sel, Board: 0, Port: 1, Bit: 2}
+        - {Num: 39, Name: _obstacle_area4_sel, Board: 0, Port: 1, Bit: 3}
+        #- {Num: 40, Name: _obstacle_area5_sel, Board: 0, Port: 1, Bit: 4}
+        - {Num: 41, Name: _obs_en, Board: 0, Port: 1, Bit: 11}
+        - {Num: 42, Name: _ohtdetect_area1_sel, Board: 0, Port: 1, Bit: 5}
+        - {Num: 43, Name: _ohtdetect_area2_sel, Board: 0, Port: 1, Bit: 6}
+        - {Num: 44, Name: _ohtdetect_area3_sel, Board: 0, Port: 1, Bit: 7}
+        - {Num: 45, Name: _ohtdetect_area4_sel, Board: 0, Port: 1, Bit: 8}
+        - {Num: 46, Name: _ohtdetect_area5_sel, Board: 0, Port: 1, Bit: 9}
+        - {Num: 47, Name: _oht_en, Board: 0, Port: 1, Bit: 10}
+        - {Num: 48, Name: _lookdown_area1_sel, Board: 2, Port: 4, Bit: 0}
+        - {Num: 49, Name: _lookdown_area2_sel, Board: 2, Port: 4, Bit: 1}
+        - {Num: 50, Name: _lookdown_area3_sel, Board: 2, Port: 4, Bit: 2}
+        - {Num: 51, Name: _lookdown_area4_sel, Board: 2, Port: 4, Bit: 3}
+        - {Num: 52, Name: LD_Power_EN, Board: 2, Port: 5, Bit: 1}
+        - {Num: 53, Name: lamp_red, Board: 4, Port: 1, Bit: 5}
+        - {Num: 54, Name: LAMP_RIGHT_M, Board: 4, Port: 1, Bit: 4}
+        - {Num: 55, Name: lamp_green, Board: 4, Port: 1, Bit: 2}
+        #- {Num: 56, Name: lamp_red, Board: 4, Port: 1, Bit: 5}
+        - {Num: 57, Name: LAMP_LEFT_M, Board: 4, Port: 1, Bit: 3}
+        #- {Num: 58, Name: lamp_green, Board: 4, Port: 1, Bit: 2}
+        - {Num: 59, Name: HAND_POWER_RESET_M, Board: 2, Port: 5, Bit: 5}
+        - {Num: 60, Name: driving_brake_release, Board: 2, Port: 5, Bit: 4}
+        - {Num: 61, Name: safety_clear, Board: 2, Port: 2, Bit: 7}
+        - {Num: 62, Name: safety_control, Board: 2, Port: 5, Bit: 7}
+        - {Num: 63, Name: hoist_ext_brake_release, Board: 2, Port: 5, Bit: 6}
+        #- {Num: 64, Name: , Board: 2, Port: 5, Bit: 5}
+        #- {Num: 65, Name: , Board: 2, Port: 5, Bit: 5}
+        - {Num: 66, Name: _obstacle_area5_sel, Board: 0, Port: 1, Bit: 4}
+        #- {Num: 67, Name: , Board: 0, Port: 1, Bit: 4}
+        #- {Num: 68, Name: , Board: 0, Port: 1, Bit: 4}
+        #- {Num: 69, Name: , Board: 0, Port: 1, Bit: 4}
+        - {Num: 70, Name: cid_left_select, Board: 2, Port: 0, Bit: 0}
+        - {Num: 71, Name: cid_right_select, Board: 2, Port: 0, Bit: 7}
+        - {Num: 72, Name: cid_occup_req, Board: 2, Port: 0, Bit: 2}
+        - {Num: 73, Name: cid_pass_complete, Board: 2, Port: 0, Bit: 3}
+        - {Num: 74, Name: cid_manual, Board: 2, Port: 0, Bit: 1}
+        - {Num: 75, Name: cid_reserved_1, Board: 2, Port: 0, Bit: 4}
+        - {Num: 76, Name: cid_reserved_2, Board: 2, Port: 0, Bit: 6}
+        - {Num: 77, Name: CID_RESERVED_OUT3_M, Board: 2, Port: 0, Bit: 5}
+        - {Num: 78, Name: blackbox_do2, Board: 4, Port: 2, Bit: 0}
+        - {Num: 79, Name: blackbox_do1, Board: 4, Port: 1, Bit: 7}
+        - {Num: 80, Name: blackbox_do0, Board: 4, Port: 1, Bit: 6}
+      Etc:
+        - {Num: 0, Name: oht_en_slave, Board: 4, Port: 4, Bit: 5}
+        - {Num: 1, Name: obs_en_slave, Board: 2, Port: 5, Bit: 2}
+        - {Num: 2, Name: qrr1_in1, Board: 0, Port: 1, Bit: 12}  #qrr1_in1
+        - {Num: 3, Name: bcr1_in2, Board: 0, Port: 1, Bit: 13}  #bcr1_in2
+        - {Num: 4, Name: qrr2_in3, Board: 0, Port: 1, Bit: 14}  #qrr2_in3
+        - {Num: 5, Name: bcr2_in4, Board: 0, Port: 1, Bit: 15}  #bcr2_in4
+        - {Num: 6, Name: driving_stop_in1, Board: 0, Port: 1, Bit: 16}  #driving_stop_in1
+        - {Num: 7, Name: trans_stop_in2, Board: 0, Port: 1, Bit: 17}  #trans_stop_in2
+        #- {Num: 8, Name: LD_Power_EN, Board: 2, Port: 5, Bit: 1}  #LD_Power_EN
+        - {Num: 9, Name: CID_Power_EN, Board: 2, Port: 4, Bit: 7}  #CID_Power_EN
+        #- {Num: 10, Name: _eq_pio_right_select, Board: 4, Port: 0, Bit: 0}  #_eq_pio_right_select
+        #- {Num: 11, Name: _eq_pio_left_select, Board: 4, Port: 0, Bit: 1}  #_eq_pio_left_select
+        - {Num: 12, Name: Driving_Stop_EN, Board: 4, Port: 4, Bit: 2}  #Driving_Stop_EN
+        #- {Num: 13, Name: hand_pio_select, Board: 2, Port: 2, Bit: 0}  #hand_pio_select
+        #- {Num: 14, Name: safety_clear, Board: 2, Port: 2, Bit: 7}  #safety_clear
+        #- {Num: 15, Name: , Board: 4, Port: 0, Bit: 0} #LAN_PWR_EN
+        #- {Num: 16, Name: driving_brake_release, Board: 2, Port: 5, Bit: 4}  #driving_brake_release
+        - {Num: 17, Name: Spare_Output2_M, Board: 2, Port: 6, Bit: 0}  #Spare_Output2_M

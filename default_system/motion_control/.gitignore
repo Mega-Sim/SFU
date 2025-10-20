@@ -1,0 +1,17 @@
+cmake-build-debug/
+.idea/
+src/ecmaster/rpc/ecmaster.grpc.pb.cc
+src/ecmaster/rpc/ecmaster.grpc.pb.h
+src/ecmaster/rpc/ecmaster.pb.cc
+src/ecmaster/rpc/ecmaster.pb.h
+src/ecmaster/rpc/ecmaster_pb2.py
+src/ecmaster/rpc/ecmaster_pb2_grpc.py
+test/gRPC/myrpc.grpc.pb.cc
+test/gRPC/myrpc.grpc.pb.h
+test/gRPC/myrpc.pb.cc
+test/gRPC/myrpc.pb.h
+*/__pycache__/
+*.pyc
+tools/ecmaster/rpc
+tools/sim/rpc
+

@@ -1,0 +1,50 @@
+axes:
+    Driving_front:
+      ID: 0
+      Data:
+#        - {Index: 0x240D, SubIndex: 0, DataType: 16, Name: 1st Resonant Frequency Suppression Filter, Value: 347}
+#        - {Index: 0x240E, SubIndex: 0, DataType: 16, Name: 1st Resonant Frequency Suppression Filter Width, Value: 3}
+#        - {Index: 0x240F, SubIndex: 0, DataType: 16, Name: 1st Resonant Frequency Suppression Filter Depth, Value: 70}
+#        - {Index: 0x2410, SubIndex: 0, DataType: 16, Name: 2nd Resonant Frequency Suppression Filter, Value: 754}
+#        - {Index: 0x2411, SubIndex: 0, DataType: 16, Name: 2nd Resonant Frequency Suppression Filter Width, Value: 10}
+#        - {Index: 0x2412, SubIndex: 0, DataType: 16, Name: 2nd Resonant Frequency Suppression Filter Depth, Value: 100}
+#        - {Index: 0x2413, SubIndex: 0, DataType: 16, Name: 3rd Resonant Frequency Suppression Filter, Value: 170}
+#        - {Index: 0x2414, SubIndex: 0, DataType: 16, Name: 3rd Resonant Frequency Suppression Filter Width, Value: 5}
+#        - {Index: 0x2415, SubIndex: 0, DataType: 16, Name: 3rd Resonant Frequency Suppression Filter Depth, Value: 80}
+#        - {Index: 0x2211, SubIndex: 1, DataType: 16, Name: Velocity Limit Mode, Value: 1}
+#        - {Index: 0x2210, SubIndex: 0, DataType: 16, Name: Manual Velocity Limit, Value: 3000}
+        - {Index: 0x2314, SubIndex: 0, DataType: 32, Name: Following Error Limit, Value: 10000}
+    Driving_rear:
+      ID: 0
+      Data:
+#        - {Index: 0x240D, SubIndex: 0, DataType: 16, Name: 1st Resonant Frequency Suppression Filter, Value: 347}
+#        - {Index: 0x240E, SubIndex: 0, DataType: 16, Name: 1st Resonant Frequency Suppression Filter Width, Value: 3}
+#        - {Index: 0x240F, SubIndex: 0, DataType: 16, Name: 1st Resonant Frequency Suppression Filter Depth, Value: 70}
+#        - {Index: 0x2410, SubIndex: 0, DataType: 16, Name: 2nd Resonant Frequency Suppression Filter, Value: 754}
+#        - {Index: 0x2411, SubIndex: 0, DataType: 16, Name: 2nd Resonant Frequency Suppression Filter Width, Value: 10}
+#        - {Index: 0x2412, SubIndex: 0, DataType: 16, Name: 2nd Resonant Frequency Suppression Filter Depth, Value: 100}
+#        - {Index: 0x2413, SubIndex: 0, DataType: 16, Name: 3rd Resonant Frequency Suppression Filter, Value: 170}
+#        - {Index: 0x2414, SubIndex: 0, DataType: 16, Name: 3rd Resonant Frequency Suppression Filter Width, Value: 5}
+#        - {Index: 0x2415, SubIndex: 0, DataType: 16, Name: 3rd Resonant Frequency Suppression Filter Depth, Value: 80}
+#        - {Index: 0x2211, SubIndex: 1, DataType: 16, Name: Velocity Limit Mode, Value: 1}
+#        - {Index: 0x2210, SubIndex: 0, DataType: 16, Name: Manual Velocity Limit, Value: 3000}
+        - {Index: 0x2314, SubIndex: 0, DataType: 32, Name: Following Error Limit, Value: 10000}
+    Hoist :
+     ID: 2
+     Data:
+       - {Index: 0x2107, SubIndex: 0, DataType: 16, Name: 1st Position Regulator Kp Gain, Value: 83}
+       - {Index: 0x2202, SubIndex: 0, DataType: 16, Name: Velocity Command LPF Bandwidth, Value: 550}
+       - {Index: 0x2302, SubIndex: 0, DataType: 16, Name: Position Regulator Kff Gain, Value: 96}
+       - {Index: 0x2304, SubIndex: 0, DataType: 16, Name: Moving Average Filter, Value: 550}
+       - {Index: 0x2314, SubIndex: 0, DataType: 32, Name: Following Error Limit, Value: 2000}
+       - {Index: 0x2402, SubIndex: 0, DataType: 16, Name: 1st Current Command LPF Bandwidth, Value: 260}
+       - {Index: 0x2211, SubIndex: 1, DataType: 16, Name: Velocity Limit Mode, Value: 1}
+       - {Index: 0x2210, SubIndex: 0, DataType: 16, Name: Manual Velocity Limit, Value: 5000}
+    Slide :
+     ID: 3
+     Data:
+       - {Index: 0x2107, SubIndex: 0, DataType: 16, Name: 1st Position Regulator Kp Gain, Value: 51}
+       - {Index: 0x2302, SubIndex: 0, DataType: 16, Name: Position Regulator Kff Gain, Value: 100}
+       - {Index: 0x2314, SubIndex: 0, DataType: 32, Name: Following Error Limit, Value: 2000}
+       - {Index: 0x2211, SubIndex: 1, DataType: 16, Name: Velocity Limit Mode, Value: 1}
+       - {Index: 0x2210, SubIndex: 0, DataType: 16, Name: Manual Velocity Limit, Value: 2600}

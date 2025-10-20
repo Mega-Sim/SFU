@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>OHT States</title>
+    <script src="/uidata/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/uidata/static/js/oht_ui.js"></script>
+    <script src="/uidata/static/js/d3/d3.min.js"></script>
+    <script src="/uidata/static/js/c3/c3.js"></script>
+    <link rel="stylesheet" href="/uidata/static/js/c3/c3.css"/>
+</head>
+<body>
+<p> <strong>OHT States</strong> <br> 
+	hoist(mm): <span id="hoist_pos"></span>, slide(mm): <span id="slide_pos"></span> 
+</p>
+<table cellspacing="1" border="1" cellpadding="2" style="font-size: 80%" >
+    <tr>
+        <th bgcolor="#a9a9a9">I/O</th>
+        {% for group in groups %}
+        <th width = 200 bgcolor="#a9a9a9"> {{group}} </th>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td>IN</td>
+        {% for group in groups %}
+        <td valign="top">
+            {% for item in groups[group].di %}
+            <div id="{{item}}"> {{item}}</div>
+            {% endfor %}
+        </td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td>OUT</td>
+        {% for group in groups %}
+        <td valign="top">
+            {% for item in groups[group].do %}
+            <div id="{{item}}"> {{item}}</div>
+            {% endfor %}
+        </td>
+        {% endfor %}
+    </tr>
+</table>
+<button id = "update_button" onclick="update(0)">update</button>
+<button id = "stop_button" onclick="update(1)"></button>
+
+<p><strong>OHT driving speed chart</strong> <br>
+    location(from,to,displacement): <span id="location_from"></span>, <span id="location_to"></span>, <span id="location_displacement"></span>, speed: <span id="oht_speed"></span>
+</p>
+
+<div id="linechart"></div>
+<script>
+    /* Chart */
+var chart = c3.generate({
+    bindto: '#linechart',
+    size: {
+        height: 240,
+        width: 600
+    },
+    data: {
+        x : 't',
+        columns: [
+            ['t', ...time_log],
+            ['vel', ...speed_log],
+        ],
+    },
+    point: { show: true }
+});
+function refresh_chart() {
+    update_speed();
+    chart.load({
+        columns: [
+            ['t', ...time_log],
+            ['vel', ...speed_log],
+        ]
+    });
+};
+</script>
+</body>
+</html>

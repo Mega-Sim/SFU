@@ -1,0 +1,9 @@
+diff a/src/tools/JigSrc/V81_UNIT/OHT_Main/AMCDllLibQueue.cpp b/src/tools/JigSrc/V81_UNIT/OHT_Main/AMCDllLibQueue.cpp	(rejected hunks)
+@@ -89,7 +89,6 @@
+ 
+ 			delete pQueuingAmcCmd;
+ 		}
+-
+         AMC_ADD_LOG("[putData]Error:%d", m_nError);
+ 		return m_nError;	// ���� �߻� �� ��� �߰� ���� ����
+ 	}

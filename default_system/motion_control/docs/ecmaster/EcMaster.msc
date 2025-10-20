@@ -1,0 +1,21 @@
+msc {
+    #entities
+    A[label="main"], B[label="EcMasterSvc"], C[label="Acontis Stack"];
+    
+    A box A [label="parse command line options"];
+    A => B [label="initService"];
+        B abox C [label="initMaster"];
+        B abox C [label="configureMaster"];
+        B abox C [label="registerClient"];
+        B abox C [label="scanNewtork"];
+        B abox C [label="changeState to INIT"];
+        B box B[label="prepareSvc"];
+        B abox C [label="changeState to PREOP"];
+        B box B[label="setupSvc"];
+        B abox C [label="changeState to SAFEOP"];
+        B abox C [label="changeState to OP"];
+        B box B[label="startMessageHandler"];        
+    A box A[label="run test or wait for exit"];
+    ...;
+    A => B [label="shutdownService"];
+}

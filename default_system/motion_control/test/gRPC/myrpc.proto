@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package myrpc;
+
+service RpcTest {
+    rpc Process (Config) returns (Response) { }
+    
+}
+
+message Config {
+    string data = 1;
+}
+
+message Response {
+    string message = 1;
+}
+

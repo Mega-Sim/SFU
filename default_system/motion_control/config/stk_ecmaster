@@ -1,0 +1,1 @@
+gdb --args src/ecmaster/ecmaster -f stocker_w_io.xml  -sockraw enp2s0 -dcmmode off 

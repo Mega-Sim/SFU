@@ -1,0 +1,23 @@
+
+PROTOC = protoc
+GRPC_CPP_PLUGIN = grpc_cpp_plugin
+GRPC_CPP_PLUGIN_PATH ?= `which $(GRPC_CPP_PLUGIN)`
+PROTOS_PATH =.
+vpath %.proto $(PROTOS_PATH)
+
+all:  ecmaster.pb.cc ecmaster.grpc.pb.cc ecmaster_pb2.py ecmaster_pb2_grpc.py
+
+clean :
+	rm -f ecmaster.grpc.pb.cc ecmaster.pb.cc ecmaster.grpc.pb.h ecmaster.pb.h ecmaster_pb2.py ecmaster_pb2_grpc.py
+	 
+.PRECIOUS: %.grpc.pb.cc
+%.grpc.pb.cc: %.proto
+	$(PROTOC) -I $(PROTOS_PATH) --grpc_out=. --plugin=protoc-gen-grpc=$(GRPC_CPP_PLUGIN_PATH) $<
+
+.PRECIOUS: %.pb.cc
+%.pb.cc: %.proto
+	$(PROTOC) -I $(PROTOS_PATH) --cpp_out=. $<
+
+.PRECIOUS: %_pb2.py %_pb2_grpc.py
+%_pb2.py %_pb2_grpc.py: %.proto
+	python -m grpc_tools.protoc -I $(PROTOS_PATH) --python_out=. --grpc_python_out=. ecmaster.proto

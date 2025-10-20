@@ -1,0 +1,32 @@
+msc {
+    #entities
+    A[label="com2tcp"], a[label="main task"], b[label="rfc2217"], c[label="EmTask"], C[label="SerialSlave"], d[label="stack/emulator"], D[label="Device"] ;
+    
+    a >> d [label="start task"];
+    a >> c [label="create task"];
+    c box c [label="cyclic serial transaction"];    
+    a >> b [label="create task"];
+    b box b [label="wait connection"];
+    ...;
+    ---[label="virtual com to serial device"];
+    A => b [label="connect"];
+    b box b [label = "wait data"];
+    A => b [label="send data"];
+    b => C [label="put data to tx queue"];
+    c >> C [label="call trasferRxTx"];
+    C => d [label="CoeDownloadAsync if slave can receive"];
+    d box D [label="do async job\nget the result"];
+    C box C [label="gatherAsyncJobResults"];    
+    ...;
+    ---[label="serial device to virtual com"];
+    D >> C [label="noti data ready"];
+    C => d [label="CoeUploadAsync"];
+    d box D [label="do async job\n get the result"];
+    c >> C [label="call trasferRxTx"];
+    C box C [label="gatherAsyncJobResults"];
+    C => d [label="ACK if required"];
+    b box b [label = "wait data"];
+    C => b [label="put data to rx queue"];
+    b => A [label="pop and send data"];
+    A box A [label="receive data"];    
+}

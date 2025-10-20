@@ -1,0 +1,648 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{990ABA01-1745-4006-A7BB-1B7E26DDF90C}</ProjectGuid>
+			<ProjectVersion>12.3</ProjectVersion>
+			<MainSource>OHT_TP.cpp</MainSource>
+			<Base>True</Base>
+			<Config Condition="'$(Config)'==''">Release</Config>
+			<Platform>Win32</Platform>
+			<AppType>Application</AppType>
+			<FrameworkType>VCL</FrameworkType>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<LinkPackageStatics>rtl.lib;vcl.lib;vclx.lib;bcbsmp.lib;Tee.lib;vclimg.lib</LinkPackageStatics>
+			<OutputExt>exe</OutputExt>
+			<IntermediateOutputDir>.\build</IntermediateOutputDir>
+			<IncludePath>..\COMMON\;include\;$(IncludePath)</IncludePath>
+			<ProjectType>CppVCLApplication</ProjectType>
+			<PackageImports>vclx.bpi;vcl.bpi;vclimg.bpi;dbrtl.bpi;Rave90VCL.bpi;bdertl.bpi;rtl.bpi;bcbie.bpi;vclactnband.bpi;xmlrtl.bpi;bcbsmp.bpi;VclSmp.bpi;svnui.bpi;svn.bpi;TeeUI.bpi;TeeDB.bpi;Tee.bpi;vcldb.bpi;vcldbx.bpi;vcltouch.bpi;dsnap.bpi;dsnapcon.bpi;vclib.bpi;ibxpress.bpi;adortl.bpi;IndyCore.bpi;IndySystem.bpi;IndyProtocols.bpi;inet.bpi;intrawebdb_110_150.bpi;Intraweb_110_150.bpi;vclie.bpi;websnap.bpi;webdsnap.bpi;inetdb.bpi;inetdbbde.bpi;inetdbxpress.bpi;soaprtl.bpi;vclribbon.bpi;dbexpress.bpi;DbxCommonDriver.bpi;DataSnapIndy10ServerTransport.bpi;DataSnapProviderClient.bpi;DataSnapClient.bpi;dbxcds.bpi;DbxClientDriver.bpi;DataSnapServer.bpi;AzureCloud.bpi;DBXInterBaseDriver.bpi;DBXMySQLDriver.bpi;DBXFirebirdDriver.bpi;DBXSybaseASEDriver.bpi;DBXSybaseASADriver.bpi;DBXOracleDriver.bpi;DBXMSSQLDriver.bpi;DBXInformixDriver.bpi;DBXDb2Driver.bpi;CodeSiteExpressVcl.bpi</PackageImports>
+			<Multithreaded>true</Multithreaded>
+			<AllPackageLibs>rtl.lib;vcl.lib;vclx.lib;bcbsmp.lib;Tee.lib;vclimg.lib</AllPackageLibs>
+			<_TCHARMapping>wchar_t</_TCHARMapping>
+			<BCC_PCHCache>true</BCC_PCHCache>
+			<BCC_IncludePath>$(BDS)\include;$(BDS)\include\dinkumware;$(BCC_IncludePath)</BCC_IncludePath>
+			<BRCC_IncludePath>$(BDS)\include;$(BDS)\include\vcl;$(BDS)\include\dinkumware;$(BRCC_IncludePath)</BRCC_IncludePath>
+			<DCC_IncludePath>.\;$(BDS)\lib;$(BDS)\lib\obj;$(DCC_IncludePath)</DCC_IncludePath>
+			<BCC_SourceDebuggingOn>true</BCC_SourceDebuggingOn>
+			<TASM_IncludePath>$(BDS)\include;$(BDS)\include\vcl;$(BDS)\include\dinkumware;$(TASM_IncludePath)</TASM_IncludePath>
+			<DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
+			<FinalOutputDir>..\..\..\bin</FinalOutputDir>
+			<TASM_AdditionalSwitches> /w2</TASM_AdditionalSwitches>
+			<BCC_DisableOptimizations>true</BCC_DisableOptimizations>
+			<ILINK_LibraryPath>..\COMMON\;include\;$(BDS)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+			<BCC_UserSuppliedOptions> -tWM -Vx -r- -k -Ve</BCC_UserSuppliedOptions>
+			<BCC_Defines>NO_STRICT;$(BCC_Defines)</BCC_Defines>
+			<DCC_AdditionalSwitches> -M</DCC_AdditionalSwitches>
+			<BCC_InlineFunctionExpansion>false</BCC_InlineFunctionExpansion>
+			<BCC_DebugLineNumbers>true</BCC_DebugLineNumbers>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<BCC_IncludePath>..\Common\;include\;..\Common\;include\;$(BCC_IncludePath)</BCC_IncludePath>
+			<BCC_wpar>false</BCC_wpar>
+			<ILINK_FullDebugInfo>true</ILINK_FullDebugInfo>
+			<FinalOutputDir>..\..\..\bin</FinalOutputDir>
+			<_TCHARMapping>wchar_t</_TCHARMapping>
+			<BCC_UserSuppliedOptions> -tWM -Vx -r- -k -Ve -k</BCC_UserSuppliedOptions>
+			<ILINK_LibraryPath>$(BDS)\lib\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+			<BCC_Defines>_DEBUG;$(BCC_Defines);_ONE_PC_TEST;IS_TP;_IN_UDP_UPPER_FORM;$(BCC_Defines)</BCC_Defines>
+			<IntermediateOutputDir>.\build</IntermediateOutputDir>
+			<DCC_Define>DEBUG;$(DCC_Define);$(DCC_Define)</DCC_Define>
+			<ILINK_DisableIncrementalLinking>true</ILINK_DisableIncrementalLinking>
+			<TASM_Debugging>Full</TASM_Debugging>
+			<DCC_AdditionalSwitches> -M -V</DCC_AdditionalSwitches>
+			<TASM_DisplaySourceLines>true</TASM_DisplaySourceLines>
+			<DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<FinalOutputDir>..\..\..\bin</FinalOutputDir>
+			<BCC_IncludePath>..\Common\;include\;$(BCC_IncludePath)</BCC_IncludePath>
+			<BCC_waus>false</BCC_waus>
+			<BCC_wpar>false</BCC_wpar>
+			<BCC_MonitorThis>true</BCC_MonitorThis>
+			<BCC_DebugLineNumbers>false</BCC_DebugLineNumbers>
+			<BCC_PCHCache>false</BCC_PCHCache>
+			<BCC_SourceDebuggingOn>false</BCC_SourceDebuggingOn>
+			<BCC_ExtendedErrorInfo>true</BCC_ExtendedErrorInfo>
+			<BCC_MonitorGlobalAndStackData>true</BCC_MonitorGlobalAndStackData>
+			<DynamicRTL>false</DynamicRTL>
+			<BCC_MonitorInlinePtrAccess>true</BCC_MonitorInlinePtrAccess>
+			<BCC_Defines>NDEBUG;$(BCC_Defines);_ONE_PC_TEST;IS_TP;$(BCC_Defines)</BCC_Defines>
+			<BCC_UserSuppliedOptions> -tWM -Vx -r- -k -Ve -r</BCC_UserSuppliedOptions>
+			<BCC_OptimizeForSpeed>true</BCC_OptimizeForSpeed>
+			<IntermediateOutputDir>.\build</IntermediateOutputDir>
+			<DCC_AdditionalSwitches> -M -$O+</DCC_AdditionalSwitches>
+			<TASM_Debugging>None</TASM_Debugging>
+			<ILINK_LibraryPath>$(BDS)\lib\release;$(ILINK_LibraryPath);$(ILINK_LibraryPath)</ILINK_LibraryPath>
+			<BCC_InlineFunctionExpansion>true</BCC_InlineFunctionExpansion>
+		</PropertyGroup>
+		<ItemGroup>
+			<None Include="..\COMMON\Def_DataType.h">
+				<BuildOrder>85</BuildOrder>
+			</None>
+			<None Include="..\COMMON\Def_Protocol.h">
+				<BuildOrder>86</BuildOrder>
+			</None>
+			<None Include="..\COMMON\Def_TPCommand.h">
+				<BuildOrder>87</BuildOrder>
+			</None>
+			<None Include="..\COMMON\Protocol_Define_Modify.h">
+				<BuildOrder>88</BuildOrder>
+			</None>
+			<CppCompile Include="..\COMMON\PUtily.cpp">
+				<DependentOn>..\COMMON\PUtily.h</DependentOn>
+				<BuildOrder>80</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\COMMON\SocketInitClose.cpp">
+				<DependentOn>..\COMMON\SocketInitClose.h</DependentOn>
+				<BuildOrder>81</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\COMMON\UdpBroadCastSender.cpp">
+				<DependentOn>..\COMMON\UdpBroadCastSender.h</DependentOn>
+				<BuildOrder>82</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\COMMON\UdpCom.cpp">
+				<DependentOn>..\COMMON\UdpCom.h</DependentOn>
+				<BuildOrder>83</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\COMMON\UdpDiag.cpp">
+				<DependentOn>..\COMMON\UdpDiag.h</DependentOn>
+				<BuildOrder>84</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\COMMON\UdpServer.cpp">
+				<DependentOn>..\COMMON\UdpServer.h</DependentOn>
+				<BuildOrder>85</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\COMMON\UdpUniCastSender.cpp">
+				<DependentOn>..\COMMON\UdpUniCastSender.h</DependentOn>
+				<BuildOrder>86</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="About.cpp">
+				<Form>AboutBox</Form>
+				<DependentOn>About.h</DependentOn>
+				<BuildOrder>77</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="AmcDebugMain.cpp">
+				<Form>AmcDebugForm</Form>
+				<DependentOn>AmcDebugMain.h</DependentOn>
+				<BuildOrder>1</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="AMCParaUnit.cpp">
+				<Form>AMCParaForm</Form>
+				<DependentOn>AMCParaUnit.h</DependentOn>
+				<BuildOrder>2</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="APMonitoringUnit.cpp">
+				<Form>APMonitoringForm</Form>
+				<DependentOn>APMonitoringUnit.h</DependentOn>
+				<BuildOrder>3</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="APTimeUnit.cpp">
+				<Form>APTimeForm</Form>
+				<DependentOn>APTimeUnit.h</DependentOn>
+				<BuildOrder>4</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="AssistantUnit.cpp">
+				<Form>AssistantForm</Form>
+				<DependentOn>AssistantUnit.h</DependentOn>
+				<BuildOrder>5</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="BayTestUnit.cpp">
+				<Form>frm_Bay_Test</Form>
+				<DependentOn>BayTestUnit.h</DependentOn>
+				<BuildOrder>92</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="CheckerUnit.cpp">
+				<Form>UnitChecker</Form>
+				<DependentOn>CheckerUnit.h</DependentOn>
+				<BuildOrder>89</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="ChkExecUnit.cpp">
+				<DependentOn>ChkExecUnit.h</DependentOn>
+				<BuildOrder>7</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="CidCheckerUnit.cpp">
+				<Form>frmCidChecker</Form>
+				<DependentOn>CidCheckerUnit.h</DependentOn>
+				<BuildOrder>91</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="CMDControlUnit.cpp">
+				<DependentOn>CMDControlUnit.h</DependentOn>
+				<BuildOrder>8</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="CmdWinUnit.cpp">
+				<Form>CmdWinForm</Form>
+				<DependentOn>CmdWinUnit.h</DependentOn>
+				<BuildOrder>9</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="CommDisplayUnit.cpp">
+				<Form>CommDisplayForm</Form>
+				<DependentOn>CommDisplayUnit.h</DependentOn>
+				<BuildOrder>10</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="ConMainUnit.cpp">
+				<Form>ConversionForm</Form>
+				<DependentOn>ConMainUnit.h</DependentOn>
+				<BuildOrder>11</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="ConnectUnit.cpp">
+				<Form>ConnectForm</Form>
+				<DependentOn>ConnectUnit.h</DependentOn>
+				<BuildOrder>35</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="ConversionUnit.cpp">
+				<DependentOn>ConversionUnit.h</DependentOn>
+				<BuildOrder>13</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="DataTransperReq.cpp">
+				<Form>frmDataTransperReq</Form>
+				<DependentOn>DataTransperReq.h</DependentOn>
+				<BuildOrder>84</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="DistanceSensorViewer.cpp">
+				<Form>DistanceSensorViewrForm</Form>
+				<DependentOn>DistanceSensorViewer.h</DependentOn>
+				<BuildOrder>89</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="DisUnit.cpp">
+				<Form>DisForm</Form>
+				<DependentOn>DisUnit.h</DependentOn>
+				<BuildOrder>16</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="E23PIOUnit.cpp">
+				<Form>E23PIOForm</Form>
+				<DependentOn>E23PIOUnit.h</DependentOn>
+				<BuildOrder>17</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="ErrorSearchUnit.cpp">
+				<Form>ErrorSearchForm</Form>
+				<DependentOn>ErrorSearchUnit.h</DependentOn>
+				<BuildOrder>18</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="ErrorUnit.cpp">
+				<Form>ErrorForm</Form>
+				<DependentOn>ErrorUnit.h</DependentOn>
+				<BuildOrder>19</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="EUVOnlineCMDUnit.cpp">
+				<Form>EUVOnlineCMDForm</Form>
+				<DependentOn>EUVOnlineCMDUnit.h</DependentOn>
+				<BuildOrder>93</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FFTViewer.cpp">
+				<Form>FFTViewerForm</Form>
+				<DependentOn>FFTViewer.h</DependentOn>
+				<BuildOrder>91</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FileListUnit.cpp">
+				<Form>FileListForm</Form>
+				<DependentOn>FileListUnit.h</DependentOn>
+				<BuildOrder>20</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FileUnit.cpp">
+				<Form>FileForm</Form>
+				<DependentOn>FileUnit.h</DependentOn>
+				<BuildOrder>21</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FileUploadAlarm.cpp">
+				<Form>FileUploadAlarmForm</Form>
+				<DependentOn>FileUploadAlarm.h</DependentOn>
+				<BuildOrder>22</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FirmwareUpdateUnit.cpp">
+				<Form>FirmwareUpdateForm</Form>
+				<DependentOn>FirmwareUpdateUnit.h</DependentOn>
+				<BuildOrder>85</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FoupOnlineCMDUnit.cpp">
+				<Form>FoupOnlineCMDForm</Form>
+				<DependentOn>FoupOnlineCMDUnit.h</DependentOn>
+				<BuildOrder>75</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="HandOpenUnit.cpp">
+				<Form>HandOpenForm</Form>
+				<DependentOn>HandOpenUnit.h</DependentOn>
+				<BuildOrder>23</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="HIDGraphUnit.cpp">
+				<Form>HIDGraphForm</Form>
+				<DependentOn>HIDGraphUnit.h</DependentOn>
+				<BuildOrder>24</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="HidLogGet.cpp">
+				<Form>frmHidLogGet</Form>
+				<DependentOn>HidLogGet.h</DependentOn>
+				<BuildOrder>90</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="HIDVelSecUnit.cpp">
+				<Form>HIDVelSecForm</Form>
+				<DependentOn>HIDVelSecUnit.h</DependentOn>
+				<BuildOrder>25</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="HIDVelUnit.cpp">
+				<Form>HIDVelForm</Form>
+				<DependentOn>HIDVelUnit.h</DependentOn>
+				<BuildOrder>26</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="HoistDistanceConverter.cpp">
+				<DependentOn>HoistDistanceConverter.h</DependentOn>
+				<BuildOrder>27</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="HoistParamUnit.cpp">
+				<Form>HoistParamForm</Form>
+				<DependentOn>HoistParamUnit.h</DependentOn>
+				<BuildOrder>28</BuildOrder>
+			</CppCompile>
+			<None Include="include\Define.h">
+				<BuildOrder>79</BuildOrder>
+			</None>
+			<None Include="include\Def_HW.h">
+				<BuildOrder>74</BuildOrder>
+			</None>
+			<None Include="include\Def_OHT.h">
+				<BuildOrder>84</BuildOrder>
+			</None>
+			<CppCompile Include="include\Def_TP.cpp">
+				<DependentOn>include\Def_TP.h</DependentOn>
+				<BuildOrder>45</BuildOrder>
+			</CppCompile>
+			<None Include="include\VersionInfo.h">
+				<BuildOrder>80</BuildOrder>
+			</None>
+			<CppCompile Include="IOMapUnit.cpp">
+				<Form>IOMapForm</Form>
+				<DependentOn>IOMapUnit.h</DependentOn>
+				<BuildOrder>29</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="IOTest.cpp">
+				<Form>IOTestForm</Form>
+				<DependentOn>IOTest.h</DependentOn>
+				<BuildOrder>30</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="LList.cpp">
+				<DependentOn>LList.h</DependentOn>
+				<BuildOrder>80</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="LocMSave.cpp">
+				<Form>MoveForm</Form>
+				<DependentOn>LocMSave.h</DependentOn>
+				<BuildOrder>32</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="LogDownUnit.cpp">
+				<Form>LogDownForm</Form>
+				<DependentOn>LogDownUnit.h</DependentOn>
+				<BuildOrder>33</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="LogFileUnit.cpp">
+				<Form>LogFileForm</Form>
+				<DependentOn>LogFileUnit.h</DependentOn>
+				<BuildOrder>34</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="LongRunUnit.cpp">
+				<Form>LongRunForm</Form>
+				<DependentOn>LongRunUnit.h</DependentOn>
+				<BuildOrder>36</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="M1VelTimeUnit.cpp">
+				<Form>M1VelForm</Form>
+				<DependentOn>M1VelTimeUnit.h</DependentOn>
+				<BuildOrder>37</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="M24VelTimeUnit.cpp">
+				<Form>M24VelForm</Form>
+				<DependentOn>M24VelTimeUnit.h</DependentOn>
+				<BuildOrder>39</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="M2AUnit.cpp">
+				<Form>M2AForm</Form>
+				<DependentOn>M2AUnit.h</DependentOn>
+				<BuildOrder>38</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="MainUnit.cpp">
+				<Form>MainForm</Form>
+				<DependentOn>MainUnit.h</DependentOn>
+				<BuildOrder>40</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="MapMakerUnit.cpp">
+				<Form>MapMakerForm</Form>
+				<DependentOn>MapMakerUnit.h</DependentOn>
+				<BuildOrder>41</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="MoveHoistUnit.cpp">
+				<Form>MHoistForm</Form>
+				<DependentOn>MoveHoistUnit.h</DependentOn>
+				<BuildOrder>43</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="MultiJogDistUnit.cpp">
+				<Form>MultiJogDistForm</Form>
+				<DependentOn>MultiJogDistUnit.h</DependentOn>
+				<BuildOrder>44</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="OHTInfoUnit.cpp">
+				<DependentOn>OHTInfoUnit.h</DependentOn>
+				<BuildOrder>12</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="OHTSysInfoUnit.cpp">
+				<Form>SysInfoForm</Form>
+				<DependentOn>OHTSysInfoUnit.h</DependentOn>
+				<BuildOrder>47</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="OHT_TLV.cpp">
+				<DependentOn>OHT_TLV.h</DependentOn>
+				<BuildOrder>46</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="OHT_TP.cpp">
+				<BuildOrder>0</BuildOrder>
+			</CppCompile>
+			<ResFiles Include="OHT_TP.res">
+				<BuildOrder>1</BuildOrder>
+			</ResFiles>
+			<CppCompile Include="Option.cpp">
+				<Form>frmOption</Form>
+				<DependentOn>Option.h</DependentOn>
+				<BuildOrder>86</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="OptionUnit.cpp">
+				<Form>OptionForm</Form>
+				<DependentOn>OptionUnit.h</DependentOn>
+				<BuildOrder>76</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="PIOUnit.cpp">
+				<Form>PIOForm</Form>
+				<DependentOn>PIOUnit.h</DependentOn>
+				<BuildOrder>49</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="ProcessUnit.cpp">
+				<Form>ProcessForm</Form>
+				<DependentOn>ProcessUnit.h</DependentOn>
+				<BuildOrder>52</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="RebootUnit.cpp">
+				<Form>RebootForm</Form>
+				<DependentOn>RebootUnit.h</DependentOn>
+				<BuildOrder>54</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="RotateOriginUnit.cpp">
+				<Form>RotateOrgForm</Form>
+				<DependentOn>RotateOriginUnit.h</DependentOn>
+				<BuildOrder>56</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="SensorSettingUnit.cpp">
+				<Form>OBS_UBG_Form</Form>
+				<DependentOn>SensorSettingUnit.h</DependentOn>
+				<BuildOrder>88</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="SetCurnodeNUnit.cpp">
+				<Form>SetCurForm</Form>
+				<DependentOn>SetCurnodeNUnit.h</DependentOn>
+				<BuildOrder>57</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="SocketUnit.cpp">
+				<Form>SocketForm</Form>
+				<DependentOn>SocketUnit.h</DependentOn>
+				<BuildOrder>60</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="SpeedHelpUnit.cpp">
+				<Form>SpeedHelpForm</Form>
+				<DependentOn>SpeedHelpUnit.h</DependentOn>
+				<BuildOrder>61</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="StatusUnit.cpp">
+				<Form>StatusForm</Form>
+				<DependentOn>StatusUnit.h</DependentOn>
+				<BuildOrder>62</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="TeachingUnit.cpp">
+				<Form>TeachingForm</Form>
+				<DependentOn>TeachingUnit.h</DependentOn>
+				<BuildOrder>63</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="TimeSettingUnit.cpp">
+				<Form>TimeSettingForm</Form>
+				<DependentOn>TimeSettingUnit.h</DependentOn>
+				<BuildOrder>64</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="TransUnit.cpp">
+				<Form>TransForm</Form>
+				<DependentOn>TransUnit.h</DependentOn>
+				<BuildOrder>65</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="UDP.cpp">
+				<Form>frmUDP</Form>
+				<DependentOn>UDP.h</DependentOn>
+				<BuildOrder>84</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="UserSelectUnit.cpp">
+				<Form>UserSelectForm</Form>
+				<DependentOn>UserSelectUnit.h</DependentOn>
+				<BuildOrder>42</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Utility.cpp">
+				<DependentOn>Utility.h</DependentOn>
+				<BuildOrder>66</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="VelGraphUnit.cpp">
+				<Form>VelGraphForm</Form>
+				<DependentOn>VelGraphUnit.h</DependentOn>
+				<BuildOrder>67</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="VibrationMeasureUnit.cpp">
+				<Form>frmVibrationMeasurement</Form>
+				<DependentOn>VibrationMeasureUnit.h</DependentOn>
+				<BuildOrder>90</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="WaitUnit.cpp">
+				<Form>WaitForm</Form>
+				<DependentOn>WaitUnit.h</DependentOn>
+				<BuildOrder>68</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="WarnningUnit.cpp">
+				<Form>WarnningForm</Form>
+				<DependentOn>WarnningUnit.h</DependentOn>
+				<BuildOrder>69</BuildOrder>
+			</CppCompile>
+			<FormResources Include="M24VelTimeUnit.dfm"/>
+			<FormResources Include="M2AUnit.dfm"/>
+			<FormResources Include="M1VelTimeUnit.dfm"/>
+			<FormResources Include="LogFileUnit.dfm"/>
+			<FormResources Include="LongRunUnit.dfm"/>
+			<FormResources Include="MainUnit.dfm"/>
+			<FormResources Include="OHTSysInfoUnit.dfm"/>
+			<FormResources Include="MultiJogDistUnit.dfm"/>
+			<FormResources Include="MapMakerUnit.dfm"/>
+			<FormResources Include="MoveHoistUnit.dfm"/>
+			<FormResources Include="HoistParamUnit.dfm"/>
+			<FormResources Include="LocMSave.dfm"/>
+			<FormResources Include="LogDownUnit.dfm"/>
+			<FormResources Include="IOMapUnit.dfm"/>
+			<FormResources Include="IOTest.dfm"/>
+			<FormResources Include="TimeSettingUnit.dfm"/>
+			<FormResources Include="TransUnit.dfm"/>
+			<FormResources Include="TeachingUnit.dfm"/>
+			<FormResources Include="SpeedHelpUnit.dfm"/>
+			<FormResources Include="StatusUnit.dfm"/>
+			<FormResources Include="UDP.dfm"/>
+			<FormResources Include="WaitUnit.dfm"/>
+			<FormResources Include="WarnningUnit.dfm"/>
+			<FormResources Include="VelGraphUnit.dfm"/>
+			<FormResources Include="UserSelectUnit.dfm"/>
+			<FormResources Include="OptionUnit.dfm"/>
+			<FormResources Include="PIOUnit.dfm"/>
+			<FormResources Include="Option.dfm"/>
+			<FormResources Include="ProcessUnit.dfm"/>
+			<FormResources Include="SetCurnodeNUnit.dfm"/>
+			<FormResources Include="SocketUnit.dfm"/>
+			<FormResources Include="SensorSettingUnit.dfm"/>
+			<FormResources Include="RebootUnit.dfm"/>
+			<FormResources Include="RotateOriginUnit.dfm"/>
+			<FormResources Include="APMonitoringUnit.dfm"/>
+			<FormResources Include="APTimeUnit.dfm"/>
+			<FormResources Include="AMCParaUnit.dfm"/>
+			<FormResources Include="About.dfm"/>
+			<FormResources Include="AmcDebugMain.dfm"/>
+			<FormResources Include="AssistantUnit.dfm"/>
+			<FormResources Include="CidCheckerUnit.dfm"/>
+			<FormResources Include="BayTestUnit.dfm"/>
+			<FormResources Include="CheckerUnit.dfm"/>
+			<FormResources Include="CmdWinUnit.dfm"/>
+			<FormResources Include="FirmwareUpdateUnit.dfm"/>
+			<FormResources Include="FoupOnlineCMDUnit.dfm"/>
+			<FormResources Include="FileUploadAlarm.dfm"/>
+			<FormResources Include="FileListUnit.dfm"/>
+			<FormResources Include="FileUnit.dfm"/>
+			<FormResources Include="HandOpenUnit.dfm"/>
+			<FormResources Include="HIDVelUnit.dfm"/>
+			<FormResources Include="HIDVelSecUnit.dfm"/>
+			<FormResources Include="HIDGraphUnit.dfm"/>
+			<FormResources Include="HidLogGet.dfm"/>
+			<FormResources Include="DataTransperReq.dfm"/>
+			<FormResources Include="ConnectUnit.dfm"/>
+			<FormResources Include="CommDisplayUnit.dfm"/>
+			<FormResources Include="ConMainUnit.dfm"/>
+			<FormResources Include="DistanceSensorViewer.dfm"/>
+			<FormResources Include="ErrorUnit.dfm"/>
+			<FormResources Include="EUVOnlineCMDUnit.dfm"/>
+			<FormResources Include="ErrorSearchUnit.dfm"/>
+			<FormResources Include="DisUnit.dfm"/>
+			<FormResources Include="E23PIOUnit.dfm"/>
+			<FormResources Include="VibrationMeasureUnit.dfm"/>
+			<FormResources Include="FFTViewer.dfm"/>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Cpp.Targets')" Project="$(BDS)\Bin\CodeGear.Cpp.Targets"/>
+		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
+		<ProjectExtensions>
+			<Borland.Personality>CPlusPlusBuilder.Personality.12</Borland.Personality>
+			<Borland.ProjectType>CppVCLApplication</Borland.ProjectType>
+			<BorlandProject>
+				<CPlusPlusBuilder.Personality>
+					<Source>
+						<Source Name="MainSource">OHT_TP.cpp</Source>
+					</Source>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">2</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">1</VersionInfo>
+						<VersionInfo Name="Build">3</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1042</VersionInfo>
+						<VersionInfo Name="CodePage">949</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName">삼성전자(주)</VersionInfoKeys>
+						<VersionInfoKeys Name="FileDescription">OHT Teaching Pendant Program</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">2.0.1.3</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName">OHT_TP</VersionInfoKeys>
+						<VersionInfoKeys Name="LegalCopyright">Copyright(c) 2019 SEMES</VersionInfoKeys>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename">OHT_TP.exe</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductName">OHT</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">8.1/8.5</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\bcboffice2k150.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\bcbofficexp150.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+					</Excluded_Packages>
+					<ProjectProperties>
+						<ProjectProperties Name="AutoShowDeps">False</ProjectProperties>
+						<ProjectProperties Name="ManagePaths">True</ProjectProperties>
+						<ProjectProperties Name="VerifyPackages">True</ProjectProperties>
+					</ProjectProperties>
+				</CPlusPlusBuilder.Personality>
+				<Platforms>
+					<Platform value="Win32">True</Platform>
+				</Platforms>
+				<ModelSupport>False</ModelSupport>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>
