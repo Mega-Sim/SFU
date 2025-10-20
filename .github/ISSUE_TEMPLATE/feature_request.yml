@@ -1,0 +1,16 @@
+name: 기능 제안
+description: 새로운 기능/개선 제안
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 해결하고 싶은 문제
+  - type: textarea
+    id: solution
+    attributes:
+      label: 제안하는 해결책
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 대안/추가 고려사항
