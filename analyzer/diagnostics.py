@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import zipfile
 from pathlib import Path
+import re
 from typing import Dict, Iterable, List, Tuple
 
 from .report import ms_to_hms
@@ -222,6 +223,142 @@ def _summarize_drive(entries: List[Dict]) -> List[str]:
     return out
 
 
+def _extract_vehicle(text: str) -> str | None:
+    patterns = [
+        re.compile(r"\b(?:OHT|AGV|VEH(?:ICLE)?|CAR)[-_ ]?(\d{1,4})\b", re.I),
+        re.compile(r"\bV(?:EHICLE)?[:= ]?(\d{1,4})\b", re.I),
+        re.compile(r"\bCAR_ID[:= ]?(\d{1,4})\b", re.I),
+    ]
+    for rx in patterns:
+        m = rx.search(text)
+        if m:
+            return f"{m.group(1)}번"
+    return None
+
+
+def _extract_node(text: str) -> str | None:
+    patterns = [
+        re.compile(r"\bNODE[:= ]?([A-Z0-9_-]{2,})\b", re.I),
+        re.compile(r"\bSTATION[:= ]?([A-Z0-9_-]{2,})\b", re.I),
+        re.compile(r"\bPORT[:= ]?([A-Z0-9_-]{2,})\b", re.I),
+        re.compile(r"\bN(\d{2,})\b"),
+    ]
+    for rx in patterns:
+        m = rx.search(text)
+        if m:
+            return m.group(1)
+    return None
+
+
+def _extract_activity(text: str) -> str | None:
+    keywords = [
+        (re.compile(r"\b(LOAD|UNLOAD|LIFT|DROP|HOIST)\b", re.I), "이적재"),
+        (re.compile(r"\b(TRANSFER|PASS)\b", re.I), "이동"),
+        (re.compile(r"\b(DRIVE|RUN|MOVE|TRAVEL)\b", re.I), "주행"),
+        (re.compile(r"\b(DOCK|ALIGN)\b", re.I), "도킹"),
+    ]
+    for rx, label in keywords:
+        if rx.search(text):
+            return label
+    return None
+
+
+def _extract_sensor(text: str) -> str | None:
+    rx_list = [
+        re.compile(r"\b([A-Z0-9_]+SENSOR)\b"),
+        re.compile(r"\b([A-Z0-9_]+_SIG)\b"),
+        re.compile(r"([가-힣A-Za-z0-9_]+센서)"),
+    ]
+    for rx in rx_list:
+        m = rx.search(text)
+        if m:
+            return m.group(1)
+    return None
+
+
+def _describe_source(snippet: str) -> Tuple[str, str, str]:
+    try:
+        ref, lineno, code_line = snippet.rsplit(":", 2)
+        return ref.strip(), lineno.strip(), code_line.strip()
+    except ValueError:
+        return snippet, "", ""
+
+
+def _build_scenario(
+    anchors: List[Dict],
+    precursors: List[Dict],
+    drive: List[Dict],
+    source_snippets: List[str],
+) -> str:
+    anchor_texts = [a.get("text", "") for a in anchors]
+    drive_texts = [d.get("text", "") for d in drive]
+    combined_text = " ".join(anchor_texts + drive_texts)
+
+    vehicle = _extract_vehicle(combined_text)
+    node = _extract_node(combined_text)
+    activity = _extract_activity(combined_text)
+    sensor = _extract_sensor(combined_text)
+
+    subject = "해당 차량"
+    if vehicle:
+        subject = f"{vehicle} 차량"
+
+    node_phrase = ""
+    if node:
+        if not node.endswith("노드"):
+            node_phrase = f"{node} 노드"
+        else:
+            node_phrase = node
+
+    activity_phrase = ""
+    if activity:
+        activity_phrase = f"{activity} 중 "
+
+    sensor_phrase = "센서"
+    if sensor:
+        sensor_phrase = sensor if "센서" in sensor else f"{sensor} 센서"
+
+    location_part = f"{node_phrase}에서 " if node_phrase else ""
+
+    scenario_parts = [
+        f"{subject}은 {location_part}{activity_phrase}{sensor_phrase} 값이 급변한 정황이 있습니다.",
+        "동일 조건의 직전 로그들과 비교하면 이 정도 급변은 관측되지 않아 센서 이상 가능성이 높습니다.",
+    ]
+
+    if anchors:
+        first_anchor = anchors[0]
+        anchor_ts = ms_to_hms(first_anchor.get("ts"))
+        scenario_parts.append(
+            f"증거 로그({anchor_ts} {first_anchor.get('file','')}): {first_anchor.get('text','').strip()}"
+        )
+
+    if drive:
+        drive_hint = drive[0]
+        drive_ts = ms_to_hms(drive_hint.get("ts"))
+        scenario_parts.append(
+            f"주행 맥락({drive_ts} {drive_hint.get('file','')}): {drive_hint.get('text','').strip()}"
+        )
+
+    if precursors:
+        precursor = precursors[0]
+        scenario_parts.append(
+            f"전조 로그(Δt={precursor.get('dt_ms')}ms): {precursor.get('text','').strip()}"
+        )
+
+    if source_snippets:
+        ref, lineno, code_line = _describe_source(source_snippets[0])
+        if code_line:
+            scenario_parts.append(
+                f"제어기 소스 {ref}:{lineno}에서는 \"{code_line}\" 로직으로 동일 상황에서 방어가 이뤄지도록 설계되어 있습니다."
+            )
+        else:
+            scenario_parts.append(
+                f"제어기 소스 {ref}에 정의된 로직상 동일 현상이 쉽게 발생하기 어렵습니다."
+            )
+
+    return " ".join(part for part in scenario_parts if part)
+
+
 def generate_diagnostic_report(result: Dict, rules) -> List[Dict]:
     diagnostics: List[Dict] = []
     code_index = getattr(rules, "code_index", {}) or {}
@@ -255,12 +392,15 @@ def generate_diagnostic_report(result: Dict, rules) -> List[Dict]:
         if not actions:
             actions = ["관련 하드웨어 상태와 인터록을 점검하고 이상 시 재기동 절차를 수행합니다."]
 
+        scenario = _build_scenario(anchors, precursors, drive, source_snippets)
+
         diagnostics.append({
             "code": code,
             "name": name,
             "summary": ", ".join(summary_parts),
             "root_cause": cause,
             "actions": actions,
+            "scenario": scenario,
             "precursors": _summarize_precursors(precursors),
             "drive": _summarize_drive(drive),
             "log_samples": [a.get("text", "") for a in anchors[:3]],

@@ -100,6 +100,8 @@ if st.session_state.get("analyze_now") and uploaded_paths:
             if diag.get("name"):
                 title += f" ({diag['name']})"
             st.markdown(f"**{title}**")
+            if diag.get("scenario"):
+                st.write(diag["scenario"])
             st.write(diag["summary"])
             st.write(f"추정 원인: {diag['root_cause']}")
             st.write("권장 조치:")
