@@ -5,6 +5,7 @@ from analyzer.storage import load_rules, save_rules, load_source_index, save_sou
 from analyzer.rules import RuleSet
 from analyzer.engine import analyze
 from analyzer.report import banner_lines, one_line, ms_to_hms
+from analyzer.diagnostics import generate_diagnostic_report
 from analyzer.learn import add_feedback
 from analyzer.code_indexer import index_code
 
@@ -90,6 +91,40 @@ if st.session_state.get("analyze_now") and uploaded_paths:
 
     st.markdown("#### ✔ 검증 배너(요약)")
     st.code(banner_lines(result["banner"], rs.error_map), language="markdown")
+
+    diagnostics = generate_diagnostic_report(result, rs)
+    if diagnostics:
+        st.markdown("#### 🧠 자동 진단 요약")
+        for diag in diagnostics:
+            title = f"E{diag['code']}"
+            if diag.get("name"):
+                title += f" ({diag['name']})"
+            st.markdown(f"**{title}**")
+            st.write(diag["summary"])
+            st.write(f"추정 원인: {diag['root_cause']}")
+            st.write("권장 조치:")
+            for act in diag["actions"]:
+                st.markdown(f"- {act}")
+            if diag["precursors"]:
+                st.caption("전조 이벤트")
+                for p in diag["precursors"]:
+                    st.code(p, language="text")
+            else:
+                st.caption("전조 이벤트: 발견되지 않음")
+            if diag["drive"]:
+                st.caption("주행 증거")
+                for d in diag["drive"]:
+                    st.code(d, language="text")
+            if diag["code_snippets"] or diag["log_samples"]:
+                with st.expander("근거 보기"):
+                    if diag["log_samples"]:
+                        st.write("로그 앵커 샘플")
+                        for sample in diag["log_samples"]:
+                            st.code(sample, language="text")
+                    if diag["code_snippets"]:
+                        st.write("소스 코드 근거")
+                        for snippet in diag["code_snippets"]:
+                            st.code(snippet, language="text")
 
     st.markdown("#### 🔎 코드별 타임라인 & 전조")
     for b in result["banner"]:
