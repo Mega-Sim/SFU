@@ -13,8 +13,9 @@ from analyzer.diagnostics import generate_diagnostic_report
 from analyzer.learn import add_feedback
 from analyzer.code_indexer import index_code
 from analyzer.trace import collect_trace_datasets
+from analyzer.viz import configure_altair
 
-alt.data_transformers.disable_max_rows()
+configure_altair()
 
 st.set_page_config(page_title="OHT 로그 분석기 (로그 + 코드 참조)", layout="wide")
 
