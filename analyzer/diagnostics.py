@@ -305,58 +305,76 @@ def _build_scenario(
 
     node_phrase = ""
     if node:
-        if not node.endswith("노드"):
-            node_phrase = f"{node} 노드"
-        else:
-            node_phrase = node
+        node_phrase = node if node.endswith("노드") else f"{node} 노드"
 
     activity_phrase = ""
     if activity:
-        activity_phrase = f"{activity} 중 "
+        activity_phrase = f"{activity} 작업 중 "
 
-    sensor_phrase = "센서"
+    focus_phrase = "관련 신호"
     if sensor:
-        sensor_phrase = sensor if "센서" in sensor else f"{sensor} 센서"
+        focus_phrase = sensor if "센서" in sensor else f"{sensor} 센서"
 
     location_part = f"{node_phrase}에서 " if node_phrase else ""
+    subject_part = f"{subject}은"
 
-    scenario_parts = [
-        f"{subject}은 {location_part}{activity_phrase}{sensor_phrase} 값이 급변한 정황이 있습니다.",
-        "동일 조건의 직전 로그들과 비교하면 이 정도 급변은 관측되지 않아 센서 이상 가능성이 높습니다.",
-    ]
+    def _clean_log_text(text: str) -> str:
+        trimmed = re.sub(r"\s+", " ", text.strip())
+        if len(trimmed) > 120:
+            return trimmed[:117] + "..."
+        return trimmed
+
+    timeline: List[str] = []
+    timeline.append(
+        f"{subject_part} {location_part}{activity_phrase}{focus_phrase} 이상 징후를 감지했습니다.".strip()
+    )
+
+    if precursors:
+        for precursor in sorted(precursors, key=lambda p: (p.get("dt_ms") is None, -(p.get("dt_ms") or 0))):
+            delta = precursor.get("dt_ms")
+            delta_phrase = f"사건 {delta}ms 전에 " if delta is not None else "사건 직전에 "
+            log_time = ms_to_hms(precursor.get("ts"))
+            time_phrase = f"({log_time}) " if log_time else ""
+            log_ref = precursor.get("file", "")
+            log_text = _clean_log_text(precursor.get("text", ""))
+            timeline.append(
+                f"{delta_phrase}{time_phrase}{log_ref} 로그에 \"{log_text}\"가 기록되어 초기 전조로 확인되었습니다."
+            )
 
     if anchors:
         first_anchor = anchors[0]
         anchor_ts = ms_to_hms(first_anchor.get("ts"))
-        scenario_parts.append(
-            f"증거 로그({anchor_ts} {first_anchor.get('file','')}): {first_anchor.get('text','').strip()}"
+        anchor_time = anchor_ts if anchor_ts else "해당 시점"
+        anchor_ref = first_anchor.get("file", "")
+        anchor_text = _clean_log_text(first_anchor.get("text", ""))
+        timeline.append(
+            f"{anchor_time}에 {anchor_ref} 로그에서 \"{anchor_text}\" 메시지가 출력되며 오류가 발생했습니다."
         )
 
     if drive:
         drive_hint = drive[0]
         drive_ts = ms_to_hms(drive_hint.get("ts"))
-        scenario_parts.append(
-            f"주행 맥락({drive_ts} {drive_hint.get('file','')}): {drive_hint.get('text','').strip()}"
-        )
-
-    if precursors:
-        precursor = precursors[0]
-        scenario_parts.append(
-            f"전조 로그(Δt={precursor.get('dt_ms')}ms): {precursor.get('text','').strip()}"
+        drive_time = drive_ts if drive_ts else "동일 구간"
+        drive_ref = drive_hint.get("file", "")
+        drive_text = _clean_log_text(drive_hint.get("text", ""))
+        timeline.append(
+            f"이후 {drive_time} 주행 로그({drive_ref})에서는 \"{drive_text}\" 흐름이 이어져 현장 상황을 뒷받침합니다."
         )
 
     if source_snippets:
         ref, lineno, code_line = _describe_source(source_snippets[0])
         if code_line:
-            scenario_parts.append(
-                f"제어기 소스 {ref}:{lineno}에서는 \"{code_line}\" 로직으로 동일 상황에서 방어가 이뤄지도록 설계되어 있습니다."
+            timeline.append(
+                f"제어 로직 {ref}:{lineno}에서는 \"{code_line}\" 조건으로 동일 상황을 방지하도록 설계되어 있어 추가 검토가 필요합니다."
             )
         else:
-            scenario_parts.append(
-                f"제어기 소스 {ref}에 정의된 로직상 동일 현상이 쉽게 발생하기 어렵습니다."
+            timeline.append(
+                f"제어 로직 {ref}에 따른 기대 동작과 실제 로그를 비교하여 원인을 재확인하세요."
             )
 
-    return " ".join(part for part in scenario_parts if part)
+    timeline.append("위 흐름을 기반으로 센서/배선 및 주변 인터락 상태를 우선 점검하세요.")
+
+    return "\n".join(part for part in timeline if part)
 
 
 def generate_diagnostic_report(result: Dict, rules) -> List[Dict]:
