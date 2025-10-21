@@ -92,7 +92,11 @@ def load_rules() -> Dict[str, Any]:
             r"\bNe\d{3,}\b", r"\bCha\d{3,}\b", r"\bNode\d+\b", r"\bChannel\d+\b"
         ],
         "drive_keywords": [r"\bDRIVE\b", r"\bRUN\b", r"\bVEL\b", r"\bSPEED\b", r"\bMOVE\b", r"\bACC\b", r"\bDCC\b"],
-        "axis_map": {"0": "Driving-Rear", "1": "Driving-Front", "2": "Hoist", "3": "Slide"}
+        "axis_map": {"0": "Driving-Rear", "1": "Driving-Front", "2": "Hoist", "3": "Slide"},
+        "terminology": {
+            "Mark": "마크 또는 마킹은 vehicle이 근처 노드로 정위치를 잡기 위하여 이동하는 동작입니다.",
+            "small add": "마킹하거나 차량이 극히 짧은 거리를 조정할 필요가 있을 때 수행되는 미세 이동 동작을 의미합니다."
+        }
     })
 
 def save_rules(rules: Dict[str, Any]) -> None:
