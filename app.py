@@ -1,6 +1,10 @@
 import streamlit as st
 from pathlib import Path
-from typing import List
+from typing import List, Optional
+
+import altair as alt
+import pandas as pd
+
 from analyzer.storage import load_rules, save_rules, load_source_index, save_source_index
 from analyzer.rules import RuleSet
 from analyzer.engine import analyze
@@ -8,6 +12,7 @@ from analyzer.report import banner_lines, one_line, ms_to_hms
 from analyzer.diagnostics import generate_diagnostic_report
 from analyzer.learn import add_feedback
 from analyzer.code_indexer import index_code
+from analyzer.trace import collect_trace_datasets
 
 st.set_page_config(page_title="OHT 로그 분석기 (로그 + 코드 참조)", layout="wide")
 
@@ -34,6 +39,13 @@ with st.sidebar:
     if st.button("룰셋 초기화(기본값)"):
         save_rules(load_rules())
         st.success("룰셋 기본값으로 리셋")
+
+    glossary = rules_obj.get("terminology") or rules_obj.get("glossary")
+    if glossary:
+        with st.expander("주요 용어 정리"):
+            for term, desc in glossary.items():
+                st.markdown(f"**{term}**")
+                st.caption(desc)
 
 st.markdown("### 0) 코드 ZIP 업로드 — vehicle_control.zip, motion_control.zip (선택)")
 code_files = st.file_uploader("코드 ZIP 업로드(여러 개 가능)", type=["zip"], accept_multiple_files=True)
@@ -146,6 +158,92 @@ if st.session_state.get("analyze_now") and uploaded_paths:
                     st.code(one_line(d), language="text")
         else:
             st.caption("주행 힌트: 미확정(증거 부족)")
+
+    trace_datasets = collect_trace_datasets(uploaded_paths, rs, result)
+    if trace_datasets:
+        st.markdown("#### 📈 트레이스 로그 상세 분석")
+        st.caption("실제/명령 궤적과 토크를 비교하고 주요 이벤트 시점을 표시합니다.")
+        for trace in trace_datasets:
+            df = trace.frame
+            header = f"{trace.file}"
+            if trace.axis:
+                header += f" · 축: {trace.axis}"
+            st.markdown(f"**{header}**")
+
+            origin = df["time_ms"].iloc[0]
+            error_df = pd.DataFrame({
+                "time_offset_sec": [(t - origin) / 1000.0 for t in trace.error_times],
+                "label": ["에러 발생"] * len(trace.error_times),
+            }) if trace.error_times else pd.DataFrame(columns=["time_offset_sec", "label"])
+            command_df = pd.DataFrame({
+                "time_offset_sec": [(t - origin) / 1000.0 for t in trace.command_times],
+                "label": ["명령 시점"] * len(trace.command_times),
+            }) if trace.command_times else pd.DataFrame(columns=["time_offset_sec", "label"])
+
+            def _marker_layer(data: pd.DataFrame, color: str, dash: Optional[List[int]] = None):
+                if data.empty:
+                    return None
+                mark = alt.Chart(data).mark_rule(color=color, strokeDash=dash)
+                return mark.encode(
+                    x=alt.X("time_offset_sec:Q", title="시간 (s)"),
+                    tooltip=[alt.Tooltip("label:N", title="이벤트"), alt.Tooltip("time_offset_sec:Q", title="Δt(s)")],
+                )
+
+            layers = []
+
+            if {"actual_position", "command_position"}.intersection(df.columns):
+                pos_cols = {}
+                if "actual_position" in df.columns:
+                    pos_cols["actual_position"] = "실제 위치"
+                if "command_position" in df.columns:
+                    pos_cols["command_position"] = "명령 위치"
+                pos_df = df[["time_offset_sec", *pos_cols.keys()]].rename(columns=pos_cols)
+                pos_melt = pos_df.melt("time_offset_sec", var_name="항목", value_name="값")
+                pos_chart = alt.Chart(pos_melt).mark_line().encode(
+                    x=alt.X("time_offset_sec:Q", title="시간 (s)"),
+                    y=alt.Y("값:Q", title="위치"),
+                    color=alt.Color("항목:N", title=""),
+                    tooltip=["항목:N", alt.Tooltip("time_offset_sec:Q", title="Δt(s)"), alt.Tooltip("값:Q", title="위치")],
+                )
+                layers.append((pos_chart, "위치"))
+
+            if {"actual_velocity", "command_velocity"}.intersection(df.columns):
+                vel_cols = {}
+                if "actual_velocity" in df.columns:
+                    vel_cols["actual_velocity"] = "실제 속도"
+                if "command_velocity" in df.columns:
+                    vel_cols["command_velocity"] = "명령 속도"
+                vel_df = df[["time_offset_sec", *vel_cols.keys()]].rename(columns=vel_cols)
+                vel_melt = vel_df.melt("time_offset_sec", var_name="항목", value_name="값")
+                vel_chart = alt.Chart(vel_melt).mark_line().encode(
+                    x=alt.X("time_offset_sec:Q", title="시간 (s)"),
+                    y=alt.Y("값:Q", title="속도"),
+                    color=alt.Color("항목:N", title=""),
+                    tooltip=["항목:N", alt.Tooltip("time_offset_sec:Q", title="Δt(s)"), alt.Tooltip("값:Q", title="속도")],
+                )
+                layers.append((vel_chart, "속도"))
+
+            if "torque_percent" in df.columns:
+                tq_chart = alt.Chart(df).mark_line(color="#9467bd").encode(
+                    x=alt.X("time_offset_sec:Q", title="시간 (s)"),
+                    y=alt.Y("torque_percent:Q", title="토크(%)"),
+                    tooltip=[alt.Tooltip("time_offset_sec:Q", title="Δt(s)"), alt.Tooltip("torque_percent:Q", title="토크(%)")],
+                )
+                layers.append((tq_chart, "토크"))
+
+            marker_layers = [
+                layer
+                for layer in (
+                    _marker_layer(error_df, "#d62728"),
+                    _marker_layer(command_df, "#1f77b4", dash=[4, 4]),
+                )
+                if layer is not None
+            ]
+
+            for chart, title in layers:
+                combined = alt.layer(chart, *marker_layers) if marker_layers else chart
+                st.altair_chart(combined.properties(height=240), use_container_width=True)
+                st.caption(f"· {title} 추세")
 
     st.markdown("---")
     st.markdown("### 섹션별 리포트 (작업자용)")
