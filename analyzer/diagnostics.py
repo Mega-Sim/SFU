@@ -377,6 +377,123 @@ def _build_scenario(
     return "\n".join(part for part in timeline if part)
 
 
+def _format_bullet_lines(lines: Iterable[str], bullet: str = "•") -> List[str]:
+    formatted: List[str] = []
+    for line in lines:
+        if not line:
+            continue
+        cleaned = line.strip()
+        if cleaned:
+            formatted.append(f"    {bullet} {cleaned}")
+    return formatted
+
+
+def _format_numbered_lines(lines: Iterable[str]) -> List[str]:
+    formatted: List[str] = []
+    for idx, line in enumerate(lines, 1):
+        if not line:
+            continue
+        cleaned = line.strip()
+        if cleaned:
+            formatted.append(f"    {idx}. {cleaned}")
+    return formatted
+
+
+def _format_log_entry(entry: Dict) -> str:
+    ts = ms_to_hms(entry.get("ts"))
+    prefix = f"[{ts}] " if ts else ""
+    file_ref = entry.get("file") or ""
+    text = entry.get("text") or ""
+    text = re.sub(r"\s+", " ", text.strip())
+    return f"{prefix}{file_ref} :: {text}".strip()
+
+
+def _compose_detailed_commentary(
+    banner_info: Dict | None,
+    axis_info: str | None,
+    cause: str,
+    actions: List[str],
+    anchors: List[Dict],
+    precursors: List[Dict],
+    drive: List[Dict],
+    timeline: str,
+) -> str:
+    sections: List[str] = []
+
+    summary_points: List[str] = []
+    if cause:
+        summary_points.append(f"직접 원인 추정: {cause}")
+    if banner_info:
+        count = banner_info.get("count")
+        first = ms_to_hms(banner_info.get("first"))
+        last = ms_to_hms(banner_info.get("last"))
+        summary_points.append(
+            f"발생 횟수 {count}회, 구간 {first} ~ {last}"
+        )
+        if banner_info.get("precursor_present"):
+            summary_points.append("전조 이벤트 감지: 있음")
+        if banner_info.get("drive_evidence"):
+            summary_points.append("주행 증거 로그 확보")
+    if axis_info:
+        summary_points.append(axis_info)
+
+    sections.append("요약 결론")
+    sections.extend(_format_bullet_lines(summary_points))
+
+    evidence_lines: List[str] = []
+    for anchor in anchors[:5]:
+        evidence_lines.append(_format_log_entry(anchor))
+    if precursors:
+        evidence_lines.append("전조 이벤트:")
+        for precursor in precursors[:3]:
+            evidence_lines.append("    ↳ " + _format_log_entry(precursor))
+    if drive:
+        evidence_lines.append("주행 증거:")
+        for d in drive[:3]:
+            evidence_lines.append("    ↳ " + _format_log_entry(d))
+
+    if evidence_lines:
+        sections.append("\n증거 (로그 발췌)")
+        formatted_evidence: List[str] = []
+        for line in evidence_lines:
+            if line.startswith("    ↳ "):
+                formatted_evidence.append(f"    - {line[6:]}")
+            else:
+                formatted_evidence.append(f"    • {line}")
+        sections.extend(formatted_evidence)
+
+    hypothesis_lines = [cause]
+    if axis_info and axis_info not in hypothesis_lines:
+        hypothesis_lines.append(axis_info)
+    if banner_info and banner_info.get("drive_evidence") and "주행 증거" not in hypothesis_lines:
+        hypothesis_lines.append("주행 로그와 결부된 상태 변화 가능성 확인 필요")
+
+    sections.append("\n왜 이런가? (가설)")
+    sections.extend(_format_numbered_lines(hypothesis_lines))
+
+    sections.append("\n바로 해볼 검증/대응")
+    sections.extend(_format_numbered_lines(actions))
+
+    if timeline:
+        sections.append("\n상세 타임라인")
+        for line in timeline.splitlines():
+            cleaned = line.strip()
+            if cleaned:
+                sections.append(f"    - {cleaned}")
+
+    conclusion_points = []
+    if banner_info:
+        conclusion_points.append(
+            f"동일 오류 재발 여부 확인을 위해 {banner_info.get('count', 0)}회 발생 패턴을 추적하세요."
+        )
+    conclusion_points.append("로그 증거와 코드 조건을 교차 검증하여 원인 확정을 진행하세요.")
+
+    sections.append("\n결론 정리")
+    sections.extend(_format_bullet_lines(conclusion_points))
+
+    return "\n".join(sections).rstrip()
+
+
 def generate_diagnostic_report(result: Dict, rules) -> List[Dict]:
     diagnostics: List[Dict] = []
     code_index = getattr(rules, "code_index", {}) or {}
@@ -410,7 +527,23 @@ def generate_diagnostic_report(result: Dict, rules) -> List[Dict]:
         if not actions:
             actions = ["관련 하드웨어 상태와 인터록을 점검하고 이상 시 재기동 절차를 수행합니다."]
 
-        scenario = _build_scenario(anchors, precursors, drive, source_snippets)
+        scenario_timeline = _build_scenario(anchors, precursors, drive, source_snippets)
+
+        banner_info = next(
+            (b for b in result.get("banner", []) if str(b.get("code")) == code),
+            None,
+        )
+
+        detailed_commentary = _compose_detailed_commentary(
+            banner_info,
+            axis_info,
+            cause,
+            actions,
+            anchors,
+            precursors,
+            drive,
+            scenario_timeline,
+        )
 
         diagnostics.append({
             "code": code,
@@ -418,7 +551,7 @@ def generate_diagnostic_report(result: Dict, rules) -> List[Dict]:
             "summary": ", ".join(summary_parts),
             "root_cause": cause,
             "actions": actions,
-            "scenario": scenario,
+            "scenario": detailed_commentary,
             "precursors": _summarize_precursors(precursors),
             "drive": _summarize_drive(drive),
             "log_samples": [a.get("text", "") for a in anchors[:3]],
