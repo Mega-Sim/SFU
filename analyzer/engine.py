@@ -1,10 +1,23 @@
 from __future__ import annotations
 from typing import Dict, Any
 from collections import defaultdict
+
 from .parser import iter_logs, find_time_ms
 from .rules import RuleSet
+from . import storage
+
+CYCLE_MS = 1
+
+
+def assert_required_sources() -> None:
+    if not storage.required_sources_present(("vehicle", "motion")):
+        raise RuntimeError(
+            "vehicle_control.zip과 motion_control.zip을 모두 인덱싱한 뒤에만 분석을 진행할 수 있습니다."
+        )
+
 
 def analyze(paths, rules: RuleSet) -> Dict[str, Any]:
+    assert_required_sources()
     lines = []
     by_cat = defaultdict(list)
     for fname, text in iter_logs(paths):

@@ -3,9 +3,9 @@ import re
 from typing import Dict, List, Tuple
 
 class RuleSet:
-    def __init__(self, rules: Dict, code_index: Dict|None=None):
+    def __init__(self, rules: Dict, code_index: Dict | None = None):
         self.rules = rules
-        self.code_index = code_index or {"map_num_to_name": {}}
+        self.code_index = code_index or {}
         self._cat_rx = {k: re.compile(v, re.I) for k,v in rules["categories"].items()}
         self._anchor_rx = [re.compile(p, re.I) for p in rules["error_patterns"]["anchor"]]
         self._precursor_rx = [re.compile(p, re.I) for p in rules["precursor_patterns"]]
@@ -46,6 +46,24 @@ class RuleSet:
     @property
     def error_map(self):
         em = self.rules["error_patterns"].get("confirm_map", {}).copy()
-        for num, name in self.code_index.get("map_num_to_name", {}).items():
+        for num, name in self._iter_code_mappings():
             em[str(num)] = name
         return em
+
+    def _iter_code_mappings(self):
+        index = self.code_index or {}
+        if not isinstance(index, dict):
+            return []
+        if "map_num_to_name" in index:
+            return list(index.get("map_num_to_name", {}).items())
+
+        pairs = []
+        for key, section in index.items():
+            if key == "meta":
+                continue
+            if not isinstance(section, dict):
+                continue
+            map_num_to_name = section.get("map_num_to_name")
+            if isinstance(map_num_to_name, dict):
+                pairs.extend(map_num_to_name.items())
+        return pairs
