@@ -1,337 +1,92 @@
-"""Utilities for rendering M-Trace log visualizations.
-
-The main entry point :func:`visualize_from_bundle` inspects a given bundle
-(archive/directory/single file), locates M-Trace logs and generates two PNG
-charts per file:
-
-* Actual/Command speed vs. torque
-* Actual/Command position vs. torque
-
-The helper is resilient to a variety of CSV/LOG encodings, column names and
-missing time information.  See the module level constants for the heuristics
-that are used when parsing the logs.
-"""
 from __future__ import annotations
-
-import argparse
-import io
-import json
-import math
-import re
-import tarfile
-import zipfile
+import io, re, math, tarfile, zipfile
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Iterable, Iterator, List, Optional, Tuple
-
+from typing import List, Optional, Dict, Tuple, Iterable
 import numpy as np
 import pandas as pd
-
-import matplotlib
-
-matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
+# --- detection ---
+MTRACE_NAME = re.compile(r"(?i)\bM[-_]?TRACE\b")
+ENC = ("utf-8-sig","utf-8","cp949","euc-kr","latin-1")
+# AMC headerless index profile (현장 포맷 대응)
+AMC_IDX = {"time":0, "speed_cmd":3, "speed_act":4, "torque":5, "pos_cmd":6, "pos_act":9}
 
-# Regex used to identify M-Trace log files irrespective of extensions.
-MTRACE_NAME_REGEX = re.compile(r"(?i)M[-_]?TRACE")
-
-# Common encodings used for M-Trace exports (Korean/English environments).
-CANDIDATE_ENCODINGS: Tuple[str, ...] = (
-    "utf-8-sig",
-    "utf-8",
-    "cp949",
-    "euc-kr",
-    "latin-1",
-)
-
-# Token dictionary for fuzzy column matching.
-TOKENS: Dict[str, List[str]] = {
-    "time": [
-        "time",
-        "timestamp",
-        "t",
-        "ms",
-        "time_ms",
-        "tick",
-        "sample",
-        "index",
-        "번호",
-        "시간",
-        "타임",
-        "타임스탬프",
-    ],
-    "torque": [
-        "torque",
-        "trq",
-        "iq",
-        "iqref",
-        "iqfb",
-        "current",
-        "load",
-        "motor_torque",
-        "토크",
-        "토오크",
-        "전류",
-        "부하",
-    ],
-    "speed_act": [
-        "actualspeed",
-        "actspeed",
-        "speed",
-        "velocity",
-        "actvel",
-        "feedbackspeed",
-        "fbvel",
-        "measvel",
-        "velfb",
-        "실제속도",
-        "피드백속도",
-        "피드백속력",
-    ],
-    "speed_cmd": [
-        "commandspeed",
-        "cmdspeed",
-        "targetspeed",
-        "refspeed",
-        "setpointspeed",
-        "velcmd",
-        "vref",
-        "명령속도",
-        "지령속도",
-        "설정속도",
-    ],
-    "pos_act": [
-        "actualposition",
-        "actposition",
-        "position",
-        "actpos",
-        "feedbackposition",
-        "fbpos",
-        "measpos",
-        "posfb",
-        "실제위치",
-        "피드백위치",
-    ],
-    "pos_cmd": [
-        "commandposition",
-        "cmdposition",
-        "targetposition",
-        "refposition",
-        "setpointposition",
-        "cmdpos",
-        "poscmd",
-        "명령위치",
-        "지령위치",
-        "설정위치",
-    ],
+TOKENS = {
+  "time":["time","timestamp","t","ms","time_ms","tick","sample","시간","타임"],
+  "torque":["torque","trq","iq","iqref","iqfb","current","load","토크","전류"],
+  "speed_act":["actualspeed","actspeed","speed","velocity","actvel","feedbackspeed","fbvel","velfb","실제속도","피드백속도"],
+  "speed_cmd":["commandspeed","cmdspeed","targetspeed","refspeed","setpointspeed","velcmd","vref","명령속도","지령속도"],
+  "pos_act":["actualposition","actposition","position","actpos","feedbackposition","fbpos","posfb","실제위치","피드백위치"],
+  "pos_cmd":["commandposition","cmdposition","targetposition","refposition","setpointposition","cmdpos","poscmd","명령위치","지령위치"],
 }
-
-
-def _normalize(text: str) -> str:
-    """Return a simplified identifier used for fuzzy comparisons."""
-
-    return re.sub(r"[^a-z0-9가-힣]+", "", text.lower())
-
-
-def _find_best_column(columns: Iterable[str], token_list: Iterable[str]) -> Optional[str]:
-    """Find the column whose normalised name best matches the token list."""
-
-    columns = list(columns)
-    normalised = {column: _normalize(column) for column in columns}
-    candidates = [_normalize(token) for token in token_list]
-
-    # Prefer exact/starts-with matches.
-    for column, normalised_column in normalised.items():
-        for candidate in candidates:
-            if normalised_column == candidate or normalised_column.startswith(candidate):
-                return column
-
-    # Fallback to substring matches.
-    for column, normalised_column in normalised.items():
-        for candidate in candidates:
-            if candidate and candidate in normalised_column:
-                return column
-
+def _norm(s:str)->str: return re.sub(r"[^a-z0-9가-힣]+","", s.lower())
+def _find_col(cols: List[str], keys: List[str])->Optional[str]:
+    n={c:_norm(c) for c in cols}; k=[_norm(x) for x in keys]
+    for c,v in n.items():
+        for t in k:
+            if v==t or v.startswith(t): return c
+    for c,v in n.items():
+        for t in k:
+            if t in v: return c
     return None
 
-
-def _read_csv_like(buffer: io.BytesIO, source_name: str) -> pd.DataFrame:
-    """Attempt to read a CSV/LOG buffer with multiple encodings and separators."""
-
-    last_error: Optional[Exception] = None
-    for encoding in CANDIDATE_ENCODINGS:
+def _read_csvlike(b: bytes) -> pd.DataFrame:
+    last=None
+    for enc in ENC:
         try:
-            buffer.seek(0)
-            df = pd.read_csv(buffer, sep=None, engine="python", encoding=encoding)
-            if df.shape[1] == 1:
-                buffer.seek(0)
-                df = pd.read_csv(
-                    buffer,
-                    delim_whitespace=True,
-                    engine="python",
-                    encoding=encoding,
-                )
+            bio=io.BytesIO(b)
+            df=pd.read_csv(bio, sep=None, engine="python", encoding=enc)
+            if df.shape[1]==1:
+                bio.seek(0); df=pd.read_csv(bio, delim_whitespace=True, engine="python", encoding=enc)
             return df
-        except Exception as exc:  # pragma: no cover - pandas raises various errors.
-            last_error = exc
-    raise RuntimeError(f"Failed to parse {source_name}. Last error: {last_error!r}")
+        except Exception as e:
+            last=e
+    raise RuntimeError(last)
 
-
-def _build_time_axis(df: pd.DataFrame, time_column: Optional[str]) -> pd.Series:
-    """Return a time axis in seconds for the dataframe."""
-
-    if time_column and time_column in df.columns:
-        series = df[time_column]
-        numeric = pd.to_numeric(series, errors="coerce")
-        if numeric.notna().mean() > 0.9:
-            if not numeric.dropna().empty:
-                median = float(numeric.dropna().median())
-                # Treat high values as millisecond ticks.
-                if 1000.0 < median < 1e9:
-                    return numeric / 1000.0
-            return numeric
+def _build_time(df: pd.DataFrame, time_col: Optional[str]) -> pd.Series:
+    if time_col and time_col in df:
+        s=df[time_col]; s2=pd.to_numeric(s, errors="coerce")
+        if s2.notna().mean()>0.9:
+            med=s2.dropna().median()
+            return (s2/1000.0) if 1000<med<1e9 else s2
         try:
-            parsed = pd.to_datetime(series)
-            return (parsed - parsed.iloc[0]).dt.total_seconds()
-        except Exception:  # pragma: no cover - depends on input formats.
-            pass
+            ts=pd.to_datetime(s); return (ts-ts.iloc[0]).dt.total_seconds()
+        except Exception: pass
+    return pd.Series(np.arange(len(df))*0.001, name="time_s")
 
-    return pd.Series(np.arange(len(df)) * 0.001, name="time_s")
+def _downsample(df: pd.DataFrame, max_points:int)->pd.DataFrame:
+    n=len(df)
+    if n<=max_points: return df
+    step=math.ceil(n/max_points); return df.iloc[::step,:].reset_index(drop=True)
 
+def _plot_dual(time_s, lefts, labels, right, ylabel_left, title, outp: Path):
+    fig=plt.figure(figsize=(12,5))
+    ax1=plt.gca()
+    for s,l in zip(lefts,labels): ax1.plot(time_s, s, label=l)
+    ax1.set_xlabel("Time (s)"); ax1.set_ylabel(ylabel_left); ax1.legend(loc="upper left")
+    ax2=ax1.twinx(); ax2.plot(time_s, right, label="Torque", alpha=0.85); ax2.set_ylabel("Torque")
+    plt.title(title); fig.tight_layout(); fig.savefig(outp,dpi=150); plt.close(fig)
 
-def _smooth(series: pd.Series, window: int) -> pd.Series:
-    if window and window > 1:
-        return series.rolling(window, min_periods=1, center=False).mean()
-    return series
-
-
-def _downsample_df(df: pd.DataFrame, max_points: int) -> pd.DataFrame:
-    if len(df) <= max_points:
-        return df
-    step = max(1, math.ceil(len(df) / max_points))
-    return df.iloc[::step, :].reset_index(drop=True)
-
-
-def _parse_columns(df: pd.DataFrame) -> Dict[str, Optional[str]]:
-    columns = list(df.columns.astype(str))
-    return {
-        "time": _find_best_column(columns, TOKENS["time"]),
-        "torque": _find_best_column(columns, TOKENS["torque"]),
-        "speed_act": _find_best_column(columns, TOKENS["speed_act"]),
-        "speed_cmd": _find_best_column(columns, TOKENS["speed_cmd"]),
-        "pos_act": _find_best_column(columns, TOKENS["pos_act"]),
-        "pos_cmd": _find_best_column(columns, TOKENS["pos_cmd"]),
-    }
-
-
-def _plot_speed_vs_torque(
-    df: pd.DataFrame,
-    time_s: pd.Series,
-    actual: str,
-    command: Optional[str],
-    torque: str,
-    output_path: Path,
-) -> None:
-    fig = plt.figure(figsize=(12, 5))
-    ax_left = fig.add_subplot(111)
-    ax_left.plot(time_s, df[actual], label="Actual Speed")
-    if command and command in df:
-        ax_left.plot(time_s, df[command], label="Command Speed")
-    ax_left.set_xlabel("Time (s)")
-    ax_left.set_ylabel("Speed")
-    ax_left.legend(loc="upper left")
-
-    ax_right = ax_left.twinx()
-    ax_right.plot(time_s, df[torque], label="Torque", alpha=0.85)
-    ax_right.set_ylabel("Torque")
-
-    fig.suptitle("Speed vs Torque (left: speed, right: torque)")
-    fig.tight_layout()
-    fig.savefig(output_path, dpi=150)
-    plt.close(fig)
-
-
-def _plot_position_vs_torque(
-    df: pd.DataFrame,
-    time_s: pd.Series,
-    actual: str,
-    command: Optional[str],
-    torque: str,
-    output_path: Path,
-) -> None:
-    fig = plt.figure(figsize=(12, 5))
-    ax_left = fig.add_subplot(111)
-    ax_left.plot(time_s, df[actual], label="Actual Position")
-    if command and command in df:
-        ax_left.plot(time_s, df[command], label="Command Position")
-    ax_left.set_xlabel("Time (s)")
-    ax_left.set_ylabel("Position")
-    ax_left.legend(loc="upper left")
-
-    ax_right = ax_left.twinx()
-    ax_right.plot(time_s, df[torque], label="Torque", alpha=0.85)
-    ax_right.set_ylabel("Torque")
-
-    fig.suptitle("Position vs Torque (left: position, right: torque)")
-    fig.tight_layout()
-    fig.savefig(output_path, dpi=150)
-    plt.close(fig)
-
-
-def _iter_mtrace_files_from_dir(root: Path) -> Iterator[Tuple[str, io.BytesIO]]:
-    for path in root.rglob("*"):
-        if not path.is_file():
-            continue
-        if not MTRACE_NAME_REGEX.search(path.name):
-            continue
-        try:
-            yield str(path), io.BytesIO(path.read_bytes())
-        except OSError:
-            continue
-
-
-def _iter_mtrace_files_from_zip(archive: zipfile.ZipFile, zip_path: Path) -> Iterator[Tuple[str, io.BytesIO]]:
-    for name in archive.namelist():
-        if name.endswith("/"):
-            continue
-        base = Path(name).name
-        if MTRACE_NAME_REGEX.search(base):
-            yield f"{zip_path}!{name}", io.BytesIO(archive.read(name))
-
-
-def _iter_mtrace_files_from_tar(archive: tarfile.TarFile, tar_path: Path) -> Iterator[Tuple[str, io.BytesIO]]:
-    for member in archive.getmembers():
-        if not member.isfile():
-            continue
-        base = Path(member.name).name
-        if not MTRACE_NAME_REGEX.search(base):
-            continue
-        extracted = archive.extractfile(member)
-        if extracted is None:
-            continue
-        yield f"{tar_path}!{member.name}", io.BytesIO(extracted.read())
-
-
-def _iter_mtrace_streams(bundle: Path) -> Iterator[Tuple[str, io.BytesIO]]:
+def _iter_streams(bundle: Path):
     if bundle.is_dir():
-        yield from _iter_mtrace_files_from_dir(bundle)
+        for fp in bundle.rglob("*"):
+            if fp.is_file(): yield (str(fp), fp.read_bytes()); 
         return
-
-    lower = bundle.name.lower()
-    if lower.endswith(".zip"):
-        with zipfile.ZipFile(bundle, "r") as archive:
-            yield from _iter_mtrace_files_from_zip(archive, bundle)
+    low=bundle.name.lower()
+    if low.endswith(".zip"):
+        with zipfile.ZipFile(bundle,"r") as zp:
+            for n in zp.namelist(): yield (n, zp.read(n))
         return
-
-    if lower.endswith((".tar", ".tar.gz", ".tgz", ".tar.bz2", ".tbz2", ".tar.xz", ".txz")):
-        with tarfile.open(bundle, "r:*") as archive:
-            yield from _iter_mtrace_files_from_tar(archive, bundle)
+    if low.endswith((".tar",".tar.gz",".tgz",".tar.bz2",".tbz2",".tar.xz",".txz")):
+        with tarfile.open(bundle,"r:*") as tp:
+            for m in tp.getmembers():
+                if not m.isfile(): continue
+                f=tp.extractfile(m); 
+                if f: yield (m.name, f.read())
         return
-
-    if MTRACE_NAME_REGEX.search(bundle.name):
-        yield str(bundle), io.BytesIO(bundle.read_bytes())
-
+    if bundle.is_file(): yield (bundle.name, bundle.read_bytes())
 
 @dataclass
 class VisualizeResult:
@@ -340,174 +95,81 @@ class VisualizeResult:
     pos_png: Optional[Path]
     notes: str
 
+def _by_header_or_profile(name:str, b:bytes)->Tuple[pd.DataFrame, Dict[str,Optional[str]], str]:
+    """Return (df, mapping, mode) where mode in {'header','amc_idx'}."""
+    # try header first
+    df=_read_csvlike(b)
+    cols=list(df.columns)
+    mapping={
+        "time":_find_col(cols,TOKENS["time"]),
+        "torque":_find_col(cols,TOKENS["torque"]),
+        "speed_act":_find_col(cols,TOKENS["speed_act"]),
+        "speed_cmd":_find_col(cols,TOKENS["speed_cmd"]),
+        "pos_act":_find_col(cols,TOKENS["pos_act"]),
+        "pos_cmd":_find_col(cols,TOKENS["pos_cmd"]),
+    }
+    if any(mapping.values()):
+        return df, mapping, "header"
+    # AMC headerless (all numeric, name has AMC_AXIS)
+    text=io.BytesIO(b).getvalue().decode("latin-1","ignore")
+    lines=[ln for ln in text.splitlines() if ln.strip()]
+    nums=[]
+    import re as _re
+    for ln in lines[:200]:
+        try: nums.append([float(x) for x in _re.split(r"[\t,\s]+", ln.strip()) if x!=""])
+        except: pass
+    if nums and len(nums[0])>max(AMC_IDX.values()) and re.search(r"(?i)AMC[_-]?AXIS", Path(name).name):
+        rows=[]
+        for ln in lines:
+            try: rows.append([float(x) for x in _re.split(r"[\t,\s]+", ln.strip()) if x!=""])
+            except: pass
+        arr=np.array(rows, dtype=float)
+        df=pd.DataFrame(arr); df.columns=[f"{i}" for i in range(df.shape[1])]
+        mapping={k:f"{AMC_IDX[k]}" for k in AMC_IDX}
+        return df, mapping, "amc_idx"
+    return df, mapping, "header"
 
-def visualize_from_bundle(
-    bundle_path: Path | str,
-    out_dir: Path | str,
-    *,
-    smooth_window: int = 1,
-    max_points: int = 100_000,
-) -> List[VisualizeResult]:
-    """Generate plots for any M-Trace files contained in ``bundle_path``."""
-
-    bundle = Path(bundle_path)
-    output_root = Path(out_dir)
-    output_root.mkdir(parents=True, exist_ok=True)
-
-    results: List[VisualizeResult] = []
-    found = False
-
-    for source, stream in _iter_mtrace_streams(bundle):
-        found = True
-        notes: List[str] = []
+def visualize_from_bundle(bundle_path, out_dir, smooth_window=1, max_points=120_000):
+    bundle=Path(bundle_path); out=Path(out_dir); out.mkdir(parents=True, exist_ok=True)
+    results=[]; found=False
+    for name, data in _iter_streams(bundle):
+        base=Path(name).name
+        if not MTRACE_NAME.search(base): continue
+        found=True
         try:
-            raw_bytes = stream.getvalue()
-
-            def reopen() -> io.BytesIO:
-                return io.BytesIO(raw_bytes)
-
-            df = _read_csv_like(reopen(), source)
-            column_map = _parse_columns(df)
-
-            keep_columns = [
-                column_map.get("time"),
-                column_map.get("torque"),
-                column_map.get("speed_act"),
-                column_map.get("speed_cmd"),
-                column_map.get("pos_act"),
-                column_map.get("pos_cmd"),
-            ]
-            keep_columns = [col for col in keep_columns if col]
-            if not keep_columns:
-                results.append(
-                    VisualizeResult(
-                        source=source,
-                        speed_png=None,
-                        pos_png=None,
-                        notes="No recognizable columns; headers: "
-                        + ", ".join(df.columns.astype(str)),
-                    )
-                )
-                continue
-
-            df = df.loc[:, keep_columns].copy()
-            for key in ("torque", "speed_act", "speed_cmd", "pos_act", "pos_cmd"):
-                column = column_map.get(key)
-                if column and column in df.columns:
-                    df[column] = _smooth(pd.to_numeric(df[column], errors="coerce"), smooth_window)
-
-            time_series = _build_time_axis(df, column_map.get("time"))
-
-            combined = pd.DataFrame({"__time__": time_series})
-            for column in df.columns:
-                combined[column] = df[column]
-
-            combined = _downsample_df(combined, max_points)
-            time_series = combined["__time__"]
-            df = combined.drop(columns=["__time__"])
-
-            safe_name = re.sub(r"[^a-zA-Z0-9._-]+", "_", Path(source).name)
-            base_path = output_root / safe_name
-
-            speed_path: Optional[Path] = None
-            position_path: Optional[Path] = None
-
-            torque_column = column_map.get("torque")
-            if torque_column and column_map.get("speed_act"):
-                speed_path = base_path.with_name(base_path.stem + "_speed_vs_torque.png")
-                _plot_speed_vs_torque(
-                    df,
-                    time_series,
-                    column_map["speed_act"],
-                    column_map.get("speed_cmd"),
-                    torque_column,
-                    speed_path,
-                )
-
-            if torque_column and column_map.get("pos_act"):
-                position_path = base_path.with_name(base_path.stem + "_position_vs_torque.png")
-                _plot_position_vs_torque(
-                    df,
-                    time_series,
-                    column_map["pos_act"],
-                    column_map.get("pos_cmd"),
-                    torque_column,
-                    position_path,
-                )
-
-            if speed_path is None and position_path is None:
-                notes.append(f"Missing columns for plots. mapping={column_map}")
-
-            results.append(
-                VisualizeResult(
-                    source=source,
-                    speed_png=speed_path,
-                    pos_png=position_path,
-                    notes="; ".join(notes),
-                )
-            )
-        except Exception as exc:  # pragma: no cover - defensive error path.
-            results.append(
-                VisualizeResult(
-                    source=source,
-                    speed_png=None,
-                    pos_png=None,
-                    notes=f"Error: {exc!r}",
-                )
-            )
-
+            df, mapping, mode=_by_header_or_profile(base, data)
+            keep=[c for c in [mapping.get("time"),mapping.get("torque"),mapping.get("speed_act"),mapping.get("speed_cmd"),mapping.get("pos_act"),mapping.get("pos_cmd")] if c]
+            if not keep:
+                results.append(VisualizeResult(name,None,None,"No recognizable columns")); continue
+            # time
+            if mode=="header":
+                t=_build_time(df, mapping.get("time"))
+            else:
+                t=pd.to_numeric(df[mapping["time"]], errors="coerce")
+                dt=float(t.diff().median()) if len(t)>1 else 1.0
+                scale=1000.0 if 1.0<=dt<=20.0 else 1.0
+                t=(t - t.iloc[0]) / scale
+            # numeric + downsample
+            for c in keep: df[c]=pd.to_numeric(df[c], errors="coerce")
+            tmp=pd.DataFrame({"__t__":t}); [tmp.__setitem__(c, df[c]) for c in keep]
+            tmp=_downsample(tmp, max_points); t=tmp["__t__"]; df=tmp.drop(columns=["__t__"])
+            safe=re.sub(r"[^a-zA-Z0-9._-]+","_", base)
+            sp=out/(safe+"_speed_vs_torque.png"); ps=out/(safe+"_position_vs_torque.png")
+            # speed vs torque
+            if mapping.get("torque") and mapping.get("speed_act"):
+                left=[df[mapping["speed_act"]]]; labels=["Actual Speed"]
+                if mapping.get("speed_cmd"): left.append(df[mapping["speed_cmd"]]); labels.append("Command Speed")
+                _plot_dual(t, left, labels, df[mapping["torque"]], "Speed", "Speed vs Torque (left: speed, right: torque)", sp)
+            else: sp=None
+            # position vs torque
+            if mapping.get("torque") and mapping.get("pos_act"):
+                left=[df[mapping["pos_act"]]]; labels=["Actual Position"]
+                if mapping.get("pos_cmd"): left.append(df[mapping["pos_cmd"]]); labels.append("Command Position")
+                _plot_dual(t, left, labels, df[mapping["torque"]], "Position", "Position vs Torque (left: position, right: torque)", ps)
+            else: ps=None
+            results.append(VisualizeResult(name, sp, ps, f"mode={mode}"))
+        except Exception as e:
+            results.append(VisualizeResult(name, None, None, f"Error: {e!r}"))
     if not found:
-        results.append(
-            VisualizeResult(
-                source=str(bundle),
-                speed_png=None,
-                pos_png=None,
-                notes="No M-Trace files found in bundle.",
-            )
-        )
-
+        results.append(VisualizeResult(str(bundle), None, None, "No M-Trace files found"))
     return results
-
-
-def _main() -> None:
-    parser = argparse.ArgumentParser(
-        description="M-Trace visualizer (speed/position vs torque)",
-    )
-    parser.add_argument("--in", dest="inp", required=True, help="Bundle path (zip/tar/dir/file)")
-    parser.add_argument("--out", dest="out", required=True, help="Directory to save PNG files")
-    parser.add_argument(
-        "--smooth",
-        dest="smooth",
-        type=int,
-        default=1,
-        help="Rolling window size for smoothing (in samples)",
-    )
-    parser.add_argument(
-        "--max-points",
-        dest="max_points",
-        type=int,
-        default=100_000,
-        help="Maximum number of samples per plot after downsampling",
-    )
-    args = parser.parse_args()
-
-    results = visualize_from_bundle(
-        args.inp,
-        args.out,
-        smooth_window=args.smooth,
-        max_points=args.max_points,
-    )
-
-    def to_dict(value: VisualizeResult) -> Dict[str, Optional[str]]:
-        return {
-            "source": value.source,
-            "speed_png": str(value.speed_png) if value.speed_png else None,
-            "pos_png": str(value.pos_png) if value.pos_png else None,
-            "notes": value.notes,
-        }
-
-    print(json.dumps([to_dict(result) for result in results], ensure_ascii=False, indent=2))
-
-
-if __name__ == "__main__":  # pragma: no cover - CLI entry point.
-    _main()
