@@ -5,13 +5,19 @@ from typing import List, Optional
 import altair as alt
 import pandas as pd
 
-from analyzer.storage import load_rules, save_rules, load_source_index, save_source_index
+from analyzer.storage import (
+    load_rules,
+    save_rules,
+    load_source_index,
+    save_source_index,
+    required_sources_present,
+)
 from analyzer.rules import RuleSet
 from analyzer.engine import analyze
 from analyzer.report import banner_lines, one_line, ms_to_hms
 from analyzer.diagnostics import generate_diagnostic_report
 from analyzer.learn import add_feedback
-from analyzer.code_indexer import index_code
+from analyzer.code_indexer import build_source_index
 from analyzer.trace import collect_trace_datasets
 # ────────────────────────────────────────────────────────────────
 # 아래 코드는 새 브랜치(codex)에서 추가한 부분
@@ -26,14 +32,19 @@ st.markdown("## ✅ OHT 로그 분석기 — 증거-우선 / 보수적 결론 / 
 st.caption("축: 0=Driving-Rear, 1=Driving-Front, 2=Hoist, 3=Slide | 1ms 통신 | amulation/crc15_ccitt 제외")
 
 current_idx = load_source_index()
-current_idx_count = len(current_idx.get("map_num_to_name", {}))
+vehicle_count = len(current_idx.get("vehicle", {}).get("map_num_to_name", {}))
+motion_count = len(current_idx.get("motion", {}).get("map_num_to_name", {}))
 idx_source = current_idx.get("meta", {}).get("source")
-if idx_source == "default_system" and current_idx_count:
-    st.caption(
-        f"현재 기본 시스템(motion_control + vehicle_control) 코드 매핑 {current_idx_count}건을 사용 중입니다."
-    )
-elif current_idx_count:
-    st.caption(f"현재 저장된 코드 매핑 {current_idx_count}건이 적용됩니다.")
+
+if vehicle_count and motion_count:
+    if idx_source == "default_system":
+        st.caption(
+            f"현재 기본 시스템(motion_control + vehicle_control) 코드 매핑: vehicle {vehicle_count}건 + motion {motion_count}건을 사용 중입니다."
+        )
+    else:
+        st.caption(
+            f"현재 저장된 코드 매핑 적용 중 — vehicle {vehicle_count}건, motion {motion_count}건."
+        )
 else:
     st.caption("현재 코드 매핑이 비어 있습니다.")
 
@@ -53,32 +64,58 @@ with st.sidebar:
                 st.markdown(f"**{term}**")
                 st.caption(desc)
 
-st.markdown("### 0) 코드 ZIP 업로드 — vehicle_control.zip, motion_control.zip (선택)")
-code_files = st.file_uploader("코드 ZIP 업로드(여러 개 가능)", type=["zip"], accept_multiple_files=True)
-code_paths: List[Path] = []
-if code_files:
-    srcdir = Path("./_code"); srcdir.mkdir(exist_ok=True)
-    for f in code_files:
-        p = srcdir / f.name
-        p.write_bytes(f.getbuffer())
-        code_paths.append(p)
-    st.success(f"코드 ZIP {len(code_paths)}개 저장 완료")
+st.markdown("### 0) 코드 ZIP 업로드 — vehicle_control.zip + motion_control.zip (필수)")
+zip_col_vehicle, zip_col_motion = st.columns(2)
+with zip_col_vehicle:
+    vehicle_zip = st.file_uploader(
+        "vehicle_control.zip (필수)", type=["zip"], accept_multiple_files=False, key="vehicle_zip"
+    )
+with zip_col_motion:
+    motion_zip = st.file_uploader(
+        "motion_control.zip (필수)", type=["zip"], accept_multiple_files=False, key="motion_zip"
+    )
 
-col_idx1, col_idx2 = st.columns([1,3])
+col_idx1, col_idx2 = st.columns([1, 3])
 with col_idx1:
-    if st.button("코드 인덱싱 ▶ (에러코드 매핑 자동 생성)"):
-        if not code_paths:
-            st.warning("먼저 코드 ZIP을 업로드하세요.")
+    if st.button("코드 인덱싱 ▶ (vehicle + motion 동시)"):
+        if not vehicle_zip or not motion_zip:
+            st.error("vehicle_control.zip과 motion_control.zip을 모두 업로드하세요.")
         else:
-            with st.spinner("코드 인덱싱 중..."):
-                idx = index_code(code_paths)
-                save_source_index(idx)
-            st.success(f"인덱싱 완료! 매핑 {len(idx['map_num_to_name'])}건")
+            try:
+                try:
+                    vehicle_zip.seek(0)
+                    motion_zip.seek(0)
+                except Exception:
+                    pass
+                vehicle_bytes = vehicle_zip.read()
+                motion_bytes = motion_zip.read()
+                with st.spinner("코드 인덱싱 중..."):
+                    idx = build_source_index(
+                        vehicle_zip_bytes=vehicle_bytes,
+                        motion_zip_bytes=motion_bytes,
+                    )
+                    save_source_index(idx)
+                v_count = len(idx["vehicle"]["map_num_to_name"])
+                m_count = len(idx["motion"]["map_num_to_name"])
+                st.success(f"인덱싱 완료! vehicle {v_count}건 + motion {m_count}건")
+            except Exception as exc:
+                st.exception(exc)
 with col_idx2:
     if st.button("현재 코드 매핑 요약 보기"):
         idx = load_source_index()
-        preview = dict(list(idx.get('map_num_to_name',{}).items())[:20])
-        st.json({"meta": idx.get("meta", {}), "map_num_to_name": preview})
+        vehicle_preview = dict(list(idx.get("vehicle", {}).get("map_num_to_name", {}).items())[:20])
+        motion_preview = dict(list(idx.get("motion", {}).get("map_num_to_name", {}).items())[:20])
+        st.json(
+            {
+                "meta": idx.get("meta", {}),
+                "vehicle": {"map_num_to_name": vehicle_preview},
+                "motion": {"map_num_to_name": motion_preview},
+            }
+        )
+
+if not required_sources_present():
+    st.warning("vehicle_control.zip과 motion_control.zip을 모두 인덱싱해야 로그 분석을 진행할 수 있습니다.")
+    st.stop()
 
 st.markdown("### 1) 로그데이터 업로드")
 uploads = st.file_uploader("ZIP 또는 LOG 파일 여러 개 선택", type=["zip","log","txt"], accept_multiple_files=True)

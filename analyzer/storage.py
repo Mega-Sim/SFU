@@ -1,7 +1,9 @@
 from __future__ import annotations
+import io
 import json
+import zipfile
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -14,6 +16,8 @@ MODEL_FILE = DATA / "model.joblib"
 SOURCE_INDEX_FILE = DATA / "source_index.json"
 
 _DEFAULT_INDEX_CACHE: Optional[Dict[str, Any]] = None
+
+REQUIRED_SOURCES = ("vehicle", "motion")
 
 def load_json(path: Path, default: Any) -> Any:
     if path.exists():
@@ -108,52 +112,82 @@ def load_feedback() -> Dict[str, Any]:
 def save_feedback(fb: Dict[str, Any]) -> None:
     save_json(FEEDBACK_FILE, fb)
 
-def _default_system_code_paths() -> List[Path]:
-    paths: List[Path] = []
-    if DEFAULT_SYSTEM_DIR.exists():
-        # Prefer the packaged ZIPs for faster indexing. Fallback to directories.
-        for name in ("vehicle_control.zip", "motion_control.zip"):
-            p = DEFAULT_SYSTEM_DIR / name
-            if p.exists():
-                paths.append(p)
-        for name in ("vehicle_control", "motion_control"):
-            p = DEFAULT_SYSTEM_DIR / name
-            if p.exists():
-                paths.append(p)
-    return paths
-
-
 def _load_default_system_index() -> Dict[str, Any]:
     global _DEFAULT_INDEX_CACHE
     if _DEFAULT_INDEX_CACHE is not None:
         return _DEFAULT_INDEX_CACHE
 
-    code_paths = _default_system_code_paths()
-    if not code_paths:
-        _DEFAULT_INDEX_CACHE = {"map_num_to_name": {}, "map_name_to_num": {}, "provenance": {}}
+    vehicle_bytes = _read_default_system_zip_bytes("vehicle_control")
+    motion_bytes = _read_default_system_zip_bytes("motion_control")
+    if not vehicle_bytes or not motion_bytes:
+        _DEFAULT_INDEX_CACHE = {}
         return _DEFAULT_INDEX_CACHE
 
-    from analyzer.code_indexer import index_code  # Local import to avoid circular dependency.
+    from analyzer.code_indexer import build_source_index  # Local import to avoid circular dependency.
 
-    idx = index_code(code_paths)
+    idx = build_source_index(vehicle_zip_bytes=vehicle_bytes, motion_zip_bytes=motion_bytes)
     idx.setdefault("meta", {})["source"] = "default_system"
-    idx.setdefault("meta", {})["paths"] = [str(p) for p in code_paths]
     _DEFAULT_INDEX_CACHE = idx
     return _DEFAULT_INDEX_CACHE
 
 
+def _read_default_system_zip_bytes(name: str) -> bytes | None:
+    zip_path = DEFAULT_SYSTEM_DIR / f"{name}.zip"
+    if zip_path.exists():
+        try:
+            return zip_path.read_bytes()
+        except Exception:
+            return None
+
+    dir_path = DEFAULT_SYSTEM_DIR / name
+    if not dir_path.exists() or not dir_path.is_dir():
+        return None
+
+    buffer = io.BytesIO()
+    try:
+        with zipfile.ZipFile(buffer, "w") as zf:
+            for path in dir_path.rglob("*"):
+                if path.is_file():
+                    arcname = str(path.relative_to(dir_path))
+                    zf.write(path, arcname=arcname)
+    except Exception:
+        return None
+    return buffer.getvalue()
+
+
+def _is_valid_source_index(data: Dict[str, Any], required: tuple[str, ...] = REQUIRED_SOURCES) -> bool:
+    if not isinstance(data, dict):
+        return False
+    for key in required:
+        section = data.get(key)
+        if not isinstance(section, dict):
+            return False
+        map_num_to_name = section.get("map_num_to_name")
+        if not isinstance(map_num_to_name, dict) or not map_num_to_name:
+            return False
+    return True
+
+
 def load_source_index() -> Dict[str, Any]:
-    data = load_json(
-        SOURCE_INDEX_FILE,
-        default={"map_num_to_name": {}, "map_name_to_num": {}, "provenance": {}},
-    )
-    if data.get("map_num_to_name"):
+    data = load_json(SOURCE_INDEX_FILE, default={})
+    if _is_valid_source_index(data):
         return data
 
     default_idx = _load_default_system_index()
-    if default_idx.get("map_num_to_name"):
+    if _is_valid_source_index(default_idx):
         return default_idx
-    return data
+    return {}
+
 
 def save_source_index(obj: Dict[str, Any]) -> None:
+    if not _is_valid_source_index(obj):
+        raise ValueError("source_index.json must include non-empty 'vehicle' and 'motion' sections")
+
+    meta = obj.setdefault("meta", {})
+    meta.setdefault("required_sources", list(REQUIRED_SOURCES))
+    meta["cycle_ms"] = 1
     save_json(SOURCE_INDEX_FILE, obj)
+
+
+def required_sources_present(required: tuple[str, ...] = REQUIRED_SOURCES) -> bool:
+    return _is_valid_source_index(load_source_index(), required)
