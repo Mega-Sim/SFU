@@ -17,3 +17,7 @@ data/*.joblib
 # System
 .DS_Store
 Thumbs.db
+
+# M-Trace visualization artifacts
+artifacts/mtrace/
+*.png
