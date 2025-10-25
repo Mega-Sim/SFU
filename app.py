@@ -23,6 +23,7 @@ from analyzer.diagnostics import generate_diagnostic_report
 from analyzer.learn import add_feedback
 from analyzer.code_indexer import build_source_index
 from analyzer.trace import collect_trace_datasets
+from analyzer.mtrace import render_mtrace_section
 # ────────────────────────────────────────────────────────────────
 # 아래 코드는 새 브랜치(codex)에서 추가한 부분
 from analyzer.viz import configure_altair
@@ -519,6 +520,9 @@ if st.session_state.get("analyze_now") and uploaded_paths:
                     for rec in s["samples"][:8]:
                         st.code(one_line(rec), language="text")
             st.markdown('---')
+
+    # --- M-Trace: speed/position vs torque charts ---
+    render_mtrace_section()
 
 st.markdown("### 3) 피드백 / 재학습")
 with st.form("feedback_form"):
