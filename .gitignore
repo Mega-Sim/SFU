@@ -20,4 +20,5 @@ Thumbs.db
 
 # M-Trace visualization artifacts
 artifacts/mtrace/
+artifacts/analysis/
 *.png
