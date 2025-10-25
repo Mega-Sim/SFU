@@ -33,17 +33,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
-# Candidate file patterns for M-Trace logs.  Comparison is case-insensitive.
-FILE_NAME_PATTERNS: Tuple[str, ...] = (
-    "AMC_AXIS_M_TRACE*.csv",
-    "AMC_AXIS_M_TRACE*.log",
-    "*M_TRACE*.csv",
-    "*M-TRACE*.csv",
-    "*MTRACE*.csv",
-    "*M_TRACE*.log",
-    "*M-TRACE*.log",
-    "*MTRACE*.log",
-)
+# Regex used to identify M-Trace log files irrespective of extensions.
+MTRACE_NAME_REGEX = re.compile(r"(?i)M[-_]?TRACE")
 
 # Common encodings used for M-Trace exports (Korean/English environments).
 CANDIDATE_ENCODINGS: Tuple[str, ...] = (
@@ -64,6 +55,8 @@ TOKENS: Dict[str, List[str]] = {
         "time_ms",
         "tick",
         "sample",
+        "index",
+        "번호",
         "시간",
         "타임",
         "타임스탬프",
@@ -72,6 +65,8 @@ TOKENS: Dict[str, List[str]] = {
         "torque",
         "trq",
         "iq",
+        "iqref",
+        "iqfb",
         "current",
         "load",
         "motor_torque",
@@ -89,6 +84,7 @@ TOKENS: Dict[str, List[str]] = {
         "feedbackspeed",
         "fbvel",
         "measvel",
+        "velfb",
         "실제속도",
         "피드백속도",
         "피드백속력",
@@ -99,6 +95,8 @@ TOKENS: Dict[str, List[str]] = {
         "targetspeed",
         "refspeed",
         "setpointspeed",
+        "velcmd",
+        "vref",
         "명령속도",
         "지령속도",
         "설정속도",
@@ -111,6 +109,7 @@ TOKENS: Dict[str, List[str]] = {
         "feedbackposition",
         "fbpos",
         "measpos",
+        "posfb",
         "실제위치",
         "피드백위치",
     ],
@@ -121,6 +120,7 @@ TOKENS: Dict[str, List[str]] = {
         "refposition",
         "setpointposition",
         "cmdpos",
+        "poscmd",
         "명령위치",
         "지령위치",
         "설정위치",
@@ -280,45 +280,23 @@ def _plot_position_vs_torque(
 
 
 def _iter_mtrace_files_from_dir(root: Path) -> Iterator[Tuple[str, io.BytesIO]]:
-    for pattern in FILE_NAME_PATTERNS:
-        for path in root.rglob(pattern):
-            try:
-                yield str(path), io.BytesIO(path.read_bytes())
-            except OSError:
-                continue
-
-
-def _fnmatch_lower(name: str, pattern: str) -> bool:
-    if pattern == "*":
-        return True
-    if "*" not in pattern:
-        return name == pattern
-    parts = pattern.split("*")
-    idx = 0
-    if not pattern.startswith("*") and parts[0]:
-        if not name.startswith(parts[0]):
-            return False
-        idx = len(parts[0])
-    for part in parts[1:-1] if not pattern.endswith("*") else parts[1:]:
-        if not part:
+    for path in root.rglob("*"):
+        if not path.is_file():
             continue
-        pos = name.find(part, idx)
-        if pos < 0:
-            return False
-        idx = pos + len(part)
-    if not pattern.endswith("*") and parts[-1]:
-        return name.endswith(parts[-1])
-    return True
+        if not MTRACE_NAME_REGEX.search(path.name):
+            continue
+        try:
+            yield str(path), io.BytesIO(path.read_bytes())
+        except OSError:
+            continue
 
 
 def _iter_mtrace_files_from_zip(archive: zipfile.ZipFile, zip_path: Path) -> Iterator[Tuple[str, io.BytesIO]]:
     for name in archive.namelist():
         if name.endswith("/"):
             continue
-        base = Path(name).name.lower()
-        if base.endswith((".csv", ".log")) and any(
-            _fnmatch_lower(base, pattern.lower()) for pattern in FILE_NAME_PATTERNS
-        ):
+        base = Path(name).name
+        if MTRACE_NAME_REGEX.search(base):
             yield f"{zip_path}!{name}", io.BytesIO(archive.read(name))
 
 
@@ -326,14 +304,13 @@ def _iter_mtrace_files_from_tar(archive: tarfile.TarFile, tar_path: Path) -> Ite
     for member in archive.getmembers():
         if not member.isfile():
             continue
-        base = Path(member.name).name.lower()
-        if base.endswith((".csv", ".log")) and any(
-            _fnmatch_lower(base, pattern.lower()) for pattern in FILE_NAME_PATTERNS
-        ):
-            extracted = archive.extractfile(member)
-            if extracted is None:
-                continue
-            yield f"{tar_path}!{member.name}", io.BytesIO(extracted.read())
+        base = Path(member.name).name
+        if not MTRACE_NAME_REGEX.search(base):
+            continue
+        extracted = archive.extractfile(member)
+        if extracted is None:
+            continue
+        yield f"{tar_path}!{member.name}", io.BytesIO(extracted.read())
 
 
 def _iter_mtrace_streams(bundle: Path) -> Iterator[Tuple[str, io.BytesIO]]:
@@ -352,9 +329,7 @@ def _iter_mtrace_streams(bundle: Path) -> Iterator[Tuple[str, io.BytesIO]]:
             yield from _iter_mtrace_files_from_tar(archive, bundle)
         return
 
-    if lower.endswith((".csv", ".log")) and any(
-        _fnmatch_lower(lower, pattern.lower()) for pattern in FILE_NAME_PATTERNS
-    ):
+    if MTRACE_NAME_REGEX.search(bundle.name):
         yield str(bundle), io.BytesIO(bundle.read_bytes())
 
 
