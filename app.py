@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import re
 
 import streamlit as st
@@ -24,9 +26,14 @@ from analyzer.trace import collect_trace_datasets
 # ────────────────────────────────────────────────────────────────
 # 아래 코드는 새 브랜치(codex)에서 추가한 부분
 from analyzer.viz import configure_altair
+from core.config import load_config
+from core.ingest import load_zip, basic_validate, summarize_source, SourceBundle
+from core.git_loader import fetch_from_git
 
 configure_altair()
 # ────────────────────────────────────────────────────────────────
+
+cfg = load_config()
 
 st.set_page_config(page_title="OHT 로그 분석기 (로그 + 코드 참조)", layout="wide")
 
@@ -66,42 +73,205 @@ with st.sidebar:
                 st.markdown(f"**{term}**")
                 st.caption(desc)
 
-st.markdown("### 0) 코드 ZIP 업로드 — vehicle_control.zip + motion_control.zip (필수)")
-zip_col_vehicle, zip_col_motion = st.columns(2)
-with zip_col_vehicle:
-    vehicle_zip = st.file_uploader(
-        "vehicle_control.zip (필수)", type=["zip"], accept_multiple_files=False, key="vehicle_zip"
+SOURCE_MODE_BOTH = "양쪽 ZIP(권장)"
+SOURCE_MODE_VEHICLE = "차량만 ZIP(빠른 모드)"
+SOURCE_MODE_MOTION = "모션만 ZIP(빠른 모드)"
+SOURCE_MODE_GIT = "Git Import(선택)"
+
+VALIDATION_KEYWORDS = ["err_"]
+
+both_required = cfg.get("require_both_code_zips", True)
+allow_git_sources = cfg.get("allow_git_sources", False)
+git_defaults = cfg.get("git", {}) or {}
+
+mode_options = [SOURCE_MODE_BOTH]
+if not both_required:
+    mode_options.extend([SOURCE_MODE_VEHICLE, SOURCE_MODE_MOTION])
+if allow_git_sources:
+    mode_options.append(SOURCE_MODE_GIT)
+
+st.markdown("### 0) 코드 소스 — vehicle_control + motion_control (기본: 둘 다 필요)")
+st.caption(
+    "두 프로그램은 1ms 주기로 상호 참조되므로 **양쪽을 함께 업로드해야 정확한 상관 분석이 가능합니다.** "
+    "빠른 점검이 필요하면 ‘단독 모드’를 선택할 수 있습니다."
+)
+
+source_mode = st.radio(
+    "입력 소스",
+    mode_options,
+    index=0,
+    help="기본값은 ‘양쪽 ZIP(권장)’입니다. 단독 모드는 일부 규칙이 비활성화됩니다.",
+)
+
+if both_required and len(mode_options) > 1:
+    st.info("관리자 정책으로 현재 실행은 ‘양쪽 ZIP’만 허용됩니다.", icon="🔒")
+    source_mode = SOURCE_MODE_BOTH
+
+st.session_state["source_mode"] = source_mode
+
+vehicle_bundle: SourceBundle | None = None
+motion_bundle: SourceBundle | None = None
+
+vehicle_repo_input = git_defaults.get("default_vehicle_repo", "")
+motion_repo_input = git_defaults.get("default_motion_repo", "")
+vehicle_ref_input = git_defaults.get("default_ref", "main")
+motion_ref_input = git_defaults.get("default_ref", "main")
+
+if source_mode == SOURCE_MODE_VEHICLE:
+    st.warning(
+        "빠른 모드: 차량측 단독 규칙만 실행됩니다(교차 상관/페어링 규칙 비활성).",
+        icon="⚠️",
     )
-with zip_col_motion:
-    motion_zip = st.file_uploader(
-        "motion_control.zip (필수)", type=["zip"], accept_multiple_files=False, key="motion_zip"
+elif source_mode == SOURCE_MODE_MOTION:
+    st.warning(
+        "빠른 모드: 모션측 단독 규칙만 실행됩니다(교차 상관/페어링 규칙 비활성).",
+        icon="⚠️",
     )
+
+if source_mode == SOURCE_MODE_BOTH:
+    zip_col_vehicle, zip_col_motion = st.columns(2)
+    with zip_col_vehicle:
+        vehicle_file = st.file_uploader(
+            "vehicle_control.zip (필수)",
+            type=["zip"],
+            accept_multiple_files=False,
+            key="vehicle_zip",
+        )
+        if vehicle_file:
+            try:
+                vehicle_bundle = load_zip(vehicle_file)
+                if basic_validate(vehicle_bundle, VALIDATION_KEYWORDS):
+                    st.warning("ERR_ 관련 정의가 포함된 파일을 찾지 못했습니다. 경로를 확인하세요.", icon="⚠️")
+                st.caption(
+                    f"파일 {vehicle_bundle.file_count}개 · SHA256 {vehicle_bundle.sha256[:12]}…"
+                )
+            except ValueError as exc:
+                st.error(str(exc))
+    with zip_col_motion:
+        motion_file = st.file_uploader(
+            "motion_control.zip (필수)",
+            type=["zip"],
+            accept_multiple_files=False,
+            key="motion_zip",
+        )
+        if motion_file:
+            try:
+                motion_bundle = load_zip(motion_file)
+                if basic_validate(motion_bundle, VALIDATION_KEYWORDS):
+                    st.warning("ERR_ 관련 정의가 포함된 파일을 찾지 못했습니다. 경로를 확인하세요.", icon="⚠️")
+                st.caption(
+                    f"파일 {motion_bundle.file_count}개 · SHA256 {motion_bundle.sha256[:12]}…"
+                )
+            except ValueError as exc:
+                st.error(str(exc))
+elif source_mode == SOURCE_MODE_VEHICLE:
+    vehicle_file = st.file_uploader(
+        "vehicle_control.zip", type=["zip"], accept_multiple_files=False, key="vehicle_zip_single"
+    )
+    if vehicle_file:
+        try:
+            vehicle_bundle = load_zip(vehicle_file)
+            if basic_validate(vehicle_bundle, VALIDATION_KEYWORDS):
+                st.warning("ERR_ 관련 정의가 포함된 파일을 찾지 못했습니다. 경로를 확인하세요.", icon="⚠️")
+            st.caption(f"파일 {vehicle_bundle.file_count}개 · SHA256 {vehicle_bundle.sha256[:12]}…")
+        except ValueError as exc:
+            st.error(str(exc))
+elif source_mode == SOURCE_MODE_MOTION:
+    motion_file = st.file_uploader(
+        "motion_control.zip", type=["zip"], accept_multiple_files=False, key="motion_zip_single"
+    )
+    if motion_file:
+        try:
+            motion_bundle = load_zip(motion_file)
+            if basic_validate(motion_bundle, VALIDATION_KEYWORDS):
+                st.warning("ERR_ 관련 정의가 포함된 파일을 찾지 못했습니다. 경로를 확인하세요.", icon="⚠️")
+            st.caption(f"파일 {motion_bundle.file_count}개 · SHA256 {motion_bundle.sha256[:12]}…")
+        except ValueError as exc:
+            st.error(str(exc))
+elif source_mode == SOURCE_MODE_GIT:
+    if not allow_git_sources:
+        st.info("관리자 정책상 Git Import가 비활성화되어 있습니다.")
+    git_vehicle_col, git_motion_col = st.columns(2)
+    with git_vehicle_col:
+        vehicle_repo_input = st.text_input(
+            "Vehicle repo URL",
+            value=git_defaults.get("default_vehicle_repo", ""),
+            key="vehicle_git_repo",
+        )
+        vehicle_ref_input = st.text_input(
+            "Vehicle ref (branch/tag/SHA)",
+            value=git_defaults.get("default_ref", "main"),
+            key="vehicle_git_ref",
+        )
+    with git_motion_col:
+        motion_repo_input = st.text_input(
+            "Motion repo URL",
+            value=git_defaults.get("default_motion_repo", ""),
+            key="motion_git_repo",
+        )
+        motion_ref_input = st.text_input(
+            "Motion ref (branch/tag/SHA)",
+            value=git_defaults.get("default_ref", "main"),
+            key="motion_git_ref",
+        )
+    st.caption("입력한 저장소는 인덱싱 버튼을 누를 때 Git에서 가져옵니다.")
+
+if vehicle_bundle or motion_bundle:
+    st.caption("현재 선택한 코드 소스 요약")
+    st.json(summarize_source(vehicle_bundle, motion_bundle, source_mode))
 
 col_idx1, col_idx2 = st.columns([1, 3])
 with col_idx1:
-    if st.button("코드 인덱싱 ▶ (vehicle + motion 동시)"):
-        if not vehicle_zip or not motion_zip:
-            st.error("vehicle_control.zip과 motion_control.zip을 모두 업로드하세요.")
-        else:
-            try:
-                try:
-                    vehicle_zip.seek(0)
-                    motion_zip.seek(0)
-                except Exception:
-                    pass
-                vehicle_bytes = vehicle_zip.read()
-                motion_bytes = motion_zip.read()
+    if st.button("코드 인덱싱 ▶ (선택한 모드 적용)"):
+        bundle_vehicle = vehicle_bundle
+        bundle_motion = motion_bundle
+        try:
+            if source_mode == SOURCE_MODE_GIT:
+                if not allow_git_sources:
+                    st.error("Git Import가 비활성화되어 있습니다.")
+                    raise RuntimeError("Git import disabled")
+                with st.spinner("Git 저장소에서 코드 가져오는 중..."):
+                    bundle_vehicle, bundle_motion = fetch_from_git(
+                        vehicle_repo_input,
+                        vehicle_ref_input,
+                        motion_repo_input,
+                        motion_ref_input,
+                    )
+
+            if source_mode == SOURCE_MODE_BOTH and (bundle_vehicle is None or bundle_motion is None):
+                st.error("vehicle_control.zip과 motion_control.zip을 모두 업로드하세요.")
+            elif source_mode == SOURCE_MODE_VEHICLE and bundle_vehicle is None:
+                st.error("vehicle_control.zip을 업로드하거나 Git 저장소를 지정하세요.")
+            elif source_mode == SOURCE_MODE_MOTION and bundle_motion is None:
+                st.error("motion_control.zip을 업로드하거나 Git 저장소를 지정하세요.")
+            else:
                 with st.spinner("코드 인덱싱 중..."):
                     idx = build_source_index(
-                        vehicle_zip_bytes=vehicle_bytes,
-                        motion_zip_bytes=motion_bytes,
+                        vehicle_zip_bytes=bundle_vehicle.zipbytes if bundle_vehicle else None,
+                        motion_zip_bytes=bundle_motion.zipbytes if bundle_motion else None,
                     )
+                    summary = summarize_source(bundle_vehicle, bundle_motion, source_mode)
+                    meta = idx.setdefault("meta", {})
+                    meta["source_summary"] = summary
+                    meta["source_mode"] = source_mode
+                    meta["source_policy"] = {
+                        "require_both_code_zips": both_required,
+                        "allow_git_sources": allow_git_sources,
+                    }
                     save_source_index(idx)
-                v_count = len(idx["vehicle"]["map_num_to_name"])
-                m_count = len(idx["motion"]["map_num_to_name"])
-                st.success(f"인덱싱 완료! vehicle {v_count}건 + motion {m_count}건")
-            except Exception as exc:
-                st.exception(exc)
+
+                counts = []
+                if bundle_vehicle and "vehicle" in idx:
+                    counts.append(f"vehicle {len(idx['vehicle']['map_num_to_name'])}건")
+                if bundle_motion and "motion" in idx:
+                    counts.append(f"motion {len(idx['motion']['map_num_to_name'])}건")
+                detail = " + ".join(counts)
+                st.success("인덱싱 완료! " + detail if detail else "인덱싱 완료!")
+                st.json(summary)
+        except RuntimeError as exc:
+            st.error(str(exc))
+        except Exception as exc:
+            st.exception(exc)
 with col_idx2:
     if st.button("현재 코드 매핑 요약 보기"):
         idx = load_source_index()
@@ -115,8 +285,12 @@ with col_idx2:
             }
         )
 
-if not required_sources_present():
-    st.warning("vehicle_control.zip과 motion_control.zip을 모두 인덱싱해야 로그 분석을 진행할 수 있습니다.")
+required_tuple = ("vehicle", "motion") if both_required else None
+if not required_sources_present(required_tuple):
+    if both_required:
+        st.warning("vehicle_control.zip과 motion_control.zip을 모두 인덱싱해야 로그 분석을 진행할 수 있습니다.")
+    else:
+        st.warning("최소 한 개 이상의 코드 ZIP을 인덱싱해야 로그 분석을 진행할 수 있습니다.")
     st.stop()
 
 st.markdown("### 1) 로그데이터 업로드")
@@ -171,7 +345,12 @@ with colB:
 if st.session_state.get("analyze_now") and uploaded_paths:
     with st.spinner("분석 중..."):
         rs = RuleSet(load_rules(), code_index=load_source_index())
-        result = analyze(uploaded_paths, rs, target_codes=target_code_set)
+        result = analyze(
+            uploaded_paths,
+            rs,
+            target_codes=target_code_set,
+            source_mode=st.session_state.get("source_mode"),
+        )
     st.success("분석 완료!")
 
     st.markdown("#### ✔ 검증 배너(요약)")
@@ -359,7 +538,12 @@ if st.button("피드백 반영하여 재분석 ▶"):
     if uploads:
         with st.spinner("재분석 중..."):
             rs = RuleSet(load_rules(), code_index=load_source_index())
-            result = analyze([Path("./_work")], rs, target_codes=target_code_set)
+            result = analyze(
+                [Path("./_work")],
+                rs,
+                target_codes=target_code_set,
+                source_mode=st.session_state.get("source_mode"),
+            )
         st.success("재분석 완료")
         st.code(banner_lines(result["banner"], rs.error_map), language="markdown")
     else:

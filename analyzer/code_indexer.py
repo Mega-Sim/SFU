@@ -90,28 +90,41 @@ def _scan_err_maps(texts: Iterable[Tuple[str, str]]) -> Dict[str, Dict]:
     }
 
 
-def build_source_index(*, vehicle_zip_bytes: bytes, motion_zip_bytes: bytes) -> Dict[str, Dict]:
-    """Build a combined source index from two ZIP bundles."""
+def build_source_index(
+    *, vehicle_zip_bytes: bytes | None = None, motion_zip_bytes: bytes | None = None
+) -> Dict[str, Dict]:
+    """Build a combined or partial source index from ZIP bundles."""
 
-    vehicle_texts = list(_iter_code_texts_from_zip(vehicle_zip_bytes))
-    motion_texts = list(_iter_code_texts_from_zip(motion_zip_bytes))
+    if vehicle_zip_bytes is None and motion_zip_bytes is None:
+        raise ValueError("최소 하나 이상의 코드 ZIP이 필요합니다.")
 
-    vehicle_index = _scan_err_maps(vehicle_texts)
-    motion_index = _scan_err_maps(motion_texts)
+    result: Dict[str, Dict] = {}
+    required_sources: list[str] = []
 
-    if not vehicle_index["map_num_to_name"]:
-        raise ValueError("vehicle_control.zip에서 ERR/E### 매핑을 추출하지 못했습니다.")
-    if not motion_index["map_num_to_name"]:
-        raise ValueError("motion_control.zip에서 ERR/E### 매핑을 추출하지 못했습니다.")
+    if vehicle_zip_bytes is not None:
+        vehicle_texts = list(_iter_code_texts_from_zip(vehicle_zip_bytes))
+        vehicle_index = _scan_err_maps(vehicle_texts)
+        if not vehicle_index["map_num_to_name"]:
+            raise ValueError("vehicle_control.zip에서 ERR/E### 매핑을 추출하지 못했습니다.")
+        result["vehicle"] = vehicle_index
+        required_sources.append("vehicle")
 
-    return {
-        "vehicle": vehicle_index,
-        "motion": motion_index,
-        "meta": {
-            "required_sources": ["vehicle", "motion"],
-            "cycle_ms": 1,
-        },
+    if motion_zip_bytes is not None:
+        motion_texts = list(_iter_code_texts_from_zip(motion_zip_bytes))
+        motion_index = _scan_err_maps(motion_texts)
+        if not motion_index["map_num_to_name"]:
+            raise ValueError("motion_control.zip에서 ERR/E### 매핑을 추출하지 못했습니다.")
+        result["motion"] = motion_index
+        required_sources.append("motion")
+
+    if not required_sources:
+        raise ValueError("최소 하나 이상의 코드 ZIP이 필요합니다.")
+
+    result["meta"] = {
+        "required_sources": required_sources,
+        "cycle_ms": 1,
     }
+    return result
 
 
 def build_source_index_from_paths(vehicle_zip_path: Path, motion_zip_path: Path) -> Dict[str, Dict]:

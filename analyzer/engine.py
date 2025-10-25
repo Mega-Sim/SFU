@@ -5,15 +5,41 @@ from collections import defaultdict
 from .parser import iter_logs, find_time_ms
 from .rules import RuleSet
 from . import storage
+from core.config import load_config
 
 CYCLE_MS = 1
 
 
-def assert_required_sources() -> None:
-    if not storage.required_sources_present(("vehicle", "motion")):
-        raise RuntimeError(
-            "vehicle_control.zip과 motion_control.zip을 모두 인덱싱한 뒤에만 분석을 진행할 수 있습니다."
-        )
+_MODE_REQUIREMENTS = {
+    "차량만 ZIP(빠른 모드)": ("vehicle",),
+    "모션만 ZIP(빠른 모드)": ("motion",),
+}
+
+
+def assert_required_sources(source_mode: str | None = None) -> None:
+    cfg = load_config()
+    required: tuple[str, ...] | None
+
+    if cfg.get("require_both_code_zips", True):
+        required = ("vehicle", "motion")
+    else:
+        required = _MODE_REQUIREMENTS.get(source_mode)
+
+    if required:
+        if storage.required_sources_present(required):
+            return
+        if required == ("vehicle", "motion"):
+            raise RuntimeError(
+                "vehicle_control.zip과 motion_control.zip을 모두 인덱싱한 뒤에만 분석을 진행할 수 있습니다."
+            )
+        if required == ("vehicle",):
+            raise RuntimeError("차량 전용 모드를 사용하려면 vehicle_control.zip 인덱싱이 필요합니다.")
+        if required == ("motion",):
+            raise RuntimeError("모션 전용 모드를 사용하려면 motion_control.zip 인덱싱이 필요합니다.")
+        raise RuntimeError("선택한 코드 모드에 필요한 ZIP이 인덱싱되지 않았습니다.")
+
+    if not storage.required_sources_present():
+        raise RuntimeError("최소 한 개 이상의 코드 ZIP 인덱싱이 필요합니다.")
 
 
 def _normalize_target_codes(codes: Optional[Iterable[str]]) -> Optional[Set[str]]:
@@ -34,8 +60,10 @@ def _normalize_target_codes(codes: Optional[Iterable[str]]) -> Optional[Set[str]
     return normalized or None
 
 
-def analyze(paths, rules: RuleSet, target_codes: Optional[Iterable[str]] = None) -> Dict[str, Any]:
-    assert_required_sources()
+def analyze(
+    paths, rules: RuleSet, target_codes: Optional[Iterable[str]] = None, source_mode: str | None = None
+) -> Dict[str, Any]:
+    assert_required_sources(source_mode)
     code_filter = _normalize_target_codes(target_codes)
     lines = []
     by_cat = defaultdict(list)
