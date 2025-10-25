@@ -155,17 +155,42 @@ def _read_default_system_zip_bytes(name: str) -> bytes | None:
     return buffer.getvalue()
 
 
-def _is_valid_source_index(data: Dict[str, Any], required: tuple[str, ...] = REQUIRED_SOURCES) -> bool:
-    if not isinstance(data, dict):
-        return False
-    for key in required:
+def _available_sections(data: Dict[str, Any]) -> list[str]:
+    sections: list[str] = []
+    for key in REQUIRED_SOURCES:
         section = data.get(key)
         if not isinstance(section, dict):
-            return False
+            continue
         map_num_to_name = section.get("map_num_to_name")
-        if not isinstance(map_num_to_name, dict) or not map_num_to_name:
-            return False
-    return True
+        if isinstance(map_num_to_name, dict) and map_num_to_name:
+            sections.append(key)
+    return sections
+
+
+def _is_valid_source_index(
+    data: Dict[str, Any], required: tuple[str, ...] | None = None
+) -> bool:
+    if not isinstance(data, dict):
+        return False
+
+    if required is None:
+        meta_required = data.get("meta", {}).get("required_sources")
+        if isinstance(meta_required, (list, tuple)) and meta_required:
+            required = tuple(str(r) for r in meta_required)
+        else:
+            required = REQUIRED_SOURCES
+
+    if required:
+        for key in required:
+            section = data.get(key)
+            if not isinstance(section, dict):
+                return False
+            map_num_to_name = section.get("map_num_to_name")
+            if not isinstance(map_num_to_name, dict) or not map_num_to_name:
+                return False
+        return True
+
+    return bool(_available_sections(data))
 
 
 def load_source_index() -> Dict[str, Any]:
@@ -180,14 +205,24 @@ def load_source_index() -> Dict[str, Any]:
 
 
 def save_source_index(obj: Dict[str, Any]) -> None:
-    if not _is_valid_source_index(obj):
-        raise ValueError("source_index.json must include non-empty 'vehicle' and 'motion' sections")
+    valid_sections = _available_sections(obj)
+    if not valid_sections:
+        raise ValueError("source_index.json must include at least one non-empty section")
 
     meta = obj.setdefault("meta", {})
-    meta.setdefault("required_sources", list(REQUIRED_SOURCES))
+    required = meta.get("required_sources")
+    if not isinstance(required, (list, tuple)) or not required:
+        meta["required_sources"] = valid_sections
+    else:
+        meta["required_sources"] = [str(r) for r in required]
+
     meta["cycle_ms"] = 1
+
+    if not _is_valid_source_index(obj, tuple(meta["required_sources"])):
+        raise ValueError("source_index.json must include the configured required sections")
+
     save_json(SOURCE_INDEX_FILE, obj)
 
 
-def required_sources_present(required: tuple[str, ...] = REQUIRED_SOURCES) -> bool:
+def required_sources_present(required: tuple[str, ...] | None = None) -> bool:
     return _is_valid_source_index(load_source_index(), required)

@@ -1,0 +1,8 @@
+# 기본값은 현행 유지(둘 다 필수)
+require_both_code_zips: true
+allow_git_sources: false
+
+git:
+  default_vehicle_repo: ""
+  default_motion_repo: ""
+  default_ref: "main"
