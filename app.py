@@ -1,3 +1,5 @@
+import re
+
 import streamlit as st
 from pathlib import Path
 from typing import List, Optional
@@ -130,6 +132,34 @@ if uploads:
         uploaded_paths.append(p)
     st.success(f"{len(uploaded_paths)}개 로그 파일 저장 완료")
 
+
+def parse_error_code_input(raw: str) -> List[str]:
+    if not raw:
+        return []
+    tokens = [tok.strip() for tok in re.split(r"[,\s]+", raw) if tok.strip()]
+    codes: List[str] = []
+    for token in tokens:
+        if token.upper().startswith("E"):
+            token = token[1:]
+        token = token.strip()
+        if token:
+            codes.append(token)
+    return codes
+
+
+error_code_raw = st.text_input(
+    "분석할 에러 코드 (선택 입력, 쉼표/공백 구분)",
+    value="",
+    placeholder="예: 101 또는 101, 205",
+)
+selected_error_codes = parse_error_code_input(error_code_raw)
+target_code_set = set(selected_error_codes) if selected_error_codes else None
+if selected_error_codes:
+    st.caption(
+        "입력된 에러 코드만 우선 분석합니다: "
+        + ", ".join(f"E{code}" for code in selected_error_codes)
+    )
+
 st.markdown("### 2) 로그 분석")
 colA, colB = st.columns([1,3])
 with colA:
@@ -141,7 +171,7 @@ with colB:
 if st.session_state.get("analyze_now") and uploaded_paths:
     with st.spinner("분석 중..."):
         rs = RuleSet(load_rules(), code_index=load_source_index())
-        result = analyze(uploaded_paths, rs)
+        result = analyze(uploaded_paths, rs, target_codes=target_code_set)
     st.success("분석 완료!")
 
     st.markdown("#### ✔ 검증 배너(요약)")
@@ -329,7 +359,7 @@ if st.button("피드백 반영하여 재분석 ▶"):
     if uploads:
         with st.spinner("재분석 중..."):
             rs = RuleSet(load_rules(), code_index=load_source_index())
-            result = analyze([Path("./_work")], rs)
+            result = analyze([Path("./_work")], rs, target_codes=target_code_set)
         st.success("재분석 완료")
         st.code(banner_lines(result["banner"], rs.error_map), language="markdown")
     else:

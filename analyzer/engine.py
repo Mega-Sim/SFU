@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Dict, Any
+from typing import Dict, Any, Iterable, Optional, Set
 from collections import defaultdict
 
 from .parser import iter_logs, find_time_ms
@@ -16,8 +16,27 @@ def assert_required_sources() -> None:
         )
 
 
-def analyze(paths, rules: RuleSet) -> Dict[str, Any]:
+def _normalize_target_codes(codes: Optional[Iterable[str]]) -> Optional[Set[str]]:
+    if not codes:
+        return None
+
+    normalized: Set[str] = set()
+    for raw in codes:
+        if raw is None:
+            continue
+        text = str(raw).strip()
+        if not text:
+            continue
+        if text.upper().startswith("E"):
+            text = text[1:]
+        if text:
+            normalized.add(text)
+    return normalized or None
+
+
+def analyze(paths, rules: RuleSet, target_codes: Optional[Iterable[str]] = None) -> Dict[str, Any]:
     assert_required_sources()
+    code_filter = _normalize_target_codes(target_codes)
     lines = []
     by_cat = defaultdict(list)
     for fname, text in iter_logs(paths):
@@ -30,8 +49,12 @@ def analyze(paths, rules: RuleSet) -> Dict[str, Any]:
     anchors = []
     for rec in lines:
         for _, code in rules.match_anchors(rec["text"]):
-            if rec["ts"] is not None:
-                anchors.append({"code": code, "ts": rec["ts"], "file": rec["file"], "text": rec["text"]})
+            if rec["ts"] is None:
+                continue
+            code_str = str(code)
+            if code_filter and code_str not in code_filter:
+                continue
+            anchors.append({"code": code_str, "ts": rec["ts"], "file": rec["file"], "text": rec["text"]})
     anchors.sort(key=lambda x: x["ts"])
 
     wnd = rules.windows
